@@ -1,0 +1,58 @@
+/* 
+ * Svajana Base CSS
+ * Generated from Kadence Config
+ */
+
+body {
+    font-family: Inter, sans-serif;
+    color: #333333;
+    background-color: #ffffff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Inter, sans-serif;
+    color: #2c3e50;
+}
+
+a {
+    color: #2c3e50;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: #34495e;
+}
+
+/* Layout Containers */
+.site-container {
+    max-width: 1290px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Utilities */
+@media (min-width: 992px) {
+    .mobile-only {
+        display: none !important;
+    }
+
+    .desktop-only {
+        display: block !important;
+    }
+}
+
+@media (max-width: 991px) {
+    .mobile-only {
+        display: block !important;
+    }
+
+    .desktop-only {
+        display: none !important;
+    }
+}

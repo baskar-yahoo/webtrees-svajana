@@ -1,0 +1,26 @@
+<?php 
+use Fisharebest\Webtrees\I18N; 
+?>
+
+<!-- 
+  Svajana Settings Page 
+  Located at: resources/views/layouts/settings.phtml
+-->
+
+<h2><?= I18N::translate('Svajana Theme Settings') ?></h2>
+
+<div class="alert alert-info">
+    <?= I18N::translate('This theme automatically syncs with your WordPress Kadence configuration via the database. No manual color configuration is required.') ?>
+</div>
+
+<form method="post">
+    <?= csrf_field() ?>
+    
+    <div class="mb-3">
+        <p><strong><?= I18N::translate('Status') ?>:</strong> <span class="text-success"><?= I18N::translate('Active & Linked to WordPress') ?></span></p>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        <?= I18N::translate('Save settings') ?>
+    </button>
+</form>
