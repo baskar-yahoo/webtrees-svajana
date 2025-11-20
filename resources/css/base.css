@@ -29,11 +29,13 @@ a:hover {
     color: #34495e;
 }
 
-/* Layout Containers */
+/* Layout Containers - FULL WIDTH OVERRIDE */
 .site-container {
-    max-width: 1290px;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 40px;
+    /* Comfortable side padding */
     margin: 0 auto;
-    padding: 0 20px;
 }
 
 /* Utilities */
@@ -54,5 +56,9 @@ a:hover {
 
     .desktop-only {
         display: none !important;
+    }
+
+    .site-container {
+        padding: 0 20px;
     }
 }

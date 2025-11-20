@@ -1,6 +1,6 @@
 /* 
  * Svajana Menu Styles
- * Feature: Transparent -> Sticky Header
+ * Feature: Transparent -> Sticky Header (Hide on Scroll Down)
  */
 
 :root {
@@ -14,9 +14,18 @@
 .site-header.is-sticky {
     --header-text-color: var(--global-palette1);
     /* Navy */
-    --header-bg: #ffffff;
+    /* SEMI-TRANSPARENT BACKGROUND (50%) */
+    --header-bg: rgba(255, 255, 255, 0.1);
     --header-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     --brand-color: var(--global-palette1);
+    backdrop-filter: blur(10px);
+    /* Frosted Glass Effect - Keeps Text Readable */
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* HIDE ON SCROLL DOWN */
+.site-header.is-hidden {
+    transform: translateY(-100%);
 }
 
 /* Site Header Layout */
@@ -29,7 +38,7 @@
     z-index: 1000;
     background: var(--header-bg);
     box-shadow: var(--header-shadow);
-    transition: background 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .site-header.is-sticky {
@@ -62,7 +71,7 @@
 
 /* Branding */
 .site-title {
-    font-size: 2rem;
+    font-size: var(--brand-font-size, 2rem);
     font-weight: 700;
     color: var(--brand-color);
     transition: color 0.3s;
@@ -77,25 +86,29 @@
     padding: 0;
     list-style: none;
     gap: 25px;
-    /* FIX: Added specific gap for Global Menu spacing */
 }
 
 /* Top Level Links (Global) */
 .main-navigation>ul>li>a {
     display: block;
     padding: 5px 0;
-    /* Reduced side padding, relying on gap */
     color: var(--header-text-color);
     font-weight: 700;
+    font-size: var(--menu-font-size, 1rem);
     text-transform: capitalize;
     letter-spacing: 0.02em;
-    transition: color 0.2s ease;
+    transition: color 0.2s ease, border-color 0.2s ease;
     position: relative;
+    border-bottom: 2px solid transparent;
 }
 
-.main-navigation>ul>li>a:hover {
+/* Hover & Active State: Orange Underline */
+.main-navigation>ul>li>a:hover,
+.main-navigation>ul>li.current-menu-item>a,
+.main-navigation>ul>li.active>a {
     color: var(--global-palette2);
-    /* Orange hover */
+    /* Orange */
+    border-bottom-color: var(--global-palette2);
 }
 
 /* Top Level Links (Utility & App) - Matched Style */
@@ -110,29 +123,34 @@
     font-size: 0.85rem;
     text-decoration: none;
     transition: color 0.2s ease;
+    border-bottom: 2px solid transparent;
 }
 
 .webtrees-navigation>ul>li>a:hover,
-.secondary-navigation>ul>li>a:hover {
+.secondary-navigation>ul>li>a:hover,
+.webtrees-navigation>ul>li.active>a {
     background-color: transparent;
     color: var(--global-palette2);
+    border-bottom-color: var(--global-palette2);
 }
 
-/* --- UNIFIED DROPDOWN STYLING --- */
+/* --- UNIFIED DESKTOP DROPDOWN STYLING --- */
 .sub-menu {
     display: none;
     position: absolute;
     background: #fff;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    /* Refined Shadow */
     z-index: 999;
     border-top: 3px solid var(--global-palette2);
     min-width: 220px;
-    padding: 0;
+    padding: 10px 0;
     list-style: none;
     top: 100%;
     left: 0;
     text-transform: none;
     font-weight: 500;
+    border-radius: 0 0 4px 4px;
 }
 
 li {
@@ -144,31 +162,29 @@ li:hover>.sub-menu {
 }
 
 .sub-menu li {
-    border-bottom: 1px solid #f5f5f5;
+    border-bottom: none;
 }
 
-/* All Dropdown Links (Global + App + Utility) */
+/* All Desktop Dropdown Links */
 .sub-menu a {
     display: block;
-    padding: 12px 20px;
+    padding: 8px 20px;
     color: #333 !important;
-    /* Always dark text in dropdowns */
     text-decoration: none;
     background: transparent;
+    border-bottom: none;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
 }
 
 .sub-menu a:hover {
-    background: #f9f9f9;
+    background: #f7f7f7;
     color: var(--global-palette2) !important;
+    padding-left: 25px;
+    /* Subtle slide effect */
 }
 
-/* Mobile Hamburger */
-.hamburger-icon {
-    font-size: 24px;
-    color: var(--header-text-color);
-}
-
-/* --- Mobile Drawer --- */
+/* --- MOBILE DRAWER STYLING (Distinct) --- */
 .mobile-drawer-container {
     position: fixed;
     top: 0;
@@ -219,7 +235,7 @@ li:hover>.sub-menu {
 }
 
 .drawer-header {
-    padding: 15px 20px;
+    padding: 20px;
     border-bottom: 1px solid #eee;
     display: flex;
     justify-content: space-between;
@@ -234,6 +250,7 @@ li:hover>.sub-menu {
     color: #333;
 }
 
+/* Mobile Links */
 .mobile-nav ul {
     list-style: none;
     padding: 0;
@@ -249,19 +266,45 @@ li:hover>.sub-menu {
     padding: 15px 20px;
     color: #333;
     text-decoration: none;
+    font-weight: 600;
+    position: relative;
 }
 
+/* Mobile Submenu (Accordion Style) */
 .mobile-nav .sub-menu {
     position: static;
     display: none;
     box-shadow: none;
     border-top: none;
-    background: #f9f9f9;
-    padding-left: 10px;
+    background: #fafafa;
+    /* Slightly darker for contrast */
+    padding: 0;
 }
 
 .mobile-nav li.is-open>.sub-menu {
     display: block;
+}
+
+/* Mobile Submenu Items */
+.mobile-nav .sub-menu a {
+    padding-left: 35px;
+    /* Indentation */
+    font-weight: 400;
+    color: #555;
+}
+
+/* Mobile Toggle Arrow */
+.mobile-nav .dropdown-nav-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-left: 1px solid #f5f5f5;
 }
 
 /* --- HERO SECTION (Hardcoded) --- */
@@ -283,6 +326,7 @@ li:hover>.sub-menu {
     height: 100%;
     background-size: cover;
     background-position: center;
+    /* Hardcoded hero image per request */
     background-image: url('http://localhost/wordpress/wp-content/uploads/2025/09/svrmarriage-10017-scaled.jpg');
 }
 
@@ -294,6 +338,6 @@ li:hover>.sub-menu {
     height: 100%;
     background-color: var(--global-palette1);
     /* Navy Blue */
-    opacity: 0.85;
+    opacity: 0.5;
     /* 50% Overlay */
 }

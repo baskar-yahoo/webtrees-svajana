@@ -182,15 +182,13 @@ class WebtreesSvajana extends MinimalTheme implements
         $root = dirname(__DIR__, 2); // Webtrees root
         
         // Search for wp-load.php in likely parent directories
-        // Adjust path logic based on user's structure: wordpress/webtrees/modules_v4/...
         $candidates = [
-            $root . '/../wp-load.php',      // Standard: webtrees inside WP
-            $root . '/../../wp-load.php',   // Common: webtrees deeper or WP in parent
+            $root . '/../wp-load.php',      // Standard
+            $root . '/../../wp-load.php',   // Common
         ];
 
         foreach ($candidates as $file) {
             if (file_exists($file)) {
-                // Suppress output just in case
                 ob_start();
                 require_once $file;
                 ob_end_clean();
@@ -204,18 +202,16 @@ class WebtreesSvajana extends MinimalTheme implements
         }
 
         // Fallback if WP not found
-        return 'wp_';
+        return 'wpw4_';
     }
     
     /**
      * Helper to fetch standard WP Options from the shared DB.
-     * Uses Raw PDO to bypass Eloquent auto-prefixing (which causes 'wt_wp_' errors).
+     * Uses Raw PDO to bypass Eloquent auto-prefixing.
      */
     public static function getWpHeaderData(): array
     {
         try {
-            // We MUST use raw PDO here. DB::table() adds Webtrees prefix (wt_) to the query.
-            // e.g. DB::table('wp_options') -> SELECT * FROM wt_wp_options -> CRASH
             $pdo = DB::connection()->getPdo();
             $p = self::detectWpPrefix();
             
@@ -249,12 +245,45 @@ class WebtreesSvajana extends MinimalTheme implements
             $secondary_color = $resolveColor('palette2') ?? '#ff8800';
             $footer_bg = $resolveColor('palette8') ?? '#f5f5f5'; 
 
+            // RESOLVE LOGO (Fix: Lookup ID in posts table)
+            $logo_url = '';
+            $custom_logo_id = $theme_mods['custom_logo'] ?? 0;
+            if ($custom_logo_id) {
+                 $stmtLogo = $pdo->prepare("SELECT guid FROM {$p}posts WHERE ID = :id");
+                 $stmtLogo->execute(['id' => $custom_logo_id]);
+                 $logo_url = $stmtLogo->fetchColumn();
+            }
+            
+            // Fallback logo logic if ID lookup failed
+            if (!$logo_url && isset($theme_mods['custom_logo_url'])) {
+                $logo_url = $theme_mods['custom_logo_url'];
+            }
+
+            // RESOLVE TYPOGRAPHY
+            // Extract font sizes to ensure they match WP exactly
+            $brand_size = $theme_mods['brand_typography']['size']['desktop'] ?? 32;
+            $brand_unit = $theme_mods['brand_typography']['sizeType'] ?? 'px';
+            
+            $menu_size = $theme_mods['primary_navigation_typography']['size']['desktop'] ?? 16;
+            $menu_unit = $theme_mods['primary_navigation_typography']['sizeType'] ?? 'px';
+
+            // RESOLVE HERO IMAGE
+            $hero_image = $theme_mods['transparent_header_background']['desktop']['image']['url'] ?? '';
+            if (!$hero_image) {
+                 $hero_image = $theme_mods['site_background']['desktop']['image']['url'] ?? '';
+            }
+            
+            // FALLBACK HERO
+            if (!$hero_image) {
+                //$hero_image = 'http://localhost/wordpress/wp-content/uploads/2025/09/svrmarriage-10017-scaled.jpg';
+                $hero_image = 'https://svajana.org/wp-content/uploads/2025/09/svrmarriage-10017.jpg';
+            }
+
             // FETCH MENU
             $wp_menu_items = [];
             if (isset($theme_mods['nav_menu_locations']['primary'])) {
                 $menu_term_id = $theme_mods['nav_menu_locations']['primary'];
                 
-                // Dynamic Table Name for Taxonomy
                 $stmtTax = $pdo->prepare("SELECT term_taxonomy_id FROM {$p}term_taxonomy WHERE term_id = :id AND taxonomy = 'nav_menu'");
                 $stmtTax->execute(['id' => $menu_term_id]);
                 $tt_id = $stmtTax->fetchColumn();
@@ -271,13 +300,17 @@ class WebtreesSvajana extends MinimalTheme implements
             return [
                 'siteurl'         => $site_url ?: '/',
                 'blogname'        => $blog_name ?: 'Webtrees',
+                'custom_logo_url' => $logo_url,
                 'theme_mods'      => $theme_mods,
                 'palette'         => $palette_data,
                 'primary_color'   => $primary_color,
                 'secondary_color' => $secondary_color,
                 'footer_html'     => '© ' . date('Y') . ' ' . ($blog_name ?: 'Svajana'),
                 'footer_bg'       => $footer_bg,
-                'wp_menu_items'   => $wp_menu_items
+                'wp_menu_items'   => $wp_menu_items,
+                'hero_image'      => $hero_image,
+                'brand_font_css'  => $brand_size . $brand_unit,
+                'menu_font_css'   => $menu_size . $menu_unit,
             ];
 
         } catch (Exception $e) {
@@ -290,18 +323,20 @@ class WebtreesSvajana extends MinimalTheme implements
                 'secondary_color' => '#ff8800',
                 'footer_html'     => 'DB Error: ' . $e->getMessage(),
                 'footer_bg'       => '#eee',
-                'wp_menu_items'   => []
+                'wp_menu_items'   => [],
+                'hero_image'      => '',
+                'custom_logo_url' => '',
+                'brand_font_css'  => '2rem',
+                'menu_font_css'   => '1rem',
             ];
         }
     }
 
     /**
      * Recursive Fetcher for WP Menu with Smart Resolver
-     * Uses Raw PDO to ensure table names are correct (no prefix collision)
      */
     private static function fetchWpMenu(PDO $pdo, $term_taxonomy_id, $site_url, $p): array
     {
-        // Fetch items joined with taxonomy using Dynamic Prefix
         $sql = "
             SELECT 
                 p.ID, 
@@ -328,12 +363,10 @@ class WebtreesSvajana extends MinimalTheme implements
         foreach ($raw_items as $raw) {
             $post_id = $raw['ID'];
             
-            // Fetch metadata
             $stmtMeta = $pdo->prepare("SELECT meta_key, meta_value FROM {$p}postmeta WHERE post_id = :id");
             $stmtMeta->execute(['id' => $post_id]);
             $metas = $stmtMeta->fetchAll(PDO::FETCH_KEY_PAIR);
 
-            // --- SMART RESOLVER LOGIC ---
             $type = $metas['_menu_item_type'] ?? 'custom';
             $object_id = $metas['_menu_item_object_id'] ?? 0;
             
@@ -341,8 +374,12 @@ class WebtreesSvajana extends MinimalTheme implements
             $target = $metas['_menu_item_target'] ?? '';
             $title = !empty($metas['_menu_item_title']) ? $metas['_menu_item_title'] : ''; 
 
+            // Logic to check if this is the current page (active state)
+            $isActive = false;
+            // In Webtrees, we can't easily match WP pages, but we can match custom links
+            // logic omitted for simplicity, handled via CSS 'active' classes
+
             if ($type === 'post_type' && $object_id) {
-                // Resolving a Linked Page/Post
                 $stmtPage = $pdo->prepare("SELECT post_title, post_name FROM {$p}posts WHERE ID = :id");
                 $stmtPage->execute(['id' => $object_id]);
                 $page = $stmtPage->fetch(PDO::FETCH_ASSOC);
@@ -351,7 +388,6 @@ class WebtreesSvajana extends MinimalTheme implements
                     if (empty($title)) {
                         $title = $page['post_title'];
                     }
-                    // Construct proper WP link structure
                     $url = rtrim($site_url, '/') . '/' . $page['post_name'] . '/';
                 }
             }
@@ -360,6 +396,8 @@ class WebtreesSvajana extends MinimalTheme implements
             if (empty($title)) $title = $raw['post_name']; 
 
             $parent_id = $metas['_menu_item_menu_item_parent'] ?? '0';
+            // Map generic WP classes to something we can style if needed
+            $classes = $metas['_menu_item_classes'] ?? [];
 
             $items_by_id[$post_id] = [
                 'id' => $post_id,
@@ -367,11 +405,11 @@ class WebtreesSvajana extends MinimalTheme implements
                 'url' => $url,
                 'parent' => $parent_id,
                 'target' => $target,
+                'classes' => $classes,
                 'children' => []
             ];
         }
 
-        // Build Tree
         foreach ($items_by_id as $id => &$item) {
             $parent = $item['parent'];
             if ($parent == '0' || !isset($items_by_id[$parent])) {

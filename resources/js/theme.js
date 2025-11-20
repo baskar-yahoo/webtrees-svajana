@@ -5,19 +5,36 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    // 1. Sticky Header Logic
     var header = document.getElementById('masthead');
     var lastScrollTop = 0;
+    var delta = 5; // Minimum scroll amount to trigger action
 
+    // 1. Smart Scroll Logic (Hide on down, Show on up)
     if (header) {
         window.addEventListener('scroll', function () {
-            var currentScroll = window.scrollY || document.documentElement.scrollTop;
+            var st = window.scrollY || document.documentElement.scrollTop;
 
-            if (currentScroll > 50) {
+            // Make sure they scroll more than delta
+            if (Math.abs(lastScrollTop - st) <= delta) return;
+
+            // Directional Logic
+            if (st > lastScrollTop && st > 10) {
+                // Scroll Down > 100px -> HIDE
+                header.classList.add('is-hidden');
+            } else {
+                // Scroll Up -> SHOW
+                header.classList.remove('is-hidden');
+            }
+
+            // Sticky Background Color Logic
+            if (st > 10) {
                 header.classList.add('is-sticky');
             } else {
                 header.classList.remove('is-sticky');
+                header.classList.remove('is-hidden'); // Always show at top
             }
+
+            lastScrollTop = st;
         }, { passive: true });
     }
 

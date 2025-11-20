@@ -10,7 +10,19 @@ if (!function_exists('render_wp_menu_recursive')) {
         $html = '';
         foreach ($items as $item) {
             $has_children = !empty($item['children']);
-            $html .= '<li class="nav-item ' . ($has_children ? 'menu-item-has-children' : '') . '">';
+            
+            // Determine if active (simplistic check, usually WP handles classes)
+            // If classes array contains 'current-menu-item', add active class
+            $active = false;
+            if (!empty($item['classes']) && is_array($item['classes'])) {
+                if (in_array('current-menu-item', $item['classes']) || in_array('current_page_item', $item['classes'])) {
+                    $active = true;
+                }
+            }
+            
+            $li_classes = 'nav-item ' . ($has_children ? 'menu-item-has-children' : '') . ($active ? ' current-menu-item' : '');
+            
+            $html .= '<li class="' . $li_classes . '">';
             $html .= '<a href="' . e($item['url']) . '" class="nav-link" ' . (!empty($item['target']) ? 'target="'.e($item['target']).'"' : '') . '>';
             $html .= e($item['title']);
             if ($has_children) {
@@ -31,6 +43,10 @@ if (!function_exists('render_wp_menu_recursive')) {
         --global-palette1: <?= $wp_data['primary_color'] ?>; /* Navy */
         --global-palette2: <?= $wp_data['secondary_color'] ?>; /* Orange */
         --global-palette8: <?= $wp_data['footer_bg'] ?>;
+        
+        /* Typography from DB */
+        --brand-font-size: <?= $wp_data['brand_font_css'] ?>;
+        --menu-font-size: <?= $wp_data['menu_font_css'] ?>;
     }
 </style>
 
@@ -55,12 +71,13 @@ if (!function_exists('render_wp_menu_recursive')) {
             
             <!-- LEFT: BRANDING -->
             <div class="site-branding">
-                <a href="<?= e($wp_data['siteurl'] ?? '/') ?>" class="brand" style="text-decoration: none;">
+                <a href="<?= e($wp_data['siteurl'] ?? '/') ?>" class="brand" style="text-decoration: none; display: flex; align-items: center; gap: 10px;">
                     <?php if (!empty($wp_data['custom_logo_url'])): ?>
-                        <img src="<?= e($wp_data['custom_logo_url']) ?>" alt="Logo" class="custom-logo" />
-                    <?php else: ?>
-                        <span class="site-title"><?= e($wp_data['blogname']) ?></span>
+                        <img src="<?= e($wp_data['custom_logo_url']) ?>" alt="Logo" class="custom-logo" style="max-height: 60px; width: auto;" />
                     <?php endif; ?>
+                    
+                    <!-- Always show site title next to logo if Kadence is configured that way, or just as fallback -->
+                    <span class="site-title"><?= e($wp_data['blogname']) ?></span>
                 </a>
             </div>
 
