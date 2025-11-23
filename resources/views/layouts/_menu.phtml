@@ -1,4 +1,5 @@
 <?php
+
 /** 
  * PARTIAL: Header & Navigation
  * Layout: Transparent to Sticky (Scroll Effect)
@@ -6,11 +7,12 @@
 
 // Helper for WP Menus
 if (!function_exists('render_wp_menu_recursive')) {
-    function render_wp_menu_recursive(array $items) {
+    function render_wp_menu_recursive(array $items)
+    {
         $html = '';
         foreach ($items as $item) {
             $has_children = !empty($item['children']);
-            
+
             // Determine if active (simplistic check, usually WP handles classes)
             // If classes array contains 'current-menu-item', add active class
             $active = false;
@@ -19,14 +21,14 @@ if (!function_exists('render_wp_menu_recursive')) {
                     $active = true;
                 }
             }
-            
+
             $li_classes = 'nav-item ' . ($has_children ? 'menu-item-has-children' : '') . ($active ? ' current-menu-item' : '');
-            
+
             $html .= '<li class="' . $li_classes . '">';
-            $html .= '<a href="' . e($item['url']) . '" class="nav-link" ' . (!empty($item['target']) ? 'target="'.e($item['target']).'"' : '') . '>';
+            $html .= '<a href="' . e($item['url']) . '" class="nav-link" ' . (!empty($item['target']) ? 'target="' . e($item['target']) . '"' : '') . '>';
             $html .= e($item['title']);
             if ($has_children) {
-                 $html .= '<span class="dropdown-nav-toggle"><span class="kadence-svg-iconset"><svg class="kadence-svg-icon kadence-arrow-down-svg" fill="currentColor" width="12" height="12" viewBox="0 0 24 24"><path d="M5.293 9.707l6 6c0.391 0.391 1.024 0.391 1.414 0l6-6c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z"/></svg></span></span>';
+                $html .= '<span class="dropdown-nav-toggle"><span class="kadence-svg-iconset"><svg class="kadence-svg-icon kadence-arrow-down-svg" fill="currentColor" width="12" height="12" viewBox="0 0 24 24"><path d="M5.293 9.707l6 6c0.391 0.391 1.024 0.391 1.414 0l6-6c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z"/></svg></span></span>';
             }
             $html .= '</a>';
             if ($has_children) {
@@ -40,10 +42,12 @@ if (!function_exists('render_wp_menu_recursive')) {
 ?>
 <style>
     :root {
-        --global-palette1: <?= $wp_data['primary_color'] ?>; /* Navy */
-        --global-palette2: <?= $wp_data['secondary_color'] ?>; /* Orange */
+        --global-palette1: <?= $wp_data['primary_color'] ?>;
+        /* Navy */
+        --global-palette2: <?= $wp_data['secondary_color'] ?>;
+        /* Orange */
         --global-palette8: <?= $wp_data['footer_bg'] ?>;
-        
+
         /* Typography from DB */
         --brand-font-size: <?= $wp_data['brand_font_css'] ?>;
         --menu-font-size: <?= $wp_data['menu_font_css'] ?>;
@@ -51,7 +55,7 @@ if (!function_exists('render_wp_menu_recursive')) {
 </style>
 
 <header id="masthead" class="site-header" role="banner">
-    
+
     <!-- DESKTOP: UTILITY BAR (Top of Stack) -->
     <div class="top-row desktop-only utility-bar">
         <div class="site-container">
@@ -68,14 +72,26 @@ if (!function_exists('render_wp_menu_recursive')) {
     <!-- MAIN HEADER AREA -->
     <div class="main-header-area">
         <div class="site-container" style="display: flex; justify-content: space-between; align-items: center;">
-            
+
             <!-- LEFT: BRANDING -->
             <div class="site-branding">
                 <a href="<?= e($wp_data['siteurl'] ?? '/') ?>" class="brand" style="text-decoration: none; display: flex; align-items: center; gap: 10px;">
                     <?php if (!empty($wp_data['custom_logo_url'])): ?>
-                        <img src="<?= e($wp_data['custom_logo_url']) ?>" alt="Logo" class="custom-logo" style="max-height: 60px; width: auto;" />
+                        <!-- Standard Logo (visible by default) -->
+                        <img src="<?= e($wp_data['custom_logo_url']) ?>"
+                            alt="Logo"
+                            class="custom-logo standard-logo"
+                            style="max-height: 80px; width: auto;" />
                     <?php endif; ?>
-                    
+
+                    <?php if (!empty($wp_data['sticky_logo_url'])): ?>
+                        <!-- Sticky Logo (hidden by default, shown when header is sticky) -->
+                        <img src="<?= e($wp_data['sticky_logo_url']) ?>"
+                            alt="Sticky Logo"
+                            class="custom-logo sticky-logo"
+                            style="max-height: 80px; width: auto; display: none;" />
+                    <?php endif; ?>
+
                     <!-- Always show site title next to logo if Kadence is configured that way, or just as fallback -->
                     <span class="site-title"><?= e($wp_data['blogname']) ?></span>
                 </a>
@@ -83,11 +99,11 @@ if (!function_exists('render_wp_menu_recursive')) {
 
             <!-- RIGHT: STACKED NAVIGATION -->
             <div class="header-right-stack desktop-only" style="display: flex; flex-direction: column; align-items: flex-end; gap: 15px;">
-                
+
                 <!-- Row 2: WordPress Main Menu -->
                 <nav class="main-navigation">
                     <ul class="menu menu-horizontal">
-                        <?php 
+                        <?php
                         if (!empty($wp_data['wp_menu_items'])) {
                             echo render_wp_menu_recursive($wp_data['wp_menu_items']);
                         } else {
@@ -129,7 +145,7 @@ if (!function_exists('render_wp_menu_recursive')) {
             <div class="drawer-scrollable">
                 <nav class="mobile-nav">
                     <ul class="menu">
-                        <?php 
+                        <?php
                         if (!empty($wp_data['wp_menu_items'])) {
                             echo render_wp_menu_recursive($wp_data['wp_menu_items']);
                         }

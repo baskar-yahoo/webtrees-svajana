@@ -36,11 +36,11 @@ use Fisharebest\Webtrees\Module\ModuleGlobalInterface;
  * A robust implementation extending MinimalTheme and implementing 
  * the full suite of Module interfaces for maximum capability.
  */
-class WebtreesSvajana extends MinimalTheme implements 
-    ModuleThemeInterface, 
-    ModuleCustomInterface, 
-    ModuleFooterInterface, 
-    ModuleGlobalInterface, 
+class WebtreesSvajana extends MinimalTheme implements
+    ModuleThemeInterface,
+    ModuleCustomInterface,
+    ModuleFooterInterface,
+    ModuleGlobalInterface,
     ModuleConfigInterface
 {
     use ModuleThemeTrait;
@@ -158,7 +158,7 @@ class WebtreesSvajana extends MinimalTheme implements
     {
         return '';
     }
-    
+
     public function customTranslations(string $language): array
     {
         return [];
@@ -180,7 +180,7 @@ class WebtreesSvajana extends MinimalTheme implements
         }
 
         $root = dirname(__DIR__, 2); // Webtrees root
-        
+
         // Search for wp-load.php in likely parent directories
         $candidates = [
             $root . '/../wp-load.php',      // Standard
@@ -192,7 +192,7 @@ class WebtreesSvajana extends MinimalTheme implements
                 ob_start();
                 require_once $file;
                 ob_end_clean();
-                
+
                 global $table_prefix;
                 if (isset($table_prefix)) {
                     self::$wp_prefix = $table_prefix;
@@ -204,7 +204,7 @@ class WebtreesSvajana extends MinimalTheme implements
         // Fallback if WP not found
         return 'wpw4_';
     }
-    
+
     /**
      * Helper to fetch standard WP Options from the shared DB.
      * Uses Raw PDO to bypass Eloquent auto-prefixing.
@@ -214,8 +214,8 @@ class WebtreesSvajana extends MinimalTheme implements
         try {
             $pdo = DB::connection()->getPdo();
             $p = self::detectWpPrefix();
-            
-            $fetchOption = function($name) use ($pdo, $p) {
+
+            $fetchOption = function ($name) use ($pdo, $p) {
                 $stmt = $pdo->prepare("SELECT option_value FROM {$p}options WHERE option_name = :name LIMIT 1");
                 $stmt->execute(['name' => $name]);
                 return $stmt->fetchColumn();
@@ -223,18 +223,18 @@ class WebtreesSvajana extends MinimalTheme implements
 
             $site_url = $fetchOption('siteurl');
             $blog_name = $fetchOption('blogname');
-            
+
             $theme_mods_raw = $fetchOption('theme_mods_kadence-child');
             $theme_mods = $theme_mods_raw ? unserialize($theme_mods_raw) : [];
 
             $palette_raw = $fetchOption('kadence_global_palette');
             $palette_data = $palette_raw ? json_decode($palette_raw, true) : [];
-            
+
             // RESOLVE COLORS
-            $active_palette_key = $palette_data['active'] ?? 'palette'; 
+            $active_palette_key = $palette_data['active'] ?? 'palette';
             $active_colors = $palette_data[$active_palette_key] ?? [];
 
-            $resolveColor = function($slug) use ($active_colors) {
+            $resolveColor = function ($slug) use ($active_colors) {
                 foreach ($active_colors as $c) {
                     if (($c['slug'] ?? '') === $slug) return $c['color'];
                 }
@@ -243,36 +243,66 @@ class WebtreesSvajana extends MinimalTheme implements
 
             $primary_color = $resolveColor('palette1') ?? '#003366';
             $secondary_color = $resolveColor('palette2') ?? '#ff8800';
-            $footer_bg = $resolveColor('palette8') ?? '#f5f5f5'; 
+            $footer_bg = $resolveColor('palette8') ?? '#f5f5f5';
 
             // RESOLVE LOGO (Fix: Lookup ID in posts table)
             $logo_url = '';
             $custom_logo_id = $theme_mods['custom_logo'] ?? 0;
+
+            // --- ADDED LOGIC FOR STICKY LOGO ---
+            $sticky_logo_url = '';
+            // This key is an educated guess based on Kadence structure.
+            // If this key is incorrect, you may need to check your WP database directly.
+            $sticky_logo_id = $theme_mods['header_sticky_logo'] ?? $theme_mods['sticky_custom_logo'] ?? 0;
+            // -------------------------------------
+
+            /* to resolve stikcy logo commented below and added new logic below
             if ($custom_logo_id) {
                  $stmtLogo = $pdo->prepare("SELECT guid FROM {$p}posts WHERE ID = :id");
                  $stmtLogo->execute(['id' => $custom_logo_id]);
                  $logo_url = $stmtLogo->fetchColumn();
             }
-            
+            */
+            $fetchLogoUrl = function ($logo_id) use ($pdo, $p) {
+                if (!$logo_id) return '';
+                $stmtLogo = $pdo->prepare("SELECT guid FROM {$p}posts WHERE ID = :id AND post_type = 'attachment'");
+                $stmtLogo->execute(['id' => $logo_id]);
+                return $stmtLogo->fetchColumn();
+            };
+
+            $logo_url = $fetchLogoUrl($custom_logo_id);
+            $sticky_logo_url = $fetchLogoUrl($sticky_logo_id); // Fetch the sticky logo URL
+
             // Fallback logo logic if ID lookup failed
             if (!$logo_url && isset($theme_mods['custom_logo_url'])) {
                 $logo_url = $theme_mods['custom_logo_url'];
+            }
+
+            // Fallback Sticky logo logic if ID lookup failed
+            if (!$sticky_logo_url && isset($theme_mods['header_sticky_logo_url'])) {
+                $sticky_logo_url = $theme_mods['header_sticky_logo_url'];
+            }
+
+            // --- NEW: FINAL BACKUP STICKY LOGO URL ---
+            if (!$sticky_logo_url) {
+                // Replace this URL with the absolute URL to your backup logo file
+                $sticky_logo_url = 'https://svajana.org/wp-content/uploads/2025/09/svajana-new-logo-7.png';
             }
 
             // RESOLVE TYPOGRAPHY
             // Extract font sizes to ensure they match WP exactly
             $brand_size = $theme_mods['brand_typography']['size']['desktop'] ?? 32;
             $brand_unit = $theme_mods['brand_typography']['sizeType'] ?? 'px';
-            
+
             $menu_size = $theme_mods['primary_navigation_typography']['size']['desktop'] ?? 16;
             $menu_unit = $theme_mods['primary_navigation_typography']['sizeType'] ?? 'px';
 
             // RESOLVE HERO IMAGE
             $hero_image = $theme_mods['transparent_header_background']['desktop']['image']['url'] ?? '';
             if (!$hero_image) {
-                 $hero_image = $theme_mods['site_background']['desktop']['image']['url'] ?? '';
+                $hero_image = $theme_mods['site_background']['desktop']['image']['url'] ?? '';
             }
-            
+
             // FALLBACK HERO
             if (!$hero_image) {
                 //$hero_image = 'http://localhost/wordpress/wp-content/uploads/2025/09/svrmarriage-10017-scaled.jpg';
@@ -283,24 +313,25 @@ class WebtreesSvajana extends MinimalTheme implements
             $wp_menu_items = [];
             if (isset($theme_mods['nav_menu_locations']['primary'])) {
                 $menu_term_id = $theme_mods['nav_menu_locations']['primary'];
-                
+
                 $stmtTax = $pdo->prepare("SELECT term_taxonomy_id FROM {$p}term_taxonomy WHERE term_id = :id AND taxonomy = 'nav_menu'");
                 $stmtTax->execute(['id' => $menu_term_id]);
                 $tt_id = $stmtTax->fetchColumn();
 
                 if (!$tt_id) {
-                     $tt_id = $menu_term_id;
+                    $tt_id = $menu_term_id;
                 }
 
                 if ($tt_id) {
                     $wp_menu_items = self::fetchWpMenu($pdo, $tt_id, $site_url, $p);
                 }
             }
-            
+
             return [
                 'siteurl'         => $site_url ?: '/',
                 'blogname'        => $blog_name ?: 'Webtrees',
                 'custom_logo_url' => $logo_url,
+                'sticky_logo_url' => $sticky_logo_url, // <-- Add this line
                 'theme_mods'      => $theme_mods,
                 'palette'         => $palette_data,
                 'primary_color'   => $primary_color,
@@ -312,7 +343,6 @@ class WebtreesSvajana extends MinimalTheme implements
                 'brand_font_css'  => $brand_size . $brand_unit,
                 'menu_font_css'   => $menu_size . $menu_unit,
             ];
-
         } catch (Exception $e) {
             return [
                 'siteurl' => '/',
@@ -326,6 +356,7 @@ class WebtreesSvajana extends MinimalTheme implements
                 'wp_menu_items'   => [],
                 'hero_image'      => '',
                 'custom_logo_url' => '',
+                'sticky_logo_url' => '', // <-- Add this line to the error return as well
                 'brand_font_css'  => '2rem',
                 'menu_font_css'   => '1rem',
             ];
@@ -350,7 +381,7 @@ class WebtreesSvajana extends MinimalTheme implements
             AND p.post_status = 'publish'
             ORDER BY p.menu_order ASC
         ";
-        
+
         $stmt = $pdo->prepare($sql);
         $stmt->execute(['tt_id' => $term_taxonomy_id]);
         $raw_items = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -362,17 +393,17 @@ class WebtreesSvajana extends MinimalTheme implements
 
         foreach ($raw_items as $raw) {
             $post_id = $raw['ID'];
-            
+
             $stmtMeta = $pdo->prepare("SELECT meta_key, meta_value FROM {$p}postmeta WHERE post_id = :id");
             $stmtMeta->execute(['id' => $post_id]);
             $metas = $stmtMeta->fetchAll(PDO::FETCH_KEY_PAIR);
 
             $type = $metas['_menu_item_type'] ?? 'custom';
             $object_id = $metas['_menu_item_object_id'] ?? 0;
-            
+
             $url = $metas['_menu_item_url'] ?? '#';
             $target = $metas['_menu_item_target'] ?? '';
-            $title = !empty($metas['_menu_item_title']) ? $metas['_menu_item_title'] : ''; 
+            $title = !empty($metas['_menu_item_title']) ? $metas['_menu_item_title'] : '';
 
             // Logic to check if this is the current page (active state)
             $isActive = false;
@@ -391,9 +422,9 @@ class WebtreesSvajana extends MinimalTheme implements
                     $url = rtrim($site_url, '/') . '/' . $page['post_name'] . '/';
                 }
             }
-            
+
             if (empty($title)) $title = $raw['post_title'];
-            if (empty($title)) $title = $raw['post_name']; 
+            if (empty($title)) $title = $raw['post_name'];
 
             $parent_id = $metas['_menu_item_menu_item_parent'] ?? '0';
             // Map generic WP classes to something we can style if needed
