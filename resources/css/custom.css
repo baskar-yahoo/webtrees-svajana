@@ -9,3 +9,2639 @@
     color: red !important;
 }
 */
+:root {
+    --global-palette1: #003366;
+    --global-palette2: #ff8800;
+    --global-palette3: #333333;
+    --global-palette4: #555555;
+    --global-palette5: #888888;
+    --global-palette6: #99bbdd;
+    --global-palette7: #ebf5ff;
+    --global-palette8: #f5f5f5;
+    --global-palette9: #ffffff;
+    --global-palette9rgb: 255, 255, 255;
+    --global-palette-highlight: var(--global-palette1);
+    --global-palette-highlight-alt: var(--global-palette2);
+    --global-palette-highlight-alt2: var(--global-palette9);
+    --global-palette-btn-bg: var(--global-palette1);
+    --global-palette-btn-bg-hover: var(--global-palette2);
+    --global-palette-btn: var(--global-palette9);
+    --global-palette-btn-hover: var(--global-palette9);
+    --global-body-font-family: 'Anek Devanagari', sans-serif;
+    --global-heading-font-family: Raleway, sans-serif;
+    --global-primary-nav-font-family: Raleway, sans-serif;
+    --global-fallback-font: sans-serif;
+    --global-display-fallback-font: sans-serif;
+    --global-content-width: 1242px;
+    --global-content-wide-width: calc(1242px + 230px);
+    --global-content-narrow-width: 849px;
+    --global-content-edge-padding: 1.5rem;
+    --global-content-boxed-padding: 0rem;
+    --global-calc-content-width: calc(1242px - var(--global-content-edge-padding) - var(--global-content-edge-padding));
+    --wp--style--global--content-size: var(--global-calc-content-width);
+    --global-vw: calc(100vw - (0.5 * var(--scrollbar-offset)));
+}
+
+/* ======================
+   Kadence Base Body and Typography Styles
+   ----------------------
+   Extracted from kadence-global-inline-css
+   ====================== */
+body {
+    background: var(--global-palette8);
+}
+
+body {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 1.6;
+    font-family: var(--global-body-font-family);
+    color: var(--global-palette4);
+}
+
+input {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 1.6;
+    font-family: var(--global-body-font-family);
+    color: var(--global-palette4);
+}
+
+select {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 1.6;
+    font-family: var(--global-body-font-family);
+    color: var(--global-palette4);
+}
+
+optgroup {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 1.6;
+    font-family: var(--global-body-font-family);
+    color: var(--global-palette4);
+}
+
+textarea {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 1.6;
+    font-family: var(--global-body-font-family);
+    color: var(--global-palette4);
+}
+
+.content-bg {
+    background: var(--global-palette9);
+}
+
+body.content-style-unboxed .site {
+    background: var(--global-palette9);
+}
+
+@media all and (max-width: 767px) {
+    body {
+        background: var(--global-palette8);
+    }
+
+    .content-bg {
+        background: var(--global-palette9);
+    }
+
+    body.content-style-unboxed .site {
+        background: var(--global-palette9);
+    }
+
+    h1 {
+        font-family: var(--global-heading-font-family);
+    }
+
+    h2 {
+        font-family: var(--global-heading-font-family);
+    }
+
+    h3 {
+        font-family: var(--global-heading-font-family);
+    }
+
+    h4 {
+        font-family: var(--global-heading-font-family);
+    }
+
+    h5 {
+        font-family: var(--global-heading-font-family);
+    }
+
+    h6 {
+        font-family: var(--global-heading-font-family);
+    }
+
+    h1 {
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 1.5;
+        color: var(--global-palette3);
+    }
+
+    h2 {
+        font-weight: 700;
+        font-size: 28px;
+        line-height: 1.5;
+        color: var(--global-palette3);
+    }
+
+    h3 {
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 1.5;
+        color: var(--global-palette3);
+    }
+
+    h4 {
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 1.5;
+        color: var(--global-palette4);
+    }
+
+    h5 {
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 1.5;
+        color: var(--global-palette4);
+    }
+
+    h6 {
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 1.5;
+        color: var(--global-palette5);
+    }
+}
+
+/* ====================
+   Header and Navigation Styles
+   ==================== */
+
+/* Kadence Header CSS */
+#masthead {
+    background: rgba(255, 255, 255, 0);
+}
+
+#masthead .kadence-sticky-header.item-is-fixed:not(.item-at-start):not(.site-header-row-container):not(.site-main-header-wrap) {
+    background: rgba(255, 255, 255, 0);
+}
+
+#masthead .kadence-sticky-header.item-is-fixed:not(.item-at-start)>.site-header-row-container-inner {
+    background: rgba(255, 255, 255, 0);
+}
+
+@media all and (max-width: 767px) {
+
+    #masthead,
+    #masthead .kadence-sticky-header.item-is-fixed:not(.item-at-start):not(.site-header-row-container):not(.site-main-header-wrap),
+    #masthead .kadence-sticky-header.item-is-fixed:not(.item-at-start)>.site-header-row-container-inner {
+        background: rgba(255, 255, 255, 0);
+    }
+
+    .site-main-header-wrap .site-header-row-container-inner {
+        background: var(--global-palette8);
+    }
+
+    #masthead .kadence-sticky-header.item-is-fixed:not(.item-at-start):not(.site-header-row-container):not(.item-hidden-above):not(.site-main-header-wrap) {
+        background: rgba(255, 255, 255, 0.51);
+    }
+
+    #masthead .kadence-sticky-header.item-is-fixed:not(.item-at-start):not(.item-hidden-above)>.site-header-row-container-inner {
+        background: rgba(255, 255, 255, 0.51);
+    }
+}
+
+@media all and (max-width: 1024px) {
+
+    #masthead .kadence-sticky-header.item-is-fixed:not(.item-at-start):not(.site-header-row-container):not(.item-hidden-above):not(.site-main-header-wrap),
+    #masthead .kadence-sticky-header.item-is-fixed:not(.item-at-start):not(.item-hidden-above)>.site-header-row-container-inner {
+        background: rgba(255, 255, 255, 0.17);
+    }
+
+    .transparent-header #wrapper #masthead {
+        background: rgba(255, 255, 255, 0);
+    }
+}
+
+@media all and (max-width: 1024px) {
+    .transparent-header #wrapper #masthead {
+        background: var(--global-palette9);
+    }
+}
+
+@media all and (max-width: 767px) {
+    .transparent-header #wrapper #masthead {
+        background: var(--global-palette9);
+    }
+}
+
+.secondary-menu-container {
+    width: 100%;
+    /* Ensure it takes full width of its parent */
+
+    display: flex;
+    /* Make it a flex container */
+
+    justify-content: flex-end;
+    /* Right align its content */
+}
+
+.site-header-row-container-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.site-top-header-wrap {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    /* Lighter border for separation */
+}
+
+.site-main-header-wrap {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    /* Lighter border for separation */
+}
+
+.site-bottom-header-wrap {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    /* Lighter border for separation */
+}
+
+.site-top-header-inner-wrap {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.site-main-header-inner-wrap {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.site-bottom-header-inner-wrap {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.site-header-main-section-left {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: left;
+    /* Vertical centering */
+    text-align: center;
+}
+
+.site-header-top-section-left {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: left;
+    /* Vertical centering */
+    text-align: center;
+}
+
+.site-header-bottom-section-left {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: left;
+    /* Vertical centering */
+    text-align: center;
+}
+
+.site-header-main-section-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    /* stack WP + Webtrees menu */
+    justify-content: flex-end;
+    align-items: flex-end;
+    /* Vertically center items */
+    flex-wrap: wrap;
+    /* Allow items to wrap if necessary */
+    gap: 15px;
+    /* Add some space between items */
+}
+
+.site-header-top-section-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    /* stack WP + Webtrees menu */
+    justify-content: flex-end;
+    align-items: flex-end;
+    /* Vertically center items */
+    flex-wrap: wrap;
+    /* Allow items to wrap if necessary */
+    gap: 15px;
+    /* Add some space between items */
+}
+
+.site-header-bottom-section-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    /* stack WP + Webtrees menu */
+    justify-content: flex-end;
+    align-items: flex-end;
+    /* Vertically center items */
+    flex-wrap: wrap;
+    /* Allow items to wrap if necessary */
+    gap: 15px;
+    /* Add some space between items */
+}
+
+.site-header-top-section-right>.site-header-item {
+    display: flex;
+    /* Removed flex-grow: 1; to allow parent's justify-content to work */
+    justify-content: flex-end;
+    /* Align content to the right within the item */
+}
+
+.site-header-main-section-right>.site-header-item {
+    display: flex;
+    /* Removed flex-grow: 1; to allow parent's justify-content to work */
+    justify-content: flex-end;
+    /* Align content to the right within the item */
+}
+
+
+.site-branding img {
+    max-height: 50px;
+    /* Adjust logo size */
+    width: auto;
+    margin-right: 10px;
+}
+
+
+
+#masthead .site-header-row-container-inner {
+    background: transparent !important;
+}
+
+.site-top-header-wrap {
+    background: transparent !important;
+}
+
+.site-main-header-wrap {
+    background: transparent !important;
+}
+
+.site-secondary-header-wrap {
+    background: transparent !important;
+}
+
+
+.wt-hero {
+    background-image: url('http://localhost/wordpress/wp-content/uploads/2025/09/svrmarriage-10017-scaled.jpg');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 80vh;
+    margin-top: -205px;
+    /* pull hero behind header */
+    position: relative;
+}
+
+.wt-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 51, 102, 0.85);
+    /* overlay color #003366 at 85% */
+}
+
+.site-main-header-inner-wrap.site-header-row {
+    flex-wrap: nowrap !important;
+}
+
+
+.site-header-main-section-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Initial menu link colors (white over hero) */
+/* Initial (over hero): force white menu links */
+#masthead #site-navigation .primary-menu-container>ul>li.menu-item>a {
+    color: #ffffff !important;
+}
+
+
+#masthead .site-top-header-wrap .header-navigation .menu>li>a {
+    color: #ffffff !important;
+}
+
+#masthead .wt-primary-navigation .menu>li>a {
+    color: #ffffff !important;
+}
+
+
+
+/* Sticky header background and menu colors when fixed */
+.kadence-sticky-header.item-is-fixed:not(.item-at-start)>.site-header-row-container {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: saturate(180%) blur(10px);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.kadence-sticky-header.item-is-fixed:not(.item-at-start)>.site-header-row-container>.site-header-row-container-inner {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: saturate(180%) blur(10px);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.kadence-sticky-header.item-is-fixed:not(.item-at-start) {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: saturate(180%) blur(10px);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Sticky (on scroll): switch to theme primary (#003366) */
+.kadence-sticky-header.item-is-fixed #site-navigation .primary-menu-container>ul>li.menu-item>a {
+    color: var(--global-palette1) !important;
+}
+
+
+
+.kadence-sticky-header.item-is-fixed .site-top-header-wrap .header-navigation .menu>li>a {
+    color: var(--global-palette1) !important;
+}
+
+.kadence-sticky-header.item-is-fixed .wt-primary-navigation .menu>li>a {
+    color: var(--global-palette1) !important;
+}
+
+
+/* Ensure submenu items also have proper sticky header behavior */
+.kadence-sticky-header.item-is-fixed .header-navigation .header-menu-container ul ul li.menu-item>a {
+    color: var(--global-palette8) !important;
+}
+
+
+/* Menu icons inherit font color */
+.header-navigation .menu i {
+    color: currentColor;
+    fill: currentColor;
+    stroke: currentColor;
+}
+
+.header-navigation .menu svg {
+    color: currentColor;
+    fill: currentColor;
+    stroke: currentColor;
+}
+
+.wt-primary-navigation .menu i {
+    color: currentColor;
+    fill: currentColor;
+    stroke: currentColor;
+}
+
+.wt-primary-navigation .menu svg {
+    color: currentColor;
+    fill: currentColor;
+    stroke: currentColor;
+}
+
+/* Desktop dropdown caret aligned inline with label */
+@media all and (min-width: 1025px) {
+
+    /* Ensure dropdown toggle sits inline next to label */
+    #masthead .header-navigation .menu li.menu-item-has-children .nav-drop-title-wrap {
+        display: inline-flex;
+        align-items: center;
+    }
+
+
+
+    /* Ensure anchor and caret sit on one line */
+    #masthead #site-navigation .primary-menu-container>ul>li.menu-item>a {
+        display: inline-flex;
+        align-items: center;
+    }
+
+
+
+    #masthead .site-top-header-wrap .header-navigation .menu>li>a {
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .wt-primary-navigation .menu>li>a {
+        display: inline-flex;
+        align-items: center;
+    }
+
+    /* Remove pseudo caret to rely on inline toggle icon */
+    .header-navigation .menu li.menu-item-has-children>a::after {
+        content: none;
+    }
+
+    #masthead #site-navigation .primary-menu-container>ul>li.menu-item-has-children>a::after {
+        content: none;
+    }
+
+
+    #masthead .site-top-header-wrap .header-navigation .menu>li.menu-item-has-children>a::after {
+        content: none;
+    }
+
+    .wt-primary-navigation .menu li.menu-item-has-children>a::after {
+        content: none;
+    }
+
+
+
+    /* Middle Bar Menu (WordPress Primary) */
+    #site-navigation .primary-menu-container>ul>li.menu-item>a {
+        padding-left: calc(1.2em / 2);
+        padding-right: calc(1.2em / 2);
+        padding-top: 0.1em;
+        padding-bottom: 0.1em;
+        color: var(--global-palette1);
+        font-family: var(--global-primary-nav-font-family);
+        font-weight: 700;
+        font-size: 18px;
+        letter-spacing: 0.016rem;
+        text-transform: capitalize;
+    }
+
+    #site-navigation .primary-menu-container>ul>li.menu-item>a:hover {
+        color: var(--global-palette2);
+    }
+
+    /* Ensure submenu styling matches reference theme */
+    .header-navigation .header-menu-container ul ul li.menu-item>a {
+        width: 200px;
+        padding: 1em !important;
+        color: var(--global-palette8) !important;
+        font-size: 14px !important;
+        font-family: var(--global-body-font-family) !important;
+        font-weight: 400 !important;
+        background-color: var(--global-palette3) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .header-navigation .header-menu-container ul ul li.menu-item>a:hover {
+        color: var(--global-palette9) !important;
+        background: var(--global-palette4) !important;
+    }
+
+
+
+    /* Bottom Bar Menu (Webtrees Primary) */
+    .wt-primary-navigation {
+        display: flex;
+        /* Make it a flex container */
+        justify-content: flex-end;
+        /* Align items to the right */
+        flex-grow: 1;
+        /* Allow it to grow and take available space */
+    }
+
+
+    .wt-primary-navigation .nav-link {
+        color: var(--global-palette1);
+        font-family: var(--global-primary-nav-font-family);
+        font-weight: 700;
+        font-size: 18px;
+        letter-spacing: 0.016rem;
+        text-transform: capitalize;
+        text-decoration: none;
+        padding: 0.1em 0.6em !important;
+    }
+
+
+    .wt-primary-navigation .nav-link:hover {
+        color: var(--global-palette2);
+    }
+
+
+    .site-top-header-wrap .site-header-row-container-inner {
+        background: var(--global-palette8);
+    }
+
+    .site-secondary-header-wrap .site-header-row-container-inner {
+        background: var(--global-palette8);
+    }
+
+
+    .mobile-toggle-open-container .menu-toggle-open:focus {
+        background: var(--global-palette1);
+        color: var(--global-palette9);
+        padding: 0.4em 0.6em 0.4em 0.6em;
+        font-size: 14px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mobile-toggle-open-container .menu-toggle-open.menu-toggle-style-bordered {
+        border: 1px solid var(--global-palette1);
+    }
+
+    .mobile-toggle-open-container .menu-toggle-open .menu-toggle-icon {
+        font-size: 20px;
+    }
+
+    .mobile-toggle-open-container .menu-toggle-open:hover {
+        background: var(--global-palette2);
+        color: var(--global-palette9);
+    }
+
+    .mobile-toggle-open-container .menu-toggle-open:focus-visible {
+        background: var(--global-palette2);
+        color: var(--global-palette9);
+    }
+
+
+
+
+
+    .header-navigation .header-menu-container ul ul li.menu-item {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+
+
+    .header-navigation .header-menu-container ul ul li.menu-item>a {
+        width: 200px;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        color: var(--global-palette8);
+        font-size: 12px;
+    }
+
+
+
+    .header-navigation .header-menu-container ul ul li.menu-item>a:hover {
+        color: var(--global-palette9);
+        background: var(--global-palette4);
+    }
+
+
+    .site-top-header-inner-wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .site-main-header-inner-wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .site-bottom-header-inner-wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Mobile Navigation Drawer Styling */
+    .mobile-navigation ul li {
+        font-size: 14px;
+    }
+
+    .mobile-navigation ul li a {
+        padding-top: 1em;
+        padding-bottom: 1em;
+    }
+
+    .mobile-navigation ul li>a {
+        background: #000000;
+        color: var(--global-palette8);
+    }
+
+    .mobile-navigation ul li.menu-item-has-children>.drawer-nav-drop-wrap {
+        background: #000000;
+        color: var(--global-palette8);
+    }
+
+
+
+    .mobile-navigation ul li.menu-item-has-children .drawer-nav-drop-wrap {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mobile-navigation ul li:not(.menu-item-has-children) a {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mobile-navigation:not(.drawer-navigation-parent-toggle-true) ul li.menu-item-has-children .drawer-nav-drop-wrap button {
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+
+    /* Fix for content overlapping fixed header */
+    body.transparent-header .row {
+        padding-top: 80px;
+        /* Adjust based on header height */
+    }
+
+    body.mobile-transparent-header .row {
+        padding-top: 80px;
+        /* Adjust based on header height */
+    }
+
+    @media all and (min-width: 1025px) {
+        body.transparent-header .row {
+            padding-top: 80px;
+            /* Adjust based on desktop header height */
+        }
+
+        @media all and (max-width: 1024px) {
+            body.mobile-transparent-header .row {
+                padding-top: 80px;
+                /* Adjust based on mobile header height */
+            }
+
+            /* Adjust Kadence-specific layout elements to not interfere with webtrees content */
+            .kb-row-layout-wrap.kb-row-layout-id691_2fae5a-b8 {
+                display: none;
+                /* Hide the decorative background image row */
+            }
+
+            .kt-inside-inner-col>.wt-main-wrapper {
+                width: 100%;
+                max-width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            .entry-content-wrap {
+                padding: 0 !important;
+                /* Override Kadence padding */
+            }
+
+            .entry-content {
+                padding: 0 !important;
+                /* Override Kadence padding */
+            }
+
+            .single-content {
+                padding: 0 !important;
+                /* Override Kadence padding */
+            }
+
+            .entry {
+                background: transparent !important;
+                /* Make sure entry background doesn't interfere */
+                box-shadow: none !important;
+                /* Remove Kadence box shadow */
+            }
+
+            /* Bootstrap Grid Compatibility - Ensure proper spacing and layout */
+            .row {
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+                margin-right: -15px;
+                margin-left: -15px;
+            }
+
+            .col {
+                position: relative;
+                width: 100%;
+                padding-right: 15px;
+                padding-left: 15px;
+            }
+
+            .col-sm-4 {
+                position: relative;
+                width: 100%;
+                padding-right: 15px;
+                padding-left: 15px;
+            }
+
+            .col {
+                -ms-flex-preferred-size: 0;
+                flex-basis: 0;
+                -ms-flex-positive: 1;
+                flex-grow: 1;
+                max-width: 100%;
+            }
+
+            .col-sm-4 {
+                -ms-flex: 0 0 33.333333%;
+                flex: 0 0 33.333333%;
+                max-width: 33.333333%;
+            }
+
+            @media (max-width: 575.98px) {
+                .col-sm-4 {
+                    -ms-flex: 0 0 100%;
+                    flex: 0 0 100%;
+                    max-width: 100%;
+                }
+
+                /* Individual Page Specific Styles for Bootstrap Grid Compatibility */
+                .individual-header {
+                    margin-bottom: 1.5rem;
+                    padding: 1.5rem 0;
+                    border-bottom: 1px solid var(--global-palette8);
+                }
+
+                #individual-header-table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-bottom: 0;
+                }
+
+                #individual-header-table td {
+                    vertical-align: top;
+                    padding: 0;
+                }
+
+                .relationship {
+                    font-weight: 600;
+                    color: var(--global-palette2);
+                }
+
+                #tree-link {
+                    list-style: none;
+                    padding: 0;
+                }
+
+                #tree-link a {
+                    text-decoration: none;
+                    color: var(--global-palette1);
+                    padding: 0.5rem 1rem;
+                    border: 1px solid var(--global-palette4);
+                    border-radius: 4px;
+                    transition: all 0.3s ease;
+                }
+
+                #tree-link a:hover {
+                    background-color: var(--global-palette1);
+                    color: var(--global-palette9);
+                    text-decoration: none;
+                }
+
+                /* Ensure webtrees content areas work properly with Bootstrap grid */
+                .wt-page-title {
+                    margin-bottom: 0.5rem;
+                    color: var(--global-palette3);
+                }
+
+                .individual-page-content {
+                    background-color: var(--global-palette9);
+                    border: 1px solid var(--global-palette8);
+                    border-radius: 8px;
+                    padding: 1.5rem;
+                    margin-bottom: 1.5rem;
+                }
+
+                /* Tab navigation styles to work with Bootstrap grid */
+                .nav-tabs {
+                    border-bottom: 1px solid var(--global-palette8);
+                    margin-bottom: 1.5rem;
+                }
+
+                .nav-tabs .nav-link {
+                    color: var(--global-palette3);
+                    border: 1px solid transparent;
+                    border-top-left-radius: 0.25rem;
+                    border-top-right-radius: 0.25rem;
+                    padding: 0.75rem 1.25rem;
+                    transition: all 0.2s ease;
+                }
+
+                .nav-tabs .nav-link:hover {
+                    color: var(--global-palette1);
+                    border-color: var(--global-palette4) var(--global-palette4) var(--global-palette8);
+                    background-color: var(--global-palette8);
+                }
+
+                .nav-tabs .nav-link:focus {
+                    color: var(--global-palette1);
+                    border-color: var(--global-palette4) var(--global-palette4) var(--global-palette8);
+                    background-color: var(--global-palette8);
+                }
+
+
+                /* Sidebar styles for Bootstrap compatibility */
+                .sidebar-content {
+                    background-color: var(--global-palette8);
+                    border: 1px solid var(--global-palette7);
+                    border-radius: 8px;
+                    padding: 1.25rem;
+                    margin-bottom: 1.5rem;
+                }
+
+                .sidebar-content h3 {
+                    font-size: 1.25rem;
+                    color: var(--global-palette1);
+                    border-bottom: 1px solid var(--global-palette7);
+                    padding-bottom: 0.5rem;
+                    margin-bottom: 1rem;
+                }
+
+                /* Table styles for Bootstrap compatibility */
+                .wt-table {
+                    width: 100%;
+                    margin-bottom: 1rem;
+                    color: var(--global-palette3);
+                    border-collapse: collapse;
+                }
+
+                table {
+                    width: 100%;
+                    margin-bottom: 1rem;
+                    color: var(--global-palette3);
+                    border-collapse: collapse;
+                }
+
+                .wt-table th {
+                    padding: 0.75rem;
+                    vertical-align: top;
+                    border-top: 1px solid var(--global-palette8);
+                }
+
+                .wt-table td {
+                    padding: 0.75rem;
+                    vertical-align: top;
+                    border-top: 1px solid var(--global-palette8);
+                }
+
+                table th {
+                    padding: 0.75rem;
+                    vertical-align: top;
+                    border-top: 1px solid var(--global-palette8);
+                }
+
+                table td {
+                    padding: 0.75rem;
+                    vertical-align: top;
+                    border-top: 1px solid var(--global-palette8);
+                }
+
+                .wt-table thead th {
+                    vertical-align: bottom;
+                    border-bottom: 2px solid var(--global-palette7);
+                    background-color: var(--global-palette8);
+                }
+
+                table thead th {
+                    vertical-align: bottom;
+                    border-bottom: 2px solid var(--global-palette7);
+                    background-color: var(--global-palette8);
+                }
+
+                .wt-table tbody+tbody {
+                    border-top: 2px solid var(--global-palette7);
+                }
+
+                table tbody+tbody {
+                    border-top: 2px solid var(--global-palette7);
+                }
+
+                /* Card-like styling for genealogy boxes */
+                .wt-chart-box {
+                    background-color: var(--global-palette9);
+                    border: 1px solid var(--global-palette8);
+                    border-radius: 8px;
+                    padding: 1rem;
+                    margin-bottom: 1rem;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+                }
+            }
+        }
+    }
+
+    /* Row container paddings: larger left {
+    padding-left: 2rem !important;
+        padding-right: 0.5rem !important;
+}
+
+
+/* Right-aligned sections minimal right margin {
+    margin-right: 0.5rem;
+}
+
+larger left spacing */
+    .site-header-top-section-right .site-header-item {
+        margin-right: 0.5rem;
+    }
+
+    .site-header-main-section-right .site-header-item {
+        margin-right: 0.5rem;
+    }
+
+    .site-secondary-header-inner-wrap .site-header-item {
+        margin-right: 0.5rem;
+    }
+
+    /* Button styles to match Kadence theme */
+    .wt-button {
+        display: inline-block;
+        font-weight: 400;
+        color: var(--global-palette3);
+        text-align: center;
+        vertical-align: middle;
+        user-select: none;
+        background-color: var(--global-palette8);
+        border: 1px solid var(--global-palette7);
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: 0.25rem;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .btn {
+        display: inline-block;
+        font-weight: 400;
+        color: var(--global-palette3);
+        text-align: center;
+        vertical-align: middle;
+        user-select: none;
+        background-color: var(--global-palette8);
+        border: 1px solid var(--global-palette7);
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: 0.25rem;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .wt-button:hover {
+        color: var(--global-palette3);
+        background-color: var(--global-palette7);
+        border-color: var(--global-palette6);
+        text-decoration: none;
+    }
+
+    .btn:hover {
+        color: var(--global-palette3);
+        background-color: var(--global-palette7);
+        border-color: var(--global-palette6);
+        text-decoration: none;
+    }
+
+    .wt-button-primary {
+        color: var(--global-palette9);
+        background-color: var(--global-palette1);
+        border-color: var(--global-palette1);
+    }
+
+    .btn-primary {
+        color: var(--global-palette9);
+        background-color: var(--global-palette1);
+        border-color: var(--global-palette1);
+    }
+
+    .wt-button-primary:hover {
+        color: var(--global-palette9);
+        background-color: var(--global-palette2);
+        border-color: var(--global-palette2);
+    }
+
+    .btn-primary:hover {
+        color: var(--global-palette9);
+        background-color: var(--global-palette2);
+        border-color: var(--global-palette2);
+    }
+
+    .wt-button-secondary {
+        color: var(--global-palette9);
+        background-color: var(--global-palette4);
+        border-color: var(--global-palette4);
+    }
+
+    .btn-secondary {
+        color: var(--global-palette9);
+        background-color: var(--global-palette4);
+        border-color: var(--global-palette4);
+    }
+
+    .wt-button-secondary:hover {
+        color: var(--global-palette9);
+        background-color: var(--global-palette3);
+        border-color: var(--global-palette3);
+    }
+
+    .btn-secondary:hover {
+        color: var(--global-palette9);
+        background-color: var(--global-palette3);
+        border-color: var(--global-palette3);
+    }
+
+    /* Webtrees specific styles to ensure proper layout in Kadence context */
+    .wt-main-wrapper {
+        padding-top: 1rem;
+        padding-bottom: 2rem;
+    }
+
+    .wt-main-container {
+        background-color: var(--global-palette9);
+        border-radius: 8px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .wt-main-blocks {
+        margin-top: 1rem;
+    }
+
+    .wt-side-blocks {
+        margin-top: 1rem;
+    }
+
+    /* Card styles for webtrees blocks */
+    .wt-block {
+        background-color: var(--global-palette9);
+        border: 1px solid var(--global-palette8);
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    .wt-block-header {
+        background-color: var(--global-palette8);
+        border-bottom: 1px solid var(--global-palette8);
+        padding: 0.75rem 1rem;
+        font-weight: 600;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        color: var(--global-palette1);
+    }
+
+    .wt-block-content {
+        padding: 1rem;
+    }
+
+    /* Table styles for webtrees content */
+    .table {
+        background-color: var(--global-palette9);
+        border: 1px solid var(--global-palette8);
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .wt-table {
+        background-color: var(--global-palette9);
+        border: 1px solid var(--global-palette8);
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .table th {
+        border: 1px solid var(--global-palette8);
+        padding: 0.5rem;
+    }
+
+    .table td {
+        border: 1px solid var(--global-palette8);
+        padding: 0.5rem;
+    }
+
+    .wt-table th {
+        border: 1px solid var(--global-palette8);
+        padding: 0.5rem;
+    }
+
+    .wt-table td {
+        border: 1px solid var(--global-palette8);
+        padding: 0.5rem;
+    }
+
+    .table th {
+        background-color: var(--global-palette8);
+        font-weight: 600;
+    }
+
+    .wt-table th {
+        background-color: var(--global-palette8);
+        font-weight: 600;
+    }
+
+    /* Form styles for webtrees forms */
+    .form-control {
+        border: 1px solid var(--global-palette7);
+        border-radius: 4px;
+        padding: 0.375rem 0.75rem;
+        background-color: var(--global-palette9);
+        color: var(--global-palette3);
+    }
+
+    .form-select {
+        border: 1px solid var(--global-palette7);
+        border-radius: 4px;
+        padding: 0.375rem 0.75rem;
+        background-color: var(--global-palette9);
+        color: var(--global-palette3);
+    }
+
+    .form-control:focus {
+        border-color: var(--global-palette1);
+        box-shadow: 0 0 0 0.2rem rgba(0, 51, 102, 0.25);
+    }
+
+    .form-select:focus {
+        border-color: var(--global-palette1);
+        box-shadow: 0 0 0 0.2rem rgba(0, 51, 102, 0.25);
+    }
+
+    /* Modal styles */
+    .modal-content {
+        background-color: var(--global-palette9);
+        border: 1px solid var(--global-palette8);
+        border-radius: 8px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .modal-header {
+        border-bottom: 1px solid var(--global-palette8);
+        background-color: var(--global-palette8);
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    .modal-footer {
+        border-top: 1px solid var(--global-palette8);
+        background-color: var(--global-palette8);
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+
+    /* Webtrees specific elements */
+    .wt-page-title {
+        color: var(--global-palette1);
+        font-weight: 700;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid var(--global-palette8);
+        padding-bottom: 0.5rem;
+    }
+
+    .wt-icon-expand {
+        color: var(--global-palette1);
+    }
+
+    .wt-icon-collapse {
+        color: var(--global-palette1);
+    }
+
+    /* Flash messages */
+    .flash-messages .alert {
+        border-radius: 4px;
+        border: 1px solid var(--global-palette8);
+    }
+
+    /* Navigation tabs */
+    .nav-tabs {
+        border-bottom: 2px solid var(--global-palette8);
+        margin-bottom: 1.5rem;
+    }
+
+    .nav-tabs .nav-link {
+        color: var(--global-palette3);
+        border: 1px solid transparent;
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+        padding: 0.75rem 1.25rem;
+        transition: all 0.2s ease;
+        background-color: var(--global-palette8);
+        margin-bottom: -2px;
+    }
+
+    .nav-tabs .nav-link:hover {
+        color: var(--global-palette1);
+        border-color: var(--global-palette8) var(--global-palette8) var(--global-palette8);
+        background-color: var(--global-palette7);
+    }
+
+    .nav-tabs .nav-link:focus {
+        color: var(--global-palette1);
+        border-color: var(--global-palette8) var(--global-palette8) var(--global-palette8);
+        background-color: var(--global-palette7);
+    }
+
+    .nav-tabs .nav-link.active {
+        color: var(--global-palette1);
+        background-color: var(--global-palette9);
+        border-color: var(--global-palette8) var(--global-palette8) var(--global-palette9);
+        border-bottom: 2px solid var(--global-palette9);
+        font-weight: 600;
+    }
+
+    /* Card component styling for webtrees blocks */
+    .card {
+        background-color: var(--global-palette9);
+        border: 1px solid var(--global-palette8);
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    .card-header {
+        background-color: var(--global-palette8);
+        border-bottom: 1px solid var(--global-palette8);
+        padding: 0.75rem 1rem;
+        font-weight: 600;
+        color: var(--global-palette1);
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    /* Individual page specific styles */
+    .individual-header {
+        background-color: var(--global-palette8);
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid var(--global-palette8);
+    }
+
+    #individual-header-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 0;
+    }
+
+    #individual-header-table td {
+        vertical-align: top;
+        padding: 0.5rem;
+    }
+
+    .relationship {
+        font-weight: 600;
+        color: var(--global-palette2);
+    }
+
+    #tree-link {
+        list-style: none;
+        padding: 0;
+    }
+
+    #tree-link a {
+        text-decoration: none;
+        color: var(--global-palette1);
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--global-palette4);
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+
+    #tree-link a:hover {
+        background-color: var(--global-palette1);
+        color: var(--global-palette9);
+        text-decoration: none;
+    }
+
+    /* Essential Bootstrap Grid System for 2-column layout */
+    /* Based on Bootstrap v4.6.2 grid system */
+
+    /* Row styles */
+    .row {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+    /* Column base styles */
+    .col {
+        position: relative;
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .col-sm-4 {
+        position: relative;
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    /* General column (takes remaining space) */
+    .col {
+        -ms-flex-preferred-size: 0;
+        flex-basis: 0;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        max-width: 100%;
+    }
+
+    /* Small screen column (4 out of 12 = 33.33%) */
+    .col-sm-4 {
+        -ms-flex: 0 0 33.333333%;
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
+
+    /* Responsive behavior for small screens */
+    @media (max-width: 575.98px) {
+        .col-sm-4 {
+            -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+
+        /* For better Bootstrap compatibility with existing styles */
+        .no-gutters {
+            margin-right: 0;
+            margin-left: 0;
+        }
+
+        .no-gutters>.col {
+            padding-right: 0;
+            padding-left: 0;
+        }
+
+        .no-gutters>[class*="col-"] {
+            padding-right: 0;
+            padding-left: 0;
+        }
+
+        /* Additional Bootstrap utilities that may be needed */
+        .d-flex {
+            display: -ms-flexbox !important;
+            display: flex !important;
+        }
+
+        .d-none {
+            display: none !important;
+        }
+
+        .d-block {
+            display: block !important;
+        }
+
+        .d-inline {
+            display: inline !important;
+        }
+
+        .d-inline-block {
+            display: inline-block !important;
+        }
+
+        /* Visibility utilities */
+        .invisible {
+            visibility: hidden !important;
+        }
+
+        .visible {
+            visibility: visible !important;
+        }
+
+        /* Target Bootstrap grid specifically within Kadence layout for main content area */
+        .kt-inside-inner-col .wt-main-wrapper .row {
+            display: -ms-flexbox !important;
+            display: flex !important;
+            -ms-flex-wrap: wrap !important;
+            flex-wrap: wrap !important;
+            margin-right: -15px !important;
+            margin-left: -15px !important;
+            width: 100% !important;
+        }
+
+        .kt-inside-inner-col .wt-main-wrapper .col {
+            position: relative !important;
+            width: 100% !important;
+            padding-right: 15px !important;
+            padding-left: 15px !important;
+        }
+
+        .kt-inside-inner-col .wt-main-wrapper .col-sm-4 {
+            position: relative !important;
+            width: 100% !important;
+            padding-right: 15px !important;
+            padding-left: 15px !important;
+        }
+
+        .kt-inside-inner-col .wt-main-wrapper .col {
+            -ms-flex-preferred-size: 0 !important;
+            flex-basis: 0 !important;
+            -ms-flex-positive: 1 !important;
+            flex-grow: 1 !important;
+            max-width: 100% !important;
+        }
+
+        .kt-inside-inner-col .wt-main-wrapper .col-sm-4 {
+            -ms-flex: 0 0 33.333333% !important;
+            flex: 0 0 33.333333% !important;
+            max-width: 33.333333% !important;
+        }
+
+        /* Ensure proper column behavior within Kadence layout */
+        .kt-inside-inner-col .wt-main-wrapper .col {
+            -ms-flex: 0 0 auto !important;
+            flex: 0 0 auto !important;
+            min-height: 1px !important;
+        }
+
+        .kt-inside-inner-col .wt-main-wrapper .col-sm-4 {
+            -ms-flex: 0 0 auto !important;
+            flex: 0 0 auto !important;
+            min-height: 1px !important;
+        }
+
+        /* Specific targeting for the main content area */
+        .kt-inside-inner-col .wt-main-wrapper .wt-main-container>.row {
+            display: -ms-flexbox !important;
+            display: flex !important;
+            width: 100% !important;
+            margin-right: 0 !important;
+            margin-left: 0 !important;
+        }
+
+        .kt-inside-inner-col .wt-main-wrapper .wt-main-container>.row>.col {
+            display: block !important;
+            -ms-flex: 1 1 0 !important;
+            flex: 1 1 0 !important;
+            min-width: 0 !important;
+            min-height: auto !important;
+        }
+
+        .kt-inside-inner-col .wt-main-wrapper .wt-main-container>.row>.col-sm-4 {
+            display: block !important;
+            -ms-flex: 1 1 0 !important;
+            flex: 1 1 0 !important;
+            min-width: 0 !important;
+            min-height: auto !important;
+        }
+
+        /* Additional specificity for individual page elements */
+        .kt-inside-inner-col .wt-main-wrapper .individual-header {
+            margin-bottom: 1.5rem !important;
+            padding: 1.5rem 0 !important;
+            border-bottom: 1px solid var(--global-palette8) !important;
+        }
+
+        .kt-inside-inner-col .wt-main-wrapper .wt-page-title {
+            margin-bottom: 0.5rem !important;
+            color: var(--global-palette3) !important;
+        }
+
+        .kt-inside-inner-col .wt-main-wrapper .individual-page-content {
+            background-color: var(--global-palette9) !important;
+            border: 1px solid var(--global-palette8) !important;
+            border-radius: 8px !important;
+            padding: 1.5rem !important;
+            margin-bottom: 1.5rem !important;
+        }
+
+        /* Override Kadence column behavior specifically for webtrees content */
+        .kt-inside-inner-col .wp-block-kadence-column {
+            display: block !important;
+            /* Override any flex/grid behavior */
+            width: 100% !important;
+            /* Full width to allow internal Bootstrap grid to work */
+        }
+
+        .kt-inside-inner-col .kt-inside-inner-col {
+            display: block !important;
+            /* Override any flex/grid behavior */
+            width: 100% !important;
+            /* Full width to allow internal Bootstrap grid to work */
+        }
+
+        /* Ensure the main content container allows flexbox layout */
+        .kt-inside-inner-col .wt-main-wrapper .wt-main-container {
+            display: block !important;
+            /* Reset to normal block to allow internal flexbox */
+        }
+
+        /* Reset potential Kadence layout properties that conflict with Bootstrap */
+        .kt-inside-inner-col .kt-row-column-wrap {
+            flex-wrap: nowrap !important;
+            display: block !important;
+            /* Reset Kadence flex behavior */
+        }
+
+        .kt-inside-inner-col .kt-row-layout-equal {
+            flex-wrap: nowrap !important;
+            display: block !important;
+            /* Reset Kadence flex behavior */
+        }
+
+        .kt-inside-inner-col .wp-block-kadence-rowlayout {
+            flex-wrap: nowrap !important;
+            display: block !important;
+            /* Reset Kadence flex behavior */
+        }
+
+        /* More specific targeting to ensure our layout works */
+        .kt-inside-inner-col .wt-main-wrapper .wt-main-container {
+            width: 100% !important;
+            max-width: 100% !important;
+            display: block !important;
+        }
+
+        /* Re-enable flexbox specifically for row containers */
+        .kt-inside-inner-col .wt-main-wrapper .wt-main-container .row {
+            display: -ms-flexbox !important;
+            display: flex !important;
+            -ms-flex-wrap: wrap !important;
+            flex-wrap: wrap !important;
+        }
+
+        /* Override Kadence layout specific to content area */
+        .kb-row-layout-wrap.kb-row-layout-id691_6a7deb-e2 {
+            display: block !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            flex: none !important;
+        }
+
+        .kt-row-column-wrap.kt-has-1-columns {
+            display: block !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            flex: none !important;
+        }
+
+        .wp-block-kadence-column.kadence-column691_63a95b-d4 {
+            display: block !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            flex: none !important;
+        }
+
+        .kt-inside-inner-col>.wt-main-wrapper {
+            display: block !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            flex: none !important;
+        }
+
+        /* Ensure the container allows proper flexbox behavior */
+        .wt-main-container {
+            width: 100% !important;
+            padding-right: 15px !important;
+            padding-left: 15px !important;
+            margin-right: auto !important;
+            margin-left: auto !important;
+        }
+
+        /* More specific targeting to override Kadence layout behavior */
+        .kt-inside-inner-col {
+            display: block !important;
+        }
+
+        /* Target specific Kadence layout properties that might conflict */
+        .kt-row-column-wrap {
+            flex-direction: unset !important;
+            display: block !important;
+            width: 100% !important;
+        }
+
+        .kt-has-1-columns {
+            flex-direction: unset !important;
+            display: block !important;
+            width: 100% !important;
+        }
+
+        .kt-row-layout-equal {
+            flex-direction: unset !important;
+            display: block !important;
+            width: 100% !important;
+        }
+
+        .kt-tab-layout-inherit {
+            flex-direction: unset !important;
+            display: block !important;
+            width: 100% !important;
+        }
+
+        .kt-mobile-layout-row {
+            flex-direction: unset !important;
+            display: block !important;
+            width: 100% !important;
+        }
+
+        .kt-row-valign-top {
+            flex-direction: unset !important;
+            display: block !important;
+            width: 100% !important;
+        }
+
+        /* Reset any Kadence flex properties on content wrapper */
+        .kt-inside-inner-col .wt-main-wrapper {
+            display: block !important;
+            width: 100% !important;
+        }
+
+        /* Ensure the Bootstrap grid takes over */
+        .kt-inside-inner-col .wt-main-wrapper .wt-main-container {
+            display: block !important;
+            width: 100% !important;
+        }
+
+        /* Make sure Bootstrap rows are properly displayed as flex containers */
+        .kt-inside-inner-col .wt-main-wrapper .wt-main-container .row {
+            display: -ms-flexbox !important;
+            display: flex !important;
+            -ms-flex-wrap: wrap !important;
+            flex-wrap: wrap !important;
+            width: 100% !important;
+            margin-right: -15px !important;
+            margin-left: -15px !important;
+        }
+
+        /* Specific targeting for the main content columns */
+        .wt-main-blocks {
+            position: relative !important;
+            width: 100% !important;
+            min-height: 1px !important;
+            padding-right: 15px !important;
+            padding-left: 15px !important;
+            -ms-flex-preferred-size: 66.666667% !important;
+            /* ~8/12 of grid */
+            flex-basis: 66.666667% !important;
+            max-width: 66.666667% !important;
+        }
+
+        .wt-side-blocks {
+            position: relative !important;
+            width: 100% !important;
+            min-height: 1px !important;
+            padding-right: 15px !important;
+            padding-left: 15px !important;
+            -ms-flex-preferred-size: 33.333333% !important;
+            /* ~4/12 of grid */
+            flex-basis: 33.333333% !important;
+            max-width: 33.333333% !important;
+        }
+
+        /* More specific Bootstrap column overrides */
+        .kt-inside-inner-col .wt-main-wrapper .wt-main-container .col-md-8 {
+            -ms-flex: 0 0 66.666667% !important;
+            flex: 0 0 66.666667% !important;
+            max-width: 66.666667% !important;
+            position: relative !important;
+            width: 100% !important;
+            padding-right: 15px !important;
+            padding-left: 15px !important;
+        }
+
+        .kt-inside-inner-col .wt-main-wrapper .wt-main-container .col-md-4 {
+            -ms-flex: 0 0 33.333333% !important;
+            flex: 0 0 33.333333% !important;
+            max-width: 33.333333% !important;
+            position: relative !important;
+            width: 100% !important;
+            padding-right: 15px !important;
+            padding-left: 15px !important;
+        }
+
+        /* Ensure the flex behavior is not overridden */
+        .kt-inside-inner-col .wt-main-wrapper .wt-main-container .row>[class*="col-"] {
+            display: block !important;
+            -ms-flex: 0 0 auto !important;
+            flex: 0 0 auto !important;
+            min-height: 1px !important;
+        }
+
+        /* Force the proper display behavior on the main content row */
+        .kt-inside-inner-col .wt-main-wrapper .wt-main-container .row {
+            display: -ms-flexbox !important;
+            display: flex !important;
+            -ms-flex-direction: row !important;
+            flex-direction: row !important;
+            -ms-flex-wrap: wrap !important;
+            flex-wrap: wrap !important;
+        }
+
+        /* Reset any potential conflicting display properties */
+        .kt-inside-inner-col .wt-main-wrapper .wt-main-container .row>.wt-main-blocks {
+            -ms-flex: 0 0 auto !important;
+            flex: 0 0 auto !important;
+        }
+
+        .kt-inside-inner-col .wt-main-wrapper .wt-main-container .row>.wt-side-blocks {
+            -ms-flex: 0 0 auto !important;
+            flex: 0 0 auto !important;
+        }
+
+        /* Show modal when active */
+        .modal.show {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            z-index: 1050 !important;
+        }
+
+
+        /* Show backdrop when modal is active */
+        .modal-backdrop.show {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 0.5 !important;
+            z-index: 1040 !important;
+        }
+
+
+        /* Show modal content when modal is active */
+        .modal.show .modal-content {
+            visibility: visible !important;
+            opacity: 1 !important;
+            pointer-events: auto !important;
+        }
+
+
+        /* Apply Kadence styling to modal buttons */
+        [data-bs-toggle="modal"] {
+            color: var(--global-palette9) !important;
+            background-color: var(--global-palette1) !important;
+            border: 1px solid var(--global-palette1) !important;
+            padding: 0.375rem 0.75rem !important;
+            font-size: 1rem !important;
+            border-radius: 0.25rem !important;
+            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
+            text-decoration: none !important;
+            display: inline-block !important;
+            font-weight: 400 !important;
+            text-align: center !important;
+            vertical-align: middle !important;
+            user-select: none !important;
+        }
+
+        [data-bs-toggle="modal"]:hover {
+            color: var(--global-palette9) !important;
+            background-color: var(--global-palette2) !important;
+            border-color: var(--global-palette2) !important;
+            text-decoration: none !important;
+        }
+
+        /* Ensure Bootstrap components are properly enabled */
+        .modal.fade {
+            opacity: 0;
+            transition: opacity 0.15s linear, transform 0.15s linear !important;
+            transform: translate(0, -25%) !important;
+        }
+
+        .modal.fade.show {
+            opacity: 1;
+            transform: translate(0, 0) !important;
+        }
+
+        /* Ensure modal backdrop works properly */
+        .modal-backdrop.fade {
+            opacity: 0;
+        }
+
+        .modal-backdrop.show {
+            opacity: 0.5;
+        }
+    }
+
+    /* =================================
+   ICON FIX - FINAL OVERRIDE
+   =================================
+   This rule forcefully restores the display and font properties for icons {
+    display: inline-block !important;
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900 !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+}
+
+overriding any conflicting rules from earlier in this file. The `content`
+   property itself is still correctly set by `icons.css`.
+*/
+    .wt-facts-table th .wt-fact-icon::before {
+        display: inline-block !important;
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900 !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    /* === ICON STYLES MERGED FROM icons.css === */
+    /* =================================
+   ICON VISIBILITY OVERRIDE
+   =================================
+   This rule is to forcefully override any conflicting styles from other CSS files
+   that might be hiding the fact icons.
+*/
+    body .wt-facts-table .wt-fact-icon::before {
+        display: inline-block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    /*#region | FACT ICONS */
+
+    body .icon-selected {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-_MILT:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-ADOP:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-ANUL:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-BAPL:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-BAPM:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-BIRT:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-BURI:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-CHR:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-DEAT:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-DIV:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-EDUC:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-ENGA:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-EVEN:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-EVEN[title^='Adoption']:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-EVEN[title^='Arrival']:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-EVEN[title^='Birth of a']:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-EVEN[title^='Burial']:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-EVEN[title^='Christening']:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-EVEN[title^='Death']:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-EVEN[title^='Departure']:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-EVEN[title^='Family']:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-EVEN[title^='Marriage']:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-EVEN[title$='President of the United States']:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-IMMI:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-MARB:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-MARR:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-NATU:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-OCCU:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-PROP:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-RESI:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-RETI:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .wt-fact-icon-SLGS:before {
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    body .icon-selected {
+        /* color: rgb(var(--theme-accent-background-color-rgb)); */
+        font-size: 24px;
+    }
+
+    body .icon-selected:before {
+        content: '\f00c\00a0';
+    }
+
+    body .wt-fact-icon-_MILT {
+        color: #097969;
+    }
+
+    body .wt-fact-icon-_MILT:before {
+        content: "\f5a2\00a0";
+    }
+
+    body .wt-fact-icon-ADOP {
+        color: #D2A9A1;
+    }
+
+    body .wt-fact-icon-EVEN[title^='Adoption'] {
+        color: #D2A9A1;
+    }
+
+    body .wt-fact-icon-ADOP:before {
+        content: "\f4c4\00a0";
+    }
+
+    body .wt-fact-icon-EVEN[title^='Adoption']:before {
+        content: "\f4c4\00a0";
+    }
+
+    body .wt-fact-icon-BAPL {
+        color: #FFC300;
+    }
+
+    body .wt-fact-icon-BAPM {
+        color: #FFC300;
+    }
+
+    body .wt-fact-icon-CHR {
+        color: #FFC300;
+    }
+
+    body .wt-fact-icon-EVEN[title^='Christening'] {
+        color: #FFC300;
+    }
+
+    body .wt-fact-icon-BAPL:before {
+        content: "\f654\00a0";
+    }
+
+    body .wt-fact-icon-BAPM:before {
+        content: "\f654\00a0";
+    }
+
+    body .wt-fact-icon-CHR:before {
+        content: "\f654\00a0";
+    }
+
+    body .wt-fact-icon-EVEN[title^='Christening']:before {
+        content: "\f654\00a0";
+    }
+
+    body .wt-fact-icon-BIRT {
+        color: #008080;
+    }
+
+    body .wt-fact-icon-EVEN[title^='Birth of a'] {
+        color: #008080;
+    }
+
+    body .wt-fact-icon-BIRT:before {
+        content: "\f77d\00a0";
+    }
+
+    body .wt-fact-icon-EVEN[title^='Birth of a']:before {
+        content: "\f77d\00a0";
+    }
+
+    body .wt-fact-icon-BURI:before {
+        content: "\f557\00a0";
+    }
+
+    body .wt-fact-icon-EVEN[title^='Burial']:before {
+        content: "\f557\00a0";
+    }
+
+    body .wt-fact-icon-DEAT {
+        color: black;
+    }
+
+    body .wt-fact-icon-EVEN[title^='Death'] {
+        color: black;
+    }
+
+    body .wt-fact-icon-DEAT:before {
+        content: "\f4d6\00a0";
+    }
+
+    body .wt-fact-icon-EVEN[title^='Death']:before {
+        content: "\f4d6\00a0";
+    }
+
+    body .wt-fact-icon-EDUC:before {
+        content: "\f549\00a0";
+    }
+
+    body .wt-fact-icon-ENGA:before {
+        content: "\f70b\00a0";
+    }
+
+    body .wt-fact-icon-MARB:before {
+        content: "\f70b\00a0";
+    }
+
+    body .wt-fact-icon-EVEN:before {
+        content: "\f005\00a0";
+    }
+
+    body .wt-fact-icon-EVEN[title$='President of the United States']:before {
+        content: "\f74d\00a0";
+    }
+
+    body .wt-fact-icon-EVEN[title^='Arrival']:before {
+        content: "\f5af";
+    }
+
+    body .wt-fact-icon-EVEN[title^='Departure']:before {
+        content: "\f5b0\00a0";
+    }
+
+    body .wt-fact-icon-EVEN[title^='Family']:before {
+        content: "\f0c0\00a0";
+    }
+
+    body .wt-fact-icon-IMMI {
+        color: #0047AB;
+    }
+
+    body .wt-fact-icon-IMMI:before {
+        content: "\f5ab\00a0";
+    }
+
+    body .wt-fact-icon-ANUL {
+        color: #880808;
+    }
+
+    body .wt-fact-icon-DIV {
+        color: #880808;
+    }
+
+    body .wt-fact-icon-ANUL:before {
+        content: "\f7a9\00a0";
+    }
+
+    body .wt-fact-icon-DIV:before {
+        content: "\f7a9\00a0";
+    }
+
+    body .wt-fact-icon-MARR {
+        color: #FF0000;
+    }
+
+    body .wt-fact-icon-SLGS {
+        color: #FF0000;
+    }
+
+    body .wt-fact-icon-EVEN[title^='Marriage'] {
+        color: #FF0000;
+    }
+
+    body .wt-fact-icon-MARR:before {
+        content: "\f004\00a0";
+    }
+
+    body .wt-fact-icon-SLGS:before {
+        content: "\f004\00a0";
+    }
+
+    body .wt-fact-icon-EVEN[title^='Marriage']:before {
+        content: "\f004\00a0";
+    }
+
+    body .wt-fact-icon-NATU:before {
+        content: "\f024\00a0";
+    }
+
+    body .wt-fact-icon-OCCU {
+        color: #6C5738;
+    }
+
+    body .wt-fact-icon-OCCU:before {
+        content: "\f0b1\00a0";
+    }
+
+    body .wt-fact-icon-PROP {
+        color: #93C572;
+    }
+
+    body .wt-fact-icon-RESI {
+        color: #93C572;
+    }
+
+    body .wt-fact-icon-PROP:before {
+        content: "\e00d\00a0";
+    }
+
+    body .wt-fact-icon-RESI:before {
+        content: "\e00d\00a0";
+    }
+
+    body .wt-fact-icon-RETI {
+        color: #7B68EE;
+    }
+
+    body .wt-fact-icon-RETI:before {
+        content: "\f236";
+    }
+
+    /*#endregion | FACT ICONS */
+    /* #region | NAVBAR Menu Icons */
+
+    /* Reusable mixin */
+    body .nav-item>.nav-link::before {
+        font-family: 'Font Awesome 5 Free';
+        content: var(--content);
+        display: inline-block;
+        margin-right: 5px;
+        color: rgb(var(--bs-body-color-rgb), 1);
+    }
+
+    /* Specific usage */
+    body .nav-item.menu-faq a::before {
+        --content: "\f059";
+    }
+
+    body .nav-item.jp-main-menu-manual a::before {
+        --content: "\f15b";
+    }
+
+    body .nav-item.menu-tree a::before {
+        --content: "\f1bb";
+    }
+
+    body .nav-item.menu-report a::before {
+        --content: "\f02d";
+    }
+
+    body .nav-item.menu-calendar a::before {
+        --content: "\f133";
+    }
+
+    body .nav-item.menu-chart a::before {
+        --content: "\f200";
+    }
+
+    body .nav-item.menu-list a::before {
+        --content: "\f022";
+    }
+
+    body .nav-item.menu-login a::before {
+        --content: "\f2f6";
+    }
+
+    body .nav-item.menu-logout a::before {
+        --content: "\f2f5";
+    }
+
+    body .nav-item.menu-language a::before {
+        --content: "\f1ab";
+    }
+
+    body .nav-item.menu-theme a::before {
+        --content: "\f55d";
+    }
+
+    body .nav-item.menu-modern a::before {
+        --content: "\f53f";
+    }
+
+    body .nav-item.menu-search a::before {
+        --content: "\f002";
+    }
+
+    body .nav-item.menu-clippings a::before {
+        --content: "\f328";
+    }
+
+    body .nav-item.menu-mymenu a::before {
+        --content: "\f007";
+    }
+
+    /* #endregion | NAVBAR Menu Icons */
+
+    /* Reusable mixin */
+    body .card-body.wt-block-content.wt-block-content-gedcom_block a i::before {
+        font-family: 'Font Awesome 5 Free';
+        content: var(--content);
+        display: inline-block;
+        margin-bottom: 5px;
+        color: rgb(var(--bs-body-color-rgb), .25);
+    }
+
+    /* Specific usage */
+    body .wt-block-content-gedcom_block a .icon-pedigree::before {
+        --content: '\f7b9';
+    }
+
+    /* Reusable mixin */
+    body .card>.card-header::before {
+        font-family: 'Font Awesome 5 Free';
+        content: var(--content);
+        display: inline-block;
+        margin-right: 5px;
+        color: rgb(var(--bs-body-color-rgb), .25);
+    }
+
+    /* Specific usage */
+    body .wt-block-header-gedcom_stats:before {
+        --content: "\f201";
+    }
+
+    body .wt-block-header-gedcom_news:before {
+        --content: '\f1ea';
+    }
+
+    body .wt-block-header-gedcom_favorites:before {
+        --content: '\f005';
+    }
+
+    body .wt-block-header-gedcom_block:before {
+        --content: '\f542';
+    }
+
+    body .wt-block-header-random_media:before {
+        --content: '\f302';
+    }
+
+    body .wt-block-header-todays_events:before {
+        --content: '\f783';
+    }
+
+    body .wt-block-header-logged_in:before {
+        --content: '\f51c';
+    }
+
+    body .wt-block-header-user_favorites:before {
+        --content: '\f005';
+    }
+
+    body .wt-block-header-upcoming_events:before {
+        --content: '\f784';
+    }
+
+    body .wt-block-header-user_messages:before {
+        --content: '\f0e0';
+    }
+
+    body .wt-block-header-user_welcome:before {
+        --content: '\f118';
+    }
+
+    .wt-main-container {
+        padding-left: var(--global-content-edge-padding);
+        padding-right: var(--global-content-edge-padding);
+    }
+
+    .wt-main-container .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    /* Ensure symmetric gutters inside Kadence content wrapper */
+    .kt-inside-inner-col .wt-main-wrapper .wt-main-container {
+        padding-left: var(--global-content-edge-padding) !important;
+        padding-right: var(--global-content-edge-padding) !important;
+    }
+
+    .kt-inside-inner-col .wt-main-wrapper .wt-main-container .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    /* Force two-column layout inside main content row */
+    .kt-inside-inner-col .wt-main-wrapper .wt-main-container .row>.col {
+        -ms-flex: 0 0 50% !important;
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+
+    @media (max-width: 767.98px) {
+        .kt-inside-inner-col .wt-main-wrapper .wt-main-container .row>.col {
+            -ms-flex: 0 0 100% !important;
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+        }
+
+        /* Generic fallback to ensure two columns when markup differs */
+        .wt-main-container .row>.col {
+            -ms-flex: 0 0 50% !important;
+            flex: 0 0 50% !important;
+            max-width: 50% !important;
+            padding-left: 15px !important;
+            padding-right: 15px !important;
+        }
+
+        @media (max-width: 767.98px) {
+            .wt-main-container .row>.col {
+                -ms-flex: 0 0 100% !important;
+                flex: 0 0 100% !important;
+                max-width: 100% !important;
+            }
+
+            /* =====================
+   Full-Width Layout Overrides
+   ===================== */
+            .wp-site-blocks {
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+
+            #inner-wrap.wrap {
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+
+
+            .site-header-row-container-inner {
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+
+            .site-header-inner-wrap {
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+
+            .site-footer .wrap {
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+
+            .wt-main-wrapper {
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+
+            .wt-main-container {
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+
+
+            .wt-main-container {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+
+
+            #primary.content-area {
+                width: 100% !important;
+            }
+
+            #main.site-main {
+                width: 100% !important;
+            }
+
+            .content-wrap {
+                width: 100% !important;
+            }
+
+            .entry-content-wrap {
+                width: 100% !important;
+            }
+
+            .entry-content.single-content {
+                width: 100% !important;
+            }
+
+
+
+            .site-footer .wrap {
+                padding-left: var(--global-content-edge-padding);
+                padding-right: var(--global-content-edge-padding);
+            }
+
+        }
+    }
+}

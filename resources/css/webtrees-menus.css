@@ -73,23 +73,23 @@
 
 /* When the parent wrapper has the 'is-sticky' class */
 
-/* Hide the standard logo when sticky */
+/* Hide the standard logo when sticky 
 .main-header-area.is-sticky .standard-logo {
     display: none !important;
 }
 
-/* Show the sticky logo when sticky */
+/* Show the sticky logo when sticky 
 .main-header-area.is-sticky .sticky-logo {
     display: block !important;
 }
 
-/* Main Header Area */
+/* Main Header Area 
 .main-header-area {
     padding-top: 20px;
     padding-bottom: 20px;
 }
-
-.site-header.is-sticky .main-header-area {
+*/
+.site-header.is-sticky {
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -163,13 +163,14 @@
 .sub-menu {
     display: none;
     position: absolute;
-    background: #fff;
+    background: var(--global-palette3);
+    ;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
     /* Refined Shadow */
     z-index: 999;
     border-top: 3px solid var(--global-palette2);
-    min-width: 220px;
-    padding: 10px 0;
+    min-width: 180px;
+    padding: 0px 0;
     list-style: none;
     top: 100%;
     left: 0;
@@ -193,8 +194,8 @@ li:hover>.sub-menu {
 /* All Desktop Dropdown Links */
 .sub-menu a {
     display: block;
-    padding: 8px 20px;
-    color: #333 !important;
+    padding: 0px 0px;
+    color: var(--global-palette8);
     text-decoration: none;
     background: transparent;
     border-bottom: none;
@@ -203,9 +204,9 @@ li:hover>.sub-menu {
 }
 
 .sub-menu a:hover {
-    background: #f7f7f7;
+    background: var(--global-palette4) !important;
     color: var(--global-palette2) !important;
-    padding-left: 25px;
+    padding-left: 10px;
     /* Subtle slide effect */
 }
 
@@ -219,7 +220,7 @@ li:hover>.sub-menu {
     z-index: 9999;
     visibility: hidden;
     pointer-events: none;
-    color: #333;
+    color: var(--global-palette2);
 }
 
 .mobile-drawer-container.is-open {
@@ -230,7 +231,7 @@ li:hover>.sub-menu {
 .mobile-drawer-backdrop {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 10;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
@@ -248,7 +249,8 @@ li:hover>.sub-menu {
     right: 0;
     width: 300px;
     height: 100%;
-    background: #fff;
+    background: var(--global-palette3);
+    ;
     transform: translateX(100%);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
@@ -261,7 +263,7 @@ li:hover>.sub-menu {
 
 .drawer-header {
     padding: 20px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--global-palette4);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -272,7 +274,7 @@ li:hover>.sub-menu {
     background: none;
     border: none;
     cursor: pointer;
-    color: #333;
+    color: var(--global-palette8);
 }
 
 /* Mobile Links */
@@ -283,13 +285,14 @@ li:hover>.sub-menu {
 }
 
 .mobile-nav li {
-    border-bottom: 1px solid #f5f5f5;
+    border-bottom: 1px solid var(--global-palette4);
 }
 
 .mobile-nav a {
     display: block;
     padding: 15px 20px;
-    color: #333;
+    color: var(--global-palette8);
+    background: var(--global-palette3);
     text-decoration: none;
     font-weight: 600;
     position: relative;
@@ -301,7 +304,7 @@ li:hover>.sub-menu {
     display: none;
     box-shadow: none;
     border-top: none;
-    background: #fafafa;
+    background: var(--global-palette3);
     /* Slightly darker for contrast */
     padding: 0;
 }
@@ -312,10 +315,10 @@ li:hover>.sub-menu {
 
 /* Mobile Submenu Items */
 .mobile-nav .sub-menu a {
-    padding-left: 35px;
+    padding-left: 25px;
     /* Indentation */
     font-weight: 400;
-    color: #555;
+    color: var(--global-palette8);
 }
 
 /* Mobile Toggle Arrow */
@@ -329,7 +332,7 @@ li:hover>.sub-menu {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    border-left: 1px solid #f5f5f5;
+    border-left: 1px solid var(--global-palette4);
 }
 
 /* --- HERO SECTION (Hardcoded) --- */
@@ -352,7 +355,7 @@ li:hover>.sub-menu {
     background-size: cover;
     background-position: center;
     /* Hardcoded hero image per request */
-    background-image: url('http://localhost/wordpress/wp-content/uploads/2025/09/svrmarriage-10017-scaled.jpg');
+    background-image: url('https://svajana.org/wp-content/uploads/2025/09/svrmarriage-10017-scaled.jpg');
 }
 
 .wt-hero-overlay {
@@ -363,6 +366,6 @@ li:hover>.sub-menu {
     height: 100%;
     background-color: var(--global-palette1);
     /* Navy Blue */
-    opacity: 0.5;
+    opacity: 0.85;
     /* 50% Overlay */
 }
