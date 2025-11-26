@@ -25,9 +25,21 @@ if (!function_exists('render_webtrees_menu')) {
             $li_classes = $is_submenu ? '' : 'nav-item';
             $a_classes  = $is_submenu ? 'dropdown-item' : 'nav-link';
             if ($has_children) $li_classes .= ' menu-item-has-children';
+            
+            // Add item class to li if available
+            if ($item->getClass()) {
+                $li_classes .= ' ' . $item->getClass();
+            }
 
             $html .= '<li class="' . $li_classes . '">';
-            $html .= '<a href="' . e($item->getLink()) . '" class="' . $a_classes . '">' . e($item->getLabel());
+            
+            // Build attributes string for the anchor tag
+            $attrs = '';
+            foreach ($item->getAttrs() as $key => $value) {
+                $attrs .= ' ' . e($key) . '="' . e($value) . '"';
+            }
+            
+            $html .= '<a href="' . e($item->getLink()) . '" class="' . $a_classes . '"' . $attrs . '>' . e($item->getLabel());
             
             if ($has_children) {
                  $html .= '<span class="dropdown-nav-toggle"><span class="kadence-svg-iconset"><svg class="kadence-svg-icon kadence-arrow-down-svg" fill="currentColor" width="12" height="12" viewBox="0 0 24 24"><path d="M5.293 9.707l6 6c0.391 0.391 1.024 0.391 1.414 0l6-6c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z"/></svg></span></span>';
