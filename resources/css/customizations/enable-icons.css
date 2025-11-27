@@ -1,17 +1,56 @@
 /* ============================================================================
    COMPREHENSIVE ICON STYLESHEET FOR WEBTREES-SVAJANA THEME
-   Includes: Menu Icons, Fact Icons, Block/Tab Icons, and more
+   Icons inherit color from parent menu items and respond to hover/active states
    ============================================================================ */
 
 /* #region | NAVBAR Menu Icons */
 
-/* Base styles for all menu icons */
+/* Base styles for all menu icons - inherit color from parent link */
 .nav-item > .nav-link::before,
 .nav-item > a::before {
   font-family: 'Font Awesome 5 Free';
   font-weight: 900;
   display: inline-block;
   margin-right: 5px;
+  color: inherit; /* Inherit from parent link */
+}
+
+/* Desktop navigation: icons inherit header text color (white initially, navy when sticky) */
+.main-navigation > ul > li > a::before,
+.webtrees-navigation > ul > li > a::before,
+.secondary-navigation > ul > li > a::before {
+  color: var(--header-text-color);
+  transition: color 0.2s ease;
+}
+
+/* Desktop hover/active states: icons turn orange with the link */
+.main-navigation > ul > li > a:hover::before,
+.main-navigation > ul > li.current-menu-item > a::before,
+.main-navigation > ul > li.active > a::before,
+.webtrees-navigation > ul > li > a:hover::before,
+.secondary-navigation > ul > li > a:hover::before,
+.webtrees-navigation > ul > li.active > a::before {
+  color: var(--global-palette2); /* Orange */
+}
+
+/* Desktop submenu icons: inherit submenu text color */
+.sub-menu a::before {
+  color: var(--global-palette8);
+  transition: all 0.2s ease;
+}
+
+.sub-menu a:hover::before {
+  color: var(--global-palette2) !important; /* Orange on hover */
+}
+
+/* Mobile drawer icons: inherit mobile nav color */
+.mobile-nav a::before {
+  color: var(--global-palette8);
+  transition: color 0.2s ease;
+}
+
+.mobile-nav .sub-menu a::before {
+  color: var(--global-palette8);
 }
 
 /* Specific menu item icons */
