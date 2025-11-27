@@ -4,6 +4,8 @@ use Fisharebest\Webtrees\View;
 use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Module\ModuleThemeInterface;
+use Fisharebest\Webtrees\Module\ModuleGlobalInterface;
+use Fisharebest\Webtrees\Services\ModuleService;
 
 // --- 1. SETUP ---
 $wp_data = \Webtrees\Modules\WebtreesSvajana\WebtreesSvajana::getWpHeaderData();
@@ -67,6 +69,7 @@ if ($theme) {
 <html dir="<?= I18N::direction() ?>" lang="<?= I18N::languageTag() ?>" class="no-js">
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf" content="<?= e(csrf_token()) ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
     <title><?= $title ?? 'Webtrees' ?></title>
     <?php
@@ -80,6 +83,12 @@ if ($theme) {
             echo '<link rel="stylesheet" href="' . e($stylesheet) . '">';
         }
     }
+    
+    // Load global module head content (includes Font Awesome fonts and other module styles)
+    echo Registry::container()->get(ModuleService::class)
+        ->findByInterface(ModuleGlobalInterface::class)
+        ->map(static fn (ModuleGlobalInterface $module): string => $module->headContent())
+        ->implode('');
     ?>
 </head>
 <body class="wp-theme-kadence wp-child-theme-kadence-child <?= e($body_class ?? '') ?>">
