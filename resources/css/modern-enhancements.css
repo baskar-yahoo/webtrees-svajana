@@ -52,9 +52,10 @@
 }
 
 #individual-header-table .relationship {
-    font-size: 0.95rem;
-    color: var(--global-palette2);
-    font-style: italic;
+    font-size: 1rem;
+    color: var(--global-palette3);
+    font-style: normal;
+    text-transform: capitalize;
     border-bottom: 1px solid var(--global-palette6);
 }
 
@@ -107,7 +108,21 @@
 
 .wt-chart-box-thumbnail {
     border: 1px solid var(--global-palette6);
-    border-radius: 2px;
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+}
+
+/* All thumbnail images should be rounded */
+.img-thumbnail,
+.wt-individual-silhouette img,
+img.img-thumbnail {
+    border-radius: 8px;
+}
+
+/* Carousel images in individual page */
+.carousel-item img.img-thumbnail {
+    border-radius: 8px;
 }
 
 /* Relationship Display */
@@ -311,9 +326,163 @@
 
 /* Individual Header Improvements */
 .individual-header {
-    margin-bottom: 2rem;
+    margin-bottom: 0;
 }
 
 .wt-page-title {
     color: var(--global-palette1);
 }
+
+/* ===================================
+   FONT SIZE ADJUSTMENTS FOR CONTENT
+   Match modern theme sizing
+   =================================== */
+
+/* Override body font size for content area only */
+.wt-page-content,
+.wt-facts-table,
+.wt-facts-table td,
+.wt-facts-table th,
+.wt-chart-box,
+.wt-sidebar-content,
+table.table,
+div.card,
+.accordion,
+.nav-tabs,
+.nav-pills {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+}
+
+/* Reduce content area paragraph and text sizes */
+.wt-page-content p,
+.wt-page-content li,
+.wt-page-content td,
+.wt-page-content th,
+.wt-page-content div:not(.individual-header):not(#tree-link) {
+    font-size: 14px !important;
+}
+
+/* Tab navigation font size */
+.nav-link {
+    font-size: 14px !important;
+}
+
+/* Facts table specific sizing */
+.wt-facts-table .wt-fact-label,
+.wt-facts-table .wt-fact-value {
+    font-size: 14px !important;
+}
+
+/* Chart boxes smaller text */
+.wt-chart-box-name,
+.wt-chart-box-facts,
+.wt-chart-box-extra {
+    font-size: 13px !important;
+}
+
+/* Sidebar content */
+.wt-sidebar-content .card-body {
+    font-size: 14px !important;
+}
+
+/* ===================================
+   TAB COLORS - Use global-palette1
+   =================================== */
+
+/* Active tab should use navy blue */
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+    background-color: var(--global-palette1) !important;
+    color: var(--global-palette9) !important;
+}
+
+.nav-pills .nav-link {
+    color: var(--global-palette1);
+}
+
+.nav-pills .nav-link:hover {
+    color: var(--global-palette2);
+}
+
+/* ===================================
+   EVENTS OF CLOSE RELATIVES STYLING
+   =================================== */
+
+/* Checkbox label for "Events of close relatives" */
+.form-check-label,
+label[for*="show-"] {
+    color: var(--global-palette1) !important;
+    font-size: 14px !important;
+    font-weight: 500;
+}
+
+.form-check {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* ===================================
+   FACTS TABLE DISPLAY FIX
+   =================================== */
+
+/* Ensure facts table 2nd column shows fact values, not just icons */
+.wt-facts-table td.wt-fact-value {
+    width: auto;
+    min-width: 50%;
+}
+
+/* Make sure fact edit links don't take up the entire cell */
+.wt-fact-edit-links {
+    display: inline-block;
+    float: right;
+    margin-left: 0.5rem;
+}
+
+/* Fact value content should be visible */
+.wt-fact-main-attributes,
+.wt-fact-value > div,
+.wt-fact-value > span {
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+/* ===================================
+   ADDITIONAL GLOBAL ADJUSTMENTS
+   =================================== */
+
+/* Ensure all images with rounded classes get proper styling */
+img.wt-chart-box-thumbnail,
+.wt-chart-box-thumbnail img,
+.profile_pic img,
+.float-start.me-1 img {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Main content wrapper font size */
+.wt-main-wrapper,
+.wt-main-container,
+main {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Ensure buttons and form elements don't get oversized */
+.btn,
+button,
+.form-control {
+    font-size: 14px !important;
+}
+
+/* Keep header/navigation/footer at original sizes */
+header,
+nav,
+footer,
+.site-header,
+#site-navigation,
+.main-navigation,
+#masthead {
+    font-size: 18px !important;
+}
+

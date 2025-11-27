@@ -95,7 +95,7 @@ if ($user !== null) {
                 </td>
             </tr>
             <tr>
-                <td class=relationship><?= $relationship ?></td>
+                <td class="relationship" style="text-transform: capitalize;"><?= $relationship ?></td>
                 <td rowspan="2" valign=middle style="padding-left: 10px; text-align: right">
                     <?php if ($record->canEdit()) : ?>
                         <?php $edit_button = view('individual-page-menu', ['can_upload_media' => $can_upload_media, 'clipboard_facts' => $clipboard_facts, 'record' => $record, 'shares' => $shares]) ?>

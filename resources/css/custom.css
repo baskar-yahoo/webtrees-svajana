@@ -72,6 +72,17 @@ body {
     color: var(--global-palette4);
 }
 
+/* Override font size for webtrees content areas only - NOT menu/header/footer */
+.wt-main-container,
+.wt-page-content,
+#content,
+.site-container > .wt-route-individual,
+.site-container > .wt-route-family,
+.site-container > .wt-route-chart {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
 input {
     font-style: normal;
     font-weight: normal;
