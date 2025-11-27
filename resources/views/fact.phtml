@@ -102,14 +102,6 @@ if ($tag === 'MARR') {
             <?php foreach ($fact->target()->facts(['NOTE']) as $note) : ?>
                 <?= view('fact-gedcom-fields', ['gedcom' => $note->gedcom(), 'parent' => $fact->target()->tag(), 'tree' => $fact->record()->tree()]) ?>
             <?php endforeach ?>
-        <?php endif ?>
-    </th>
-
-    <td class="wt-fact-value">
-        <?php if ($tag === 'NOTE' || $tag === 'SHARED_NOTE') : ?>
-            <?php foreach ($fact->target()->facts(['NOTE']) as $note) : ?>
-                <?= view('fact-gedcom-fields', ['gedcom' => $note->gedcom(), 'parent' => $fact->target()->tag(), 'tree' => $fact->record()->tree()]) ?>
-            <?php endforeach ?>
         <?php else : ?>
             <div class="wt-fact-main-attributes">
                 <?php if ($parent !== $record) : ?>
