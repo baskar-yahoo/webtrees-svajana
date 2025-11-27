@@ -267,3 +267,53 @@
         border-bottom: 1px solid var(--global-palette6);
     }
 }
+
+/* Sex Icon Colors */
+.fa-venus,
+.wt-icon-sex-f {
+    color: #ce5380 !important;
+}
+
+.fa-mars,
+.wt-icon-sex-m {
+    color: #468bb6 !important;
+}
+
+.wt-icon-sex-u,
+.wt-icon-sex-x {
+    color: grey !important;
+}
+
+/* Tree Link and Horizontal List */
+.horizontal-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.horizontal-list li {
+    display: inline-block;
+    margin: 0;
+}
+
+#tree-link {
+    color: var(--global-palette1);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+#tree-link:hover {
+    color: var(--global-palette2);
+}
+
+/* Individual Header Improvements */
+.individual-header {
+    margin-bottom: 2rem;
+}
+
+.wt-page-title {
+    color: var(--global-palette1);
+}

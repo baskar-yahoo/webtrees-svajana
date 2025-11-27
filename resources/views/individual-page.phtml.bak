@@ -1,0 +1,138 @@
+<?php
+
+use Fisharebest\Webtrees\Age;
+use Fisharebest\Webtrees\Auth;
+use Fisharebest\Webtrees\Elements\UnknownElement;
+use Fisharebest\Webtrees\Fact;
+use Fisharebest\Webtrees\Functions\FunctionsPrint;
+use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Individual;
+use Fisharebest\Webtrees\Module\ModuleChartInterface;
+use Fisharebest\Webtrees\Module\ModuleInterface;
+use Fisharebest\Webtrees\Module\ModuleThemeInterface;
+use Fisharebest\Webtrees\Registry;
+use Fisharebest\Webtrees\Services\ModuleService;
+use Fisharebest\Webtrees\Services\RelationshipService;
+use Fisharebest\Webtrees\Tree;
+use Fisharebest\Webtrees\Contracts\UserInterface;
+use Illuminate\Support\Collection;
+
+/**
+ * @var string                                 $age
+ * @var bool                                   $can_upload_media
+ * @var Collection<int,Fact>                   $clipboard_facts
+ * @var Collection<int,Media>                  $individual_media
+ * @var Individual                             $record
+ * @var Collection<int,string>                 $shares
+ * @var Collection<int,ModuleSidebarInterface> $sidebars
+ * @var Collection<int,ModuleTabInterface>     $tabs
+ * @var Tree                                   $tree
+ * @var Collection<int,User>                   $users
+ */
+
+// Get the theme (should be WebtreesSvajana)
+$theme = Registry::container()->get(ModuleThemeInterface::class);
+
+// Calculate relationship if we have a logged-in user with a gedcom record
+$relationship = '';
+$user = Auth::user();
+if ($user) {
+    $user_xref = $user->getPreference(UserInterface::PREF_TREE_ACCOUNT_XREF);
+    if ($user_xref) {
+        $my_individual = Registry::individualFactory()->make($user_xref, $tree);
+        if ($my_individual && $my_individual !== $record && method_exists($theme, 'getRelationshipCached')) {
+            $relationship = $theme->getRelationshipCached($my_individual, $record, $tree);
+        }
+    }
+}
+
+$individualHeaderClass = $relationship ? 'wt-individual-header-with-relationship' : 'wt-individual-header-no-relationship';
+
+?>
+
+<div class="wt-individual-page">
+    <table id="individual-header-table" class="<?= $individualHeaderClass ?>">
+        <?php if ($record->tree()->getPreference('SHOW_HIGHLIGHT_IMAGES')) : ?>
+            <tr>
+                <td rowspan="4" class="individual-photo">
+                    <?= view('individual-page-images', ['can_upload_media' => $can_upload_media, 'individual_media' => $individual_media, 'record' => $record, 'tree' => $tree]) ?>
+                </td>
+                <td colspan="2" class="individual-name">
+                    <h2>
+                        <?= view('individual-page-names', ['record' => $record]) ?>
+                    </h2>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="individual-lifespan">
+                    <?= $record->lifespan() ?>
+                    <?php
+                    // Display sex icon
+                    $sex = $record->sex();
+                    if ($sex === 'M') {
+                        echo '<i class="fas fa-mars wt-sex-m" title="' . I18N::translate('Male') . '"></i>';
+                    } elseif ($sex === 'F') {
+                        echo '<i class="fas fa-venus wt-sex-f" title="' . I18N::translate('Female') . '"></i>';
+                    } elseif ($sex === 'U') {
+                        echo '<i class="fas fa-genderless wt-sex-u" title="' . I18N::translate('Unknown') . '"></i>';
+                    } elseif ($sex === 'X') {
+                        echo '<i class="fas fa-transgender wt-sex-x" title="' . I18N::translate('Other') . '"></i>';
+                    }
+                    ?>
+                </td>
+            </tr>
+            <?php if ($relationship) : ?>
+                <tr>
+                    <td colspan="2" class="relationship">
+                        <?= $relationship ?>
+                    </td>
+                </tr>
+            <?php endif ?>
+            <tr>
+                <td colspan="2" class="individual-menu">
+                    <?= view('individual-page-menu', ['can_upload_media' => $can_upload_media, 'clipboard_facts' => $clipboard_facts, 'record' => $record, 'shares' => $shares]) ?>
+                </td>
+            </tr>
+        <?php else : ?>
+            <tr>
+                <td colspan="2" class="individual-name">
+                    <h2>
+                        <?= view('individual-page-names', ['record' => $record]) ?>
+                    </h2>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="individual-lifespan">
+                    <?= $record->lifespan() ?>
+                    <?php
+                    // Display sex icon
+                    $sex = $record->sex();
+                    if ($sex === 'M') {
+                        echo '<i class="fas fa-mars wt-sex-m" title="' . I18N::translate('Male') . '"></i>';
+                    } elseif ($sex === 'F') {
+                        echo '<i class="fas fa-venus wt-sex-f" title="' . I18N::translate('Female') . '"></i>';
+                    } elseif ($sex === 'U') {
+                        echo '<i class="fas fa-genderless wt-sex-u" title="' . I18N::translate('Unknown') . '"></i>';
+                    } elseif ($sex === 'X') {
+                        echo '<i class="fas fa-transgender wt-sex-x" title="' . I18N::translate('Other') . '"></i>';
+                    }
+                    ?>
+                </td>
+            </tr>
+            <?php if ($relationship) : ?>
+                <tr>
+                    <td colspan="2" class="relationship">
+                        <?= $relationship ?>
+                    </td>
+                </tr>
+            <?php endif ?>
+            <tr>
+                <td colspan="2" class="individual-menu">
+                    <?= view('individual-page-menu', ['can_upload_media' => $can_upload_media, 'clipboard_facts' => $clipboard_facts, 'record' => $record, 'shares' => $shares]) ?>
+                </td>
+            </tr>
+        <?php endif ?>
+    </table>
+
+    <?= view('individual-page-tabs', ['record' => $record, 'tabs' => $tabs]) ?>
+</div>
