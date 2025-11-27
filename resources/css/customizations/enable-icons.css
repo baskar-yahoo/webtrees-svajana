@@ -7,7 +7,10 @@
 
 /* Base styles for all menu icons */
 .nav-item > .nav-link::before,
-.nav-item > a::before {
+.nav-item > a::before,
+.main-navigation .nav-item > a::before,
+.webtrees-navigation .nav-item > a::before,
+.secondary-navigation .nav-item > a::before {
   font-family: 'Font Awesome 5 Free';
   font-weight: 900;
   display: inline-block;
@@ -17,16 +20,22 @@
 /* Desktop navigation: icons use white initially (transparent header) */
 .main-navigation > ul > li > a::before,
 .webtrees-navigation > ul > li > a::before,
-.secondary-navigation > ul > li > a::before {
-  color: #ffffff;
+.secondary-navigation > ul > li > a::before,
+.main-navigation .nav-item > a::before,
+.webtrees-navigation .nav-item > a::before,
+.secondary-navigation .nav-item > a::before {
+  color: #ffffff !important;
   transition: color 0.2s ease;
 }
 
 /* When header is sticky: icons change to navy blue */
 .site-header.is-sticky .main-navigation > ul > li > a::before,
 .site-header.is-sticky .webtrees-navigation > ul > li > a::before,
-.site-header.is-sticky .secondary-navigation > ul > li > a::before {
-  color: var(--global-palette1); /* Navy blue */
+.site-header.is-sticky .secondary-navigation > ul > li > a::before,
+.site-header.is-sticky .main-navigation .nav-item > a::before,
+.site-header.is-sticky .webtrees-navigation .nav-item > a::before,
+.site-header.is-sticky .secondary-navigation .nav-item > a::before {
+  color: var(--global-palette1) !important; /* Navy blue */
 }
 
 /* Desktop hover/active states: icons turn orange with the link */
@@ -35,7 +44,13 @@
 .main-navigation > ul > li.active > a::before,
 .webtrees-navigation > ul > li > a:hover::before,
 .secondary-navigation > ul > li > a:hover::before,
-.webtrees-navigation > ul > li.active > a::before {
+.webtrees-navigation > ul > li.active > a::before,
+.main-navigation .nav-item:hover > a::before,
+.main-navigation .nav-item.current-menu-item > a::before,
+.main-navigation .nav-item.active > a::before,
+.webtrees-navigation .nav-item:hover > a::before,
+.secondary-navigation .nav-item:hover > a::before,
+.webtrees-navigation .nav-item.active > a::before {
   color: var(--global-palette2) !important; /* Orange */
 }
 
@@ -143,9 +158,10 @@
 /* WordPress/Custom menu items - Common navigation icons */
 .nav-item.menu-home > a::before,
 .nav-item.menu-home > .nav-link::before,
+.main-navigation .nav-item.menu-home > a::before,
 .nav-item > a[href*="home"]::before,
-.nav-item > a[href$="/"]::before:first-of-type {
-  content: "\f015"; /* Home */
+.main-navigation > ul > li:first-child > a::before {
+  content: "\f015" !important; /* Home */
 }
 
 .nav-item.menu-about > a::before,
