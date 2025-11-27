@@ -74,10 +74,11 @@ if ($theme) {
     echo '<link rel="stylesheet" href="' . e(asset('css/vendor.min.css')) . '">';
     echo View::stack('styles');
     
-    if (method_exists($theme, 'assetUrl')) {
-        echo '<link rel="stylesheet" href="' . $theme->assetUrl('css/base.css') . '">';
-        echo '<link rel="stylesheet" href="' . $theme->assetUrl('css/webtrees-menus.css') . '">';
-        echo '<link rel="stylesheet" href="' . $theme->assetUrl('css/custom.css') . '">';
+    // Load theme stylesheets using the theme's stylesheets() method
+    if (method_exists($theme, 'stylesheets')) {
+        foreach ($theme->stylesheets() as $stylesheet) {
+            echo '<link rel="stylesheet" href="' . e($stylesheet) . '">';
+        }
     }
     ?>
 </head>

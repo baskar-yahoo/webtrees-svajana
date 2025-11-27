@@ -91,6 +91,7 @@ class WebtreesSvajana extends MinimalTheme implements
             $this->assetUrl('css/base.css'),
             $this->assetUrl('css/webtrees-menus.css'),
             $this->assetUrl('css/custom.css'),
+            $this->assetUrl('css/customizations/enable-icons.css'),
         ];
     }
 

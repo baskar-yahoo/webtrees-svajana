@@ -1,0 +1,210 @@
+/* Birth Facts */
+.wt-fact-BIRT::before,
+.wt-fact-BAPM::before,
+.wt-fact-CHR::before,
+.wt-fact-CHRA::before,
+.wt-fact-ADOP::before {
+  font-family: 'Font Awesome 5 Free';
+  content: "\f1ae"; /* Baby icon */
+  font-weight: 900;
+  color: #008080;
+  margin-right: 5px;
+}
+
+/* Death Facts */
+.wt-fact-DEAT::before,
+.wt-fact-BURI::before,
+.wt-fact-CREM::before {
+  font-family: 'Font Awesome 5 Free';
+  content: "\f54c"; /* Tombstone icon */
+  font-weight: 900;
+  color: black;
+  margin-right: 5px;
+}
+
+/* Marriage/Union Facts */
+.wt-fact-MARR::before,
+.wt-fact-MARB::before,
+.wt-fact-MARC::before,
+.wt-fact-MARL::before,
+.wt-fact-MARS::before,
+.wt-fact-ANUL::before,
+.wt-fact-DIV::before,
+.wt-fact-DIVF::before,
+.wt-fact-ENGA::before {
+  font-family: 'Font Awesome 5 Free';
+  content: "\f004"; /* Heart icon */
+  font-weight: 900;
+  color: #FF1493;
+  margin-right: 5px;
+}
+
+/* Divorce/Separation Facts */
+.wt-fact-DIV::before,
+.wt-fact-DIVF::before,
+.wt-fact-ANUL::before {
+  font-family: 'Font Awesome 5 Free';
+  content: "\f7a9"; /* Broken heart icon */
+  font-weight: 900;
+  color: #696969;
+  margin-right: 5px;
+}
+
+/* Residence Facts */
+.wt-fact-RESI::before,
+.wt-fact-ADDR::before {
+  font-family: 'Font Awesome 5 Free';
+  content: "\f015"; /* House icon */
+  font-weight: 900;
+  color: #8B4513;
+  margin-right: 5px;
+}
+
+/* Occupation/Education Facts */
+.wt-fact-OCCU::before {
+  font-family: 'Font Awesome 5 Free';
+  content: "\f0b1"; /* Briefcase icon */
+  font-weight: 900;
+  color: #4169E1;
+  margin-right: 5px;
+}
+
+.wt-fact-EDUC::before,
+.wt-fact-GRAD::before {
+  font-family: 'Font Awesome 5 Free';
+  content: "\f19d"; /* Graduation cap icon */
+  font-weight: 900;
+  color: #4169E1;
+  margin-right: 5px;
+}
+
+/* Military Facts */
+.wt-fact-MILI::before {
+  font-family: 'Font Awesome 5 Free';
+  content: "\f522"; /* Medal icon */
+  font-weight: 900;
+  color: #097969;
+  margin-right: 5px;
+}
+
+/* Immigration/Emigration Facts */
+.wt-fact-IMMI::before,
+.wt-fact-EMIG::before,
+.wt-fact-NATU::before {
+  font-family: 'Font Awesome 5 Free';
+  content: "\f072"; /* Plane icon */
+  font-weight: 900;
+  color: #2E8B57;
+  margin-right: 5px;
+}
+
+/* Religious Facts */
+.wt-fact-RELI::before,
+.wt-fact-CONF::before,
+.wt-fact-FCOM::before,
+.wt-fact-BAPL::before,
+.wt-fact-CONL::before,
+.wt-fact-ENDL::before,
+.wt-fact-SLGC::before {
+  font-family: 'Font Awesome 5 Free';
+  content: "\f684"; /* Praying hands icon */
+  font-weight: 900;
+  color: #9370DB;
+  margin-right: 5px;
+}
+
+/* Census Facts */
+.wt-fact-CENS::before {
+  font-family: 'Font Awesome 5 Free';
+  content: "\f15b"; /* File icon */
+  font-weight: 900;
+  color: #A0522D;
+  margin-right: 5px;
+}
+
+/* Property/Probate Facts */
+.wt-fact-PROB::before,
+.wt-fact-WILL::before,
+.wt-fact-PROP::before {
+  font-family: 'Font Awesome 5 Free';
+  content: "\f02d"; /* Book icon */
+  font-weight: 900;
+  color: #8B4513;
+  margin-right: 5px;
+}
+
+/* Note Facts */
+.wt-fact-NOTE::before {
+  font-family: 'Font Awesome 5 Free';
+  content: "\f249"; /* Sticky note icon */
+  font-weight: 900;
+  color: #FFD700;
+  margin-right: 5px;
+}
+
+/* Source Facts */
+.wt-fact-SOUR::before {
+  font-family: 'Font Awesome 5 Free';
+  content: "\f550"; /* Archive icon */
+  font-weight: 900;
+  color: #708090;
+  margin-right: 5px;
+}
+
+/* Media/Photo Facts */
+.wt-fact-OBJE::before {
+  font-family: 'Font Awesome 5 Free';
+  content: "\f03e"; /* Image icon */
+  font-weight: 900;
+  color: #FF6347;
+  margin-right: 5px;
+}
+
+/* Other Facts */
+.wt-fact-CAST::before,
+.wt-fact-DSCR::before,
+.wt-fact-IDNO::before,
+.wt-fact-NATI::before,
+.wt-fact-NCHI::before,
+.wt-fact-NMR::before,
+.wt-fact-SSN::before,
+.wt-fact-TITL::before,
+.wt-fact-FACT::before,
+.wt-fact-EVEN::before {
+  font-family: 'Font Awesome 5 Free';
+  content: "\f05a"; /* Info circle icon */
+  font-weight: 900;
+  color: #708090;
+  margin-right: 5px;
+}
+
+/* Name Facts */
+.wt-fact-NAME::before,
+.wt-fact-_MARNM::before,
+.wt-fact-_AKA::before {
+  font-family: 'Font Awesome 5 Free';
+  content: "\f2bb"; /* ID card icon */
+  font-weight: 900;
+  color: #4682B4;
+  margin-right: 5px;
+}
+
+/* Sex/Gender Facts */
+.wt-fact-SEX::before {
+  font-family: 'Font Awesome 5 Free';
+  content: "\f228"; /* Venus Mars icon */
+  font-weight: 900;
+  color: #9370DB;
+  margin-right: 5px;
+}
+
+/* Family Facts */
+.wt-fact-FAM::before,
+.wt-fact-FAMC::before,
+.wt-fact-FAMS::before {
+  font-family: 'Font Awesome 5 Free';
+  content: "\f0c0"; /* Users icon */
+  font-weight: 900;
+  color: #20B2AA;
+  margin-right: 5px;
+}
