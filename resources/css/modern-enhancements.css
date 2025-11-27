@@ -1,0 +1,269 @@
+/**
+ * Modern Enhancements CSS for Svajana Theme
+ * Individual page table layout, chart boxes, sex icons, relationship display
+ */
+
+/* Individual Header Table Layout */
+#individual-header-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+    background: var(--global-palette8);
+    border: 1px solid var(--global-palette6);
+    border-radius: 4px;
+}
+
+#individual-header-table td {
+    padding: 0.75rem;
+    vertical-align: middle;
+}
+
+#individual-header-table .individual-photo {
+    width: 150px;
+    text-align: center;
+    border-right: 1px solid var(--global-palette6);
+}
+
+#individual-header-table .individual-photo img {
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 4px;
+}
+
+#individual-header-table .individual-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--global-palette1);
+    border-bottom: 1px solid var(--global-palette6);
+}
+
+#individual-header-table .individual-name h2 {
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+#individual-header-table .individual-lifespan {
+    font-size: 1rem;
+    color: var(--global-palette3);
+    border-bottom: 1px solid var(--global-palette6);
+}
+
+#individual-header-table .relationship {
+    font-size: 0.95rem;
+    color: var(--global-palette2);
+    font-style: italic;
+    border-bottom: 1px solid var(--global-palette6);
+}
+
+#individual-header-table .individual-menu {
+    padding-top: 0.5rem;
+}
+
+/* Sex Icons */
+.wt-sex-m {
+    color: #1e90ff;
+}
+
+.wt-sex-f {
+    color: #ff69b4;
+}
+
+.wt-sex-u {
+    color: var(--global-palette4);
+}
+
+.wt-sex-x {
+    color: #9370db;
+}
+
+/* Sex Icon Backgrounds for Silhouettes */
+.wt-individual-silhouette-m {
+    background-color: rgba(30, 144, 255, 0.1);
+}
+
+.wt-individual-silhouette-f {
+    background-color: rgba(255, 105, 180, 0.1);
+}
+
+.wt-individual-silhouette-u {
+    background-color: rgba(var(--global-palette4-rgb), 0.1);
+}
+
+.wt-individual-silhouette-x {
+    background-color: rgba(147, 112, 219, 0.1);
+}
+
+/* Chart Boxes */
+.wt-chart-box {
+    background: var(--global-palette8);
+    border: 1px solid var(--global-palette6);
+    border-radius: 4px;
+    padding: 0.5rem;
+    margin: 0.25rem;
+}
+
+.wt-chart-box-thumbnail {
+    border: 1px solid var(--global-palette6);
+    border-radius: 2px;
+}
+
+/* Relationship Display */
+.relationship {
+    display: block;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    background: rgba(var(--global-palette2-rgb), 0.1);
+    border-left: 3px solid var(--global-palette2);
+    border-radius: 2px;
+}
+
+/* Individual Page Customizations - rowspan handled in HTML */
+
+/* Facts Table */
+.wt-facts-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.wt-facts-table td,
+.wt-facts-table th {
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--global-palette7);
+}
+
+.wt-facts-table th {
+    text-align: left;
+    font-weight: 600;
+    color: var(--global-palette1);
+    width: 20%;
+    vertical-align: top;
+}
+
+.wt-facts-table td {
+    color: var(--global-palette9);
+}
+
+/* Fact Labels */
+.wt-fact-label {
+    background: var(--global-palette7);
+    font-weight: 600;
+}
+
+.wt-fact-value {
+    background: var(--global-palette8);
+}
+
+/* Family Navigator */
+.wt-family-navigator-family {
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--global-palette6);
+    border-radius: 4px;
+}
+
+.wt-family-navigator-family-heading {
+    background: var(--global-palette1);
+    color: var(--global-palette8);
+    padding: 0.75rem;
+    font-weight: 600;
+}
+
+.wt-family-navigator-label {
+    width: 25%;
+    background: var(--global-palette7);
+}
+
+.wt-family-navigator-name {
+    background: var(--global-palette8);
+}
+
+.wt-family-navigator-parent {
+    border-bottom: 1px solid var(--global-palette6);
+}
+
+.wt-family-navigator-child {
+    border-bottom: 1px solid var(--global-palette7);
+}
+
+.wt-family-navigator-dropdown-heading {
+    font-weight: 600;
+    color: var(--global-palette1);
+}
+
+/* Page Menu */
+.wt-page-menu {
+    margin-bottom: 1rem;
+}
+
+.wt-page-menu-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: var(--global-palette1);
+    color: var(--global-palette8);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.wt-page-menu-button:hover {
+    background: var(--global-palette2);
+    color: var(--global-palette8);
+    text-decoration: none;
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+    #individual-header-table .individual-photo {
+        width: 100px;
+    }
+    
+    #individual-header-table .individual-photo img {
+        max-width: 100px;
+        max-height: 100px;
+    }
+    
+    #individual-header-table .individual-name {
+        font-size: 1.25rem;
+    }
+    
+    .wt-facts-table th {
+        width: 30%;
+        font-size: 0.9rem;
+    }
+    
+    .wt-family-navigator-label {
+        width: 35%;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 575px) {
+    #individual-header-table {
+        display: block;
+    }
+    
+    #individual-header-table tbody,
+    #individual-header-table tr,
+    #individual-header-table td {
+        display: block;
+        width: 100%;
+    }
+    
+    #individual-header-table .individual-photo {
+        border-right: none;
+        border-bottom: 1px solid var(--global-palette6);
+        text-align: center;
+        padding: 1rem;
+    }
+    
+    #individual-header-table .individual-name,
+    #individual-header-table .individual-lifespan,
+    #individual-header-table .relationship,
+    #individual-header-table .individual-menu {
+        border-bottom: 1px solid var(--global-palette6);
+    }
+}

@@ -1,0 +1,138 @@
+<?php
+
+use Fisharebest\Webtrees\Age;
+use Fisharebest\Webtrees\Auth;
+use Fisharebest\Webtrees\Elements\UnknownElement;
+use Fisharebest\Webtrees\Fact;
+use Fisharebest\Webtrees\Functions\FunctionsPrint;
+use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Individual;
+use Fisharebest\Webtrees\Module\ModuleChartInterface;
+use Fisharebest\Webtrees\Module\ModuleInterface;
+use Fisharebest\Webtrees\Module\ModuleThemeInterface;
+use Fisharebest\Webtrees\Registry;
+use Fisharebest\Webtrees\Services\ModuleService;
+use Fisharebest\Webtrees\Services\RelationshipService;
+use Fisharebest\Webtrees\Tree;
+use Fisharebest\Webtrees\Contracts\UserInterface;
+use Illuminate\Support\Collection;
+
+/**
+ * @var Individual $individual
+ * @var Collection<string,Fact> $name_facts
+ * @var Collection<string,Fact> $sex_facts
+ * @var Collection<string,Fact> $individual_facts
+ * @var Tree $tree
+ */
+
+// Get the theme (should be WebtreesSvajana)
+$theme = Registry::container()->get(ModuleThemeInterface::class);
+
+// Calculate relationship if we have a logged-in user with a gedcom record
+$relationship = '';
+$user = Auth::user();
+if ($user && $user->getPreference(UserInterface::PREF_TREE_ACCOUNT_XREF)) {
+    $my_individual = Registry::individualFactory()->make($user->getPreference(UserInterface::PREF_TREE_ACCOUNT_XREF), $tree);
+    if ($my_individual && $my_individual !== $individual && method_exists($theme, 'getRelationshipCached')) {
+        $relationship = $theme->getRelationshipCached($my_individual, $individual, $tree);
+    }
+}
+
+$individualHeaderClass = $relationship ? 'wt-individual-header-with-relationship' : 'wt-individual-header-no-relationship';
+
+?>
+
+<div class="wt-individual-page">
+    <table id="individual-header-table" class="<?= $individualHeaderClass ?>">
+        <?php if ($individual->tree()->getPreference('SHOW_HIGHLIGHT_IMAGES')) : ?>
+            <tr>
+                <td rowspan="4" class="individual-photo">
+                    <?= $individual->displayImage(150, 150, 'crop', ['class' => 'wt-individual-silhouette wt-individual-silhouette-' . strtolower($individual->sex())]) ?>
+                </td>
+                <td colspan="2" class="individual-name">
+                    <h2>
+                        <?= view('individual-page-names', ['name_facts' => $name_facts, 'individual' => $individual, 'tree' => $tree]) ?>
+                    </h2>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="individual-lifespan">
+                    <?= $individual->lifespan() ?>
+                    <?php if ($sex_facts->isNotEmpty()) : ?>
+                        <?php foreach ($sex_facts as $fact) : ?>
+                            <?php
+                            $sex_icon = '';
+                            if ($fact->value() === 'M') {
+                                $sex_icon = '<i class="fas fa-mars wt-sex-m" title="' . I18N::translate('Male') . '"></i>';
+                            } elseif ($fact->value() === 'F') {
+                                $sex_icon = '<i class="fas fa-venus wt-sex-f" title="' . I18N::translate('Female') . '"></i>';
+                            } elseif ($fact->value() === 'U') {
+                                $sex_icon = '<i class="fas fa-genderless wt-sex-u" title="' . I18N::translate('Unknown') . '"></i>';
+                            } elseif ($fact->value() === 'X') {
+                                $sex_icon = '<i class="fas fa-transgender wt-sex-x" title="' . I18N::translate('Other') . '"></i>';
+                            }
+                            ?>
+                            <?= $sex_icon ?>
+                        <?php endforeach ?>
+                    <?php endif ?>
+                </td>
+            </tr>
+            <?php if ($relationship) : ?>
+                <tr>
+                    <td colspan="2" class="relationship">
+                        <?= $relationship ?>
+                    </td>
+                </tr>
+            <?php endif ?>
+            <tr>
+                <td colspan="2" class="individual-menu">
+                    <?= view('individual-page-menu', ['individual' => $individual, 'tree' => $tree]) ?>
+                </td>
+            </tr>
+        <?php else : ?>
+            <tr>
+                <td colspan="2" class="individual-name">
+                    <h2>
+                        <?= view('individual-page-names', ['name_facts' => $name_facts, 'individual' => $individual, 'tree' => $tree]) ?>
+                    </h2>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="individual-lifespan">
+                    <?= $individual->lifespan() ?>
+                    <?php if ($sex_facts->isNotEmpty()) : ?>
+                        <?php foreach ($sex_facts as $fact) : ?>
+                            <?php
+                            $sex_icon = '';
+                            if ($fact->value() === 'M') {
+                                $sex_icon = '<i class="fas fa-mars wt-sex-m" title="' . I18N::translate('Male') . '"></i>';
+                            } elseif ($fact->value() === 'F') {
+                                $sex_icon = '<i class="fas fa-venus wt-sex-f" title="' . I18N::translate('Female') . '"></i>';
+                            } elseif ($fact->value() === 'U') {
+                                $sex_icon = '<i class="fas fa-genderless wt-sex-u" title="' . I18N::translate('Unknown') . '"></i>';
+                            } elseif ($fact->value() === 'X') {
+                                $sex_icon = '<i class="fas fa-transgender wt-sex-x" title="' . I18N::translate('Other') . '"></i>';
+                            }
+                            ?>
+                            <?= $sex_icon ?>
+                        <?php endforeach ?>
+                    <?php endif ?>
+                </td>
+            </tr>
+            <?php if ($relationship) : ?>
+                <tr>
+                    <td colspan="2" class="relationship">
+                        <?= $relationship ?>
+                    </td>
+                </tr>
+            <?php endif ?>
+            <tr>
+                <td colspan="2" class="individual-menu">
+                    <?= view('individual-page-menu', ['individual' => $individual, 'tree' => $tree]) ?>
+                </td>
+            </tr>
+        <?php endif ?>
+    </table>
+
+    <?= view('individual-page-tabs', ['individual' => $individual, 'facts' => $individual_facts, 'tree' => $tree]) ?>
+</div>

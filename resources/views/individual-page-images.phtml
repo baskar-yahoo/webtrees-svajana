@@ -1,0 +1,44 @@
+<?php
+
+use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Individual;
+use Fisharebest\Webtrees\MediaFile;
+use Fisharebest\Webtrees\Tree;
+use Illuminate\Support\Collection;
+
+/**
+ * @var Individual              $individual
+ * @var Collection<int,MediaFile> $media_files
+ * @var Tree                    $tree
+ */
+
+?>
+
+<?php if ($media_files->isEmpty()) : ?>
+    <div class="wt-individual-silhouette wt-individual-silhouette-<?= strtolower($individual->sex()) ?>"></div>
+<?php elseif ($media_files->count() === 1) : ?>
+    <?= $media_files->first()->displayImage(150, 150, 'crop', ['class' => 'wt-individual-silhouette wt-individual-silhouette-' . strtolower($individual->sex())]) ?>
+<?php else : ?>
+    <div id="individual-images-<?= e($individual->xref()) ?>" class="carousel slide" data-ride="carousel" data-interval="false">
+        <div class="carousel-indicators">
+            <?php foreach ($media_files as $n => $media_file) : ?>
+                <button type="button" data-slide-target="#individual-images-<?= e($individual->xref()) ?>" data-slide-to="<?= $n ?>" <?= $n === 0 ? 'class="active"' : '' ?>></button>
+            <?php endforeach ?>
+        </div>
+        <div class="carousel-inner">
+            <?php foreach ($media_files as $n => $media_file) : ?>
+                <div class="carousel-item <?= $n === 0 ? 'active' : '' ?>">
+                    <?= $media_file->displayImage(150, 150, 'crop', ['class' => 'wt-individual-silhouette wt-individual-silhouette-' . strtolower($individual->sex())]) ?>
+                </div>
+            <?php endforeach ?>
+        </div>
+        <a class="carousel-control-prev" href="#individual-images-<?= e($individual->xref()) ?>" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden"><?= I18N::translate('Previous') ?></span>
+        </a>
+        <a class="carousel-control-next" href="#individual-images-<?= e($individual->xref()) ?>" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden"><?= I18N::translate('Next') ?></span>
+        </a>
+    </div>
+<?php endif ?>

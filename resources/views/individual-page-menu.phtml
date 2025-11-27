@@ -1,0 +1,152 @@
+<?php
+
+use Fisharebest\Webtrees\Auth;
+use Fisharebest\Webtrees\Elements\RestrictionNotice;
+use Fisharebest\Webtrees\Fact;
+use Fisharebest\Webtrees\Functions\FunctionsPrint;
+use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Individual;
+use Fisharebest\Webtrees\Module\ModuleInterface;
+use Fisharebest\Webtrees\Services\ClipboardService;
+use Fisharebest\Webtrees\Services\ModuleService;
+use Fisharebest\Webtrees\Tree;
+
+/**
+ * @var ClipboardService $clipboard_service
+ * @var Individual       $individual
+ * @var Tree             $tree
+ */
+
+$clipboard_service = app(ClipboardService::class);
+
+?>
+
+<div class="d-print-none wt-page-menu">
+    <?php if ($tree->getPreference('SHOW_GEDCOM_RECORD') || Auth::isManager($tree)) : ?>
+        <div class="dropdown">
+            <a class="btn btn-link dropdown-toggle wt-page-menu-button" href="#" role="button" data-dropdown-toggle aria-expanded="false">
+                <i class="fas fa-bars"></i>
+                <?= I18N::translate('edit') ?>
+            </a>
+
+            <div class="dropdown-menu">
+                <?php if (Auth::isEditor($tree)) : ?>
+                    <a class="dropdown-item" href="<?= e(route('edit-individual', ['tree' => $tree->name(), 'xref' => $individual->xref()])) ?>">
+                        <i class="fas fa-pencil-alt fa-fw"></i>
+                        <?= I18N::translate('Edit') ?>
+                    </a>
+                <?php endif ?>
+
+                <?php if (Auth::isEditor($tree)) : ?>
+                    <div class="dropdown-divider"></div>
+
+                    <a class="dropdown-item" href="#" data-wt-confirm="<?= I18N::translate('Are you sure you want to delete "%s"?', strip_tags($individual->fullName())) ?>" data-wt-post-url="<?= e(route('delete-record', ['tree' => $tree->name(), 'xref' => $individual->xref()])) ?>">
+                        <i class="fas fa-trash fa-fw"></i>
+                        <?= I18N::translate('Delete') ?>
+                    </a>
+
+                    <a class="dropdown-item" href="#" data-wt-confirm="<?= I18N::translate('Are you sure you want to delete this fact?') ?>" data-wt-post-url="<?= e(route('delete-fact', ['tree' => $tree->name(), 'xref' => $individual->xref(), 'fact_id' => 'new'])) ?>">
+                        <i class="fas fa-plus fa-fw"></i>
+                        <?= I18N::translate('Add a fact') ?>
+                    </a>
+                <?php endif ?>
+
+                <?php if (Auth::isEditor($tree)) : ?>
+                    <div class="dropdown-divider"></div>
+
+                    <a class="dropdown-item" href="#" data-wt-confirm="<?= I18N::translate('Are you sure you want to delete this note?') ?>" data-wt-post-url="<?= e(route('add-fact', ['tree' => $tree->name(), 'xref' => $individual->xref(), 'fact' => 'NOTE'])) ?>">
+                        <i class="fas fa-plus fa-fw"></i>
+                        <?= I18N::translate('Add a note') ?>
+                    </a>
+
+                    <a class="dropdown-item" href="#" data-wt-confirm="<?= I18N::translate('Are you sure you want to delete this shared note?') ?>" data-wt-post-url="<?= e(route('add-fact', ['tree' => $tree->name(), 'xref' => $individual->xref(), 'fact' => 'SHARED_NOTE'])) ?>">
+                        <i class="fas fa-plus fa-fw"></i>
+                        <?= I18N::translate('Add a shared note') ?>
+                    </a>
+
+                    <a class="dropdown-item" href="<?= e(route('add-fact', ['tree' => $tree->name(), 'xref' => $individual->xref(), 'fact' => 'OBJE'])) ?>">
+                        <i class="fas fa-plus fa-fw"></i>
+                        <?= I18N::translate('Add a media object') ?>
+                    </a>
+
+                    <a class="dropdown-item" href="<?= e(route('add-fact', ['tree' => $tree->name(), 'xref' => $individual->xref(), 'fact' => 'SOUR'])) ?>">
+                        <i class="fas fa-plus fa-fw"></i>
+                        <?= I18N::translate('Add a source citation') ?>
+                    </a>
+
+                    <a class="dropdown-item" href="<?= e(route('add-fact', ['tree' => $tree->name(), 'xref' => $individual->xref(), 'fact' => 'RESN'])) ?>">
+                        <i class="fas fa-plus fa-fw"></i>
+                        <?= I18N::translate('Add a restriction') ?>
+                    </a>
+                <?php endif ?>
+
+                <?php if (Auth::isEditor($tree)) : ?>
+                    <div class="dropdown-divider"></div>
+
+                    <a class="dropdown-item" href="<?= e(route('reorder-media', ['tree' => $tree->name(), 'xref' => $individual->xref()])) ?>">
+                        <i class="fas fa-sort fa-fw"></i>
+                        <?= I18N::translate('Re-order media') ?>
+                    </a>
+
+                    <a class="dropdown-item" href="<?= e(route('reorder-families', ['tree' => $tree->name(), 'xref' => $individual->xref()])) ?>">
+                        <i class="fas fa-sort fa-fw"></i>
+                        <?= I18N::translate('Re-order families') ?>
+                    </a>
+                <?php endif ?>
+
+                <?php if (Auth::isEditor($tree)) : ?>
+                    <div class="dropdown-divider"></div>
+
+                    <a class="dropdown-item" href="<?= e(route('add-child-to-individual', ['tree' => $tree->name(), 'xref' => $individual->xref()])) ?>">
+                        <i class="fas fa-plus fa-fw"></i>
+                        <?= I18N::translate('Add a child to create a one-parent family') ?>
+                    </a>
+
+                    <a class="dropdown-item" href="<?= e(route('add-spouse-to-individual', ['tree' => $tree->name(), 'xref' => $individual->xref()])) ?>">
+                        <i class="fas fa-plus fa-fw"></i>
+                        <?= I18N::translate('Add a spouse') ?>
+                    </a>
+
+                    <a class="dropdown-item" href="<?= e(route('add-parent-to-individual', ['tree' => $tree->name(), 'xref' => $individual->xref()])) ?>">
+                        <i class="fas fa-plus fa-fw"></i>
+                        <?= I18N::translate('Add a parent') ?>
+                    </a>
+                <?php endif ?>
+
+                <?php if (Auth::isEditor($tree)) : ?>
+                    <div class="dropdown-divider"></div>
+
+                    <a class="dropdown-item" href="<?= e(route('link-child-to-family', ['tree' => $tree->name(), 'xref' => $individual->xref()])) ?>">
+                        <i class="fas fa-fw"></i>
+                        <?= I18N::translate('Link this individual to an existing family as a child') ?>
+                    </a>
+
+                    <a class="dropdown-item" href="<?= e(route('link-spouse-to-individual', ['tree' => $tree->name(), 'xref' => $individual->xref()])) ?>">
+                        <i class="fas fa-fw"></i>
+                        <?= I18N::translate('Link this individual to an existing family as a spouse') ?>
+                    </a>
+                <?php endif ?>
+
+                <?php if ($clipboard_service->isAnyClipboard()) : ?>
+                    <div class="dropdown-divider"></div>
+
+                    <?php if (Auth::isEditor($tree)) : ?>
+                        <?php foreach ($clipboard_service->clipboardFacts() as $fact) : ?>
+                            <a class="dropdown-item" href="<?= e(route('copy-fact', ['tree' => $tree->name(), 'destination_id' => $individual->xref(), 'fact_id' => $fact->id()])) ?>">
+                                <i class="fas fa-fw"></i>
+                                <?= I18N::translate('Copy') ?> — <?= $fact->label() ?>
+                            </a>
+                        <?php endforeach ?>
+                    <?php endif ?>
+                <?php endif ?>
+
+                <div class="dropdown-divider"></div>
+
+                <a class="dropdown-item" href="#" onclick="return navigator.clipboard.writeText('<?= e($individual->url()) ?>');">
+                    <i class="fas fa-share-alt fa-fw"></i>
+                    <?= I18N::translate('Copy the URL') ?>
+                </a>
+            </div>
+        </div>
+    <?php endif ?>
+</div>

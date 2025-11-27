@@ -1,0 +1,20 @@
+<?php
+
+use Fisharebest\Webtrees\Fact;
+use Fisharebest\Webtrees\Individual;
+use Fisharebest\Webtrees\Tree;
+use Illuminate\Support\Collection;
+
+/**
+ * @var Collection<string,Fact> $name_facts
+ * @var Individual              $individual
+ * @var Tree                    $tree
+ */
+
+?>
+
+<div class="accordion" id="individual-names">
+    <?php foreach ($name_facts as $fact) : ?>
+        <?= view('individual-page-name', ['fact' => $fact, 'individual' => $individual, 'tree' => $tree]) ?>
+    <?php endforeach ?>
+</div>

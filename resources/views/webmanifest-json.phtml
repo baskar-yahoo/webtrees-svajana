@@ -1,0 +1,54 @@
+<?php
+
+use Fisharebest\Webtrees\Auth;
+
+function getPalette(): string
+{
+    $palette = Auth::user()->getPreference("svajana-palette", "");
+
+    if ($palette === "") {
+        $palette = "svajana-default";
+    }
+
+    return $palette;
+}
+
+function getColors(): array
+{
+    // Svajana uses fixed navy and orange palette
+    $background_color = "#FFFFFF";
+    $theme_color = "#003366"; // Navy
+
+    return [
+        'background_color' => $background_color,
+        'theme_color' => $theme_color
+    ];
+}
+
+$colors = getColors();
+
+?>
+{
+    "name": "<?= e($tree->title()) ?>",
+    "short_name": "<?= e($tree->title()) ?>",
+    "description": "<?= e($tree->getPreference('META_DESCRIPTION')) ?>",
+    "lang": "<?= e(I18N::locale()->languageTag()) ?>",
+    "start_url": "<?= e(route('tree-page', ['tree' => $tree->name()])) ?>",
+    "display": "standalone",
+    "theme_color": "<?= $colors['theme_color'] ?>",
+    "background_color": "<?= $colors['background_color'] ?>",
+    "icons": [
+        {
+            "src": "<?= e(asset('favicon-192.png')) ?>",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "<?= e(asset('favicon-512.png')) ?>",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}

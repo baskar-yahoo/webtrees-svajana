@@ -40,6 +40,18 @@
     --global-calc-content-width: calc(1242px - var(--global-content-edge-padding) - var(--global-content-edge-padding));
     --wp--style--global--content-size: var(--global-calc-content-width);
     --global-vw: calc(100vw - (0.5 * var(--scrollbar-offset)));
+    
+    /* Modern theme enhancements - chart and relationship styling */
+    --chart-line: var(--global-palette1);
+    --link-color: var(--global-palette1);
+    --link-color-hover: var(--global-palette2);
+    --sex-m-bg: rgba(30, 144, 255, 0.1);
+    --sex-f-bg: rgba(255, 105, 180, 0.1);
+    --sex-u-bg: rgba(85, 85, 85, 0.1);
+    --sex-x-bg: rgba(147, 112, 219, 0.1);
+    --global-palette1-rgb: 0, 51, 102;
+    --global-palette2-rgb: 255, 136, 0;
+    --global-palette4-rgb: 85, 85, 85;
 }
 
 /* ======================

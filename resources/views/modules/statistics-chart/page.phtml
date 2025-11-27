@@ -1,0 +1,10 @@
+<?php
+/**
+ * Statistics chart page view - convert tabs to pills
+ */
+
+$view = view('::modules/statistics-chart/page', get_defined_vars());
+
+$view = preg_replace('/nav-tabs/', 'nav-pills', $view);
+
+echo $view;

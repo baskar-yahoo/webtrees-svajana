@@ -80,6 +80,27 @@ class WebtreesSvajana extends MinimalTheme implements
 
         // 1. Override the Master Layout (The "Frame")
         View::registerCustomView('::layouts/default', self::CUSTOM_NAMESPACE . '::layouts/default');
+        
+        // 2. Override individual page views for modern table layout
+        View::registerCustomView('::individual-page', self::CUSTOM_NAMESPACE . '::individual-page');
+        View::registerCustomView('::individual-page-tabs', self::CUSTOM_NAMESPACE . '::individual-page-tabs');
+        View::registerCustomView('::individual-page-menu', self::CUSTOM_NAMESPACE . '::individual-page-menu');
+        View::registerCustomView('::individual-page-names', self::CUSTOM_NAMESPACE . '::individual-page-names');
+        View::registerCustomView('::individual-page-images', self::CUSTOM_NAMESPACE . '::individual-page-images');
+        
+        // 3. Override fact view for enhanced display
+        View::registerCustomView('::fact', self::CUSTOM_NAMESPACE . '::fact');
+        
+        // 4. Override chart box with orange dashed border
+        View::registerCustomView('::chart-box', self::CUSTOM_NAMESPACE . '::chart-box');
+        
+        // 5. Override webmanifest for svajana branding
+        View::registerCustomView('::webmanifest-json', self::CUSTOM_NAMESPACE . '::webmanifest-json');
+        
+        // 6. Override module views
+        View::registerCustomView('::modules/family_nav/sidebar-family', self::CUSTOM_NAMESPACE . '::modules/family_nav/sidebar-family');
+        View::registerCustomView('::modules/statistics-chart/page', self::CUSTOM_NAMESPACE . '::modules/statistics-chart/page');
+        View::registerCustomView('::modules/random_media/slide-show', self::CUSTOM_NAMESPACE . '::modules/random_media/slide-show');
     }
 
     /**
@@ -91,6 +112,8 @@ class WebtreesSvajana extends MinimalTheme implements
             $this->assetUrl('css/base.css'),
             $this->assetUrl('css/webtrees-menus.css'),
             $this->assetUrl('css/custom.css'),
+            $this->assetUrl('css/modern-components.css'),
+            $this->assetUrl('css/modern-enhancements.css'),
             $this->assetUrl('css/customizations/enable-icons.css'),
         ];
     }
@@ -157,7 +180,47 @@ class WebtreesSvajana extends MinimalTheme implements
 
     public function bodyContent(): string
     {
-        return '';
+        return '<script src="' . $this->assetUrl('js/dropdown-toggle.js') . '"></script>';
+    }
+
+    /**
+     * Calculate and cache relationship between two individuals.
+     * Cache key includes individual update timestamps for automatic invalidation.
+     * 
+     * @param Individual $individual1 First individual
+     * @param Individual $individual2 Second individual
+     * @param Tree $tree Tree context
+     * @return string Relationship name
+     */
+    public function getRelationshipCached($individual1, $individual2, $tree): string
+    {
+        // Generate cache key with update timestamps for automatic cache busting
+        $cache_key = sprintf(
+            'relationship_%d_%s_%s_%d_%d',
+            $tree->id(),
+            $individual1->xref(),
+            $individual2->xref(),
+            $individual1->updateTs(),
+            $individual2->updateTs()
+        );
+
+        $relationship_service = new \Fisharebest\Webtrees\Services\RelationshipService();
+        
+        // Try to get cached relationship
+        $cache = \Fisharebest\Webtrees\Registry::cache()->array();
+        $cached = $cache->get($cache_key);
+        
+        if ($cached !== null) {
+            return $cached;
+        }
+        
+        // Calculate relationship
+        $relationship = $relationship_service->getCloseRelationshipName($individual1, $individual2);
+        
+        // Cache the result for 1 hour
+        $cache->set($cache_key, $relationship, 3600);
+        
+        return $relationship;
     }
 
     public function customTranslations(string $language): array
