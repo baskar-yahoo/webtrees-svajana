@@ -1,6 +1,7 @@
 /**
  * Webtrees Svajana Theme JS
  * Handles Sticky Header & Mobile Drawer
+ * Compatible with webtrees core JavaScript (does not interfere with theme switching, etc.)
  */
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -29,9 +30,19 @@ document.addEventListener('DOMContentLoaded', function () {
             // Sticky Background Color Logic
             if (st > 10) {
                 header.classList.add('is-sticky');
+                // Toggle logo visibility when sticky
+                var standardLogos = document.querySelectorAll('.standard-logo');
+                var stickyLogos = document.querySelectorAll('.sticky-logo');
+                standardLogos.forEach(function(logo) { logo.style.display = 'none'; });
+                stickyLogos.forEach(function(logo) { logo.style.display = ''; });
             } else {
                 header.classList.remove('is-sticky');
                 header.classList.remove('is-hidden'); // Always show at top
+                // Show standard logo when not sticky
+                var standardLogos = document.querySelectorAll('.standard-logo');
+                var stickyLogos = document.querySelectorAll('.sticky-logo');
+                standardLogos.forEach(function(logo) { logo.style.display = ''; });
+                stickyLogos.forEach(function(logo) { logo.style.display = 'none'; });
             }
 
             lastScrollTop = st;
@@ -62,6 +73,28 @@ document.addEventListener('DOMContentLoaded', function () {
             e.stopPropagation();
             var parentLi = this.closest('li');
             parentLi.classList.toggle('is-open');
+        });
+    });
+
+    // Desktop Dropdown Toggles (for navigation submenus if needed)
+    var desktopDropdownToggles = document.querySelectorAll('.primary-navigation .dropdown-nav-toggle');
+    desktopDropdownToggles.forEach(function (toggle) {
+        var parentLi = toggle.closest('li');
+        if (!parentLi) return;
+        
+        // Hover behavior for desktop
+        parentLi.addEventListener('mouseenter', function() {
+            var submenu = this.querySelector('.sub-menu');
+            if (submenu) {
+                submenu.style.display = 'block';
+            }
+        });
+        
+        parentLi.addEventListener('mouseleave', function() {
+            var submenu = this.querySelector('.sub-menu');
+            if (submenu) {
+                submenu.style.display = 'none';
+            }
         });
     });
 });
