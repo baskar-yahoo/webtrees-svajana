@@ -5,22 +5,28 @@
 
 /* #region | NAVBAR Menu Icons */
 
-/* Base styles for all menu icons - inherit color from parent link */
+/* Base styles for all menu icons */
 .nav-item > .nav-link::before,
 .nav-item > a::before {
   font-family: 'Font Awesome 5 Free';
   font-weight: 900;
   display: inline-block;
   margin-right: 5px;
-  color: inherit; /* Inherit from parent link */
 }
 
-/* Desktop navigation: icons inherit header text color (white initially, navy when sticky) */
+/* Desktop navigation: icons use white initially (transparent header) */
 .main-navigation > ul > li > a::before,
 .webtrees-navigation > ul > li > a::before,
 .secondary-navigation > ul > li > a::before {
-  color: var(--header-text-color);
+  color: #ffffff;
   transition: color 0.2s ease;
+}
+
+/* When header is sticky: icons change to navy blue */
+.site-header.is-sticky .main-navigation > ul > li > a::before,
+.site-header.is-sticky .webtrees-navigation > ul > li > a::before,
+.site-header.is-sticky .secondary-navigation > ul > li > a::before {
+  color: var(--global-palette1); /* Navy blue */
 }
 
 /* Desktop hover/active states: icons turn orange with the link */
@@ -30,10 +36,10 @@
 .webtrees-navigation > ul > li > a:hover::before,
 .secondary-navigation > ul > li > a:hover::before,
 .webtrees-navigation > ul > li.active > a::before {
-  color: var(--global-palette2); /* Orange */
+  color: var(--global-palette2) !important; /* Orange */
 }
 
-/* Desktop submenu icons: inherit submenu text color */
+/* Desktop submenu icons: dark color */
 .sub-menu a::before {
   color: var(--global-palette8);
   transition: all 0.2s ease;
@@ -43,7 +49,7 @@
   color: var(--global-palette2) !important; /* Orange on hover */
 }
 
-/* Mobile drawer icons: inherit mobile nav color */
+/* Mobile drawer icons: dark color */
 .mobile-nav a::before {
   color: var(--global-palette8);
   transition: color 0.2s ease;
@@ -56,82 +62,196 @@
 /* Specific menu item icons */
 .nav-item.menu-faq > a::before,
 .nav-item.menu-faq > .nav-link::before {
-  content: "\f059";
+  content: "\f059"; /* Question circle */
 }
 
 .nav-item.jp-main-menu-manual > a::before,
 .nav-item.jp-main-menu-manual > .nav-link::before {
-  content: "\f15b";
+  content: "\f15b"; /* File */
 }
 
 .nav-item.menu-tree > a::before,
 .nav-item.menu-tree > .nav-link::before {
-  content: "\f1bb";
+  content: "\f1bb"; /* Tree */
 }
 
 .nav-item.menu-report > a::before,
 .nav-item.menu-report > .nav-link::before {
-  content: "\f02d";
+  content: "\f02d"; /* Book */
 }
 
 .nav-item.menu-calendar > a::before,
 .nav-item.menu-calendar > .nav-link::before {
-  content: "\f133";
+  content: "\f133"; /* Calendar */
 }
 
 .nav-item.menu-chart > a::before,
 .nav-item.menu-chart > .nav-link::before {
-  content: "\f200";
+  content: "\f200"; /* Chart */
 }
 
 .nav-item.menu-list > a::before,
 .nav-item.menu-list > .nav-link::before {
-  content: "\f022";
+  content: "\f022"; /* List */
 }
 
 .nav-item.menu-login > a::before,
 .nav-item.menu-login > .nav-link::before {
-  content: "\f2f6";
+  content: "\f2f6"; /* Sign in */
 }
 
 .nav-item.menu-logout > a::before,
 .nav-item.menu-logout > .nav-link::before {
-  content: "\f2f5";
+  content: "\f2f5"; /* Sign out */
 }
 
 .nav-item.menu-language > a::before,
 .nav-item.menu-language > .nav-link::before {
-  content: "\f1ab";
+  content: "\f1ab"; /* Language */
 }
 
 .nav-item.menu-theme > a::before,
 .nav-item.menu-theme > .nav-link::before {
-  content: "\f55d";
+  content: "\f55d"; /* Palette */
 }
 
 .nav-item.menu-modern > a::before,
 .nav-item.menu-modern > .nav-link::before {
-  content: "\f53f";
+  content: "\f53f"; /* Brush */
 }
 
 .nav-item.menu-search > a::before,
 .nav-item.menu-search > .nav-link::before {
-  content: "\f002";
+  content: "\f002"; /* Search */
 }
 
 .nav-item.menu-clippings > a::before,
 .nav-item.menu-clippings > .nav-link::before {
-  content: "\f328";
+  content: "\f328"; /* Clipboard */
 }
 
 .nav-item.menu-mymenu > a::before,
 .nav-item.menu-mymenu > .nav-link::before {
-  content: "\f007";
+  content: "\f007"; /* User */
 }
 
 .nav-item.menu-pending > a::before,
 .nav-item.menu-pending > .nav-link::before {
-  content: "\f017";
+  content: "\f017"; /* Clock */
+}
+
+/* WordPress/Custom menu items - Common navigation icons */
+.nav-item.menu-home > a::before,
+.nav-item.menu-home > .nav-link::before,
+.nav-item > a[href*="home"]::before,
+.nav-item > a[href$="/"]::before:first-of-type {
+  content: "\f015"; /* Home */
+}
+
+.nav-item.menu-about > a::before,
+.nav-item.menu-about > .nav-link::before,
+.nav-item.menu-about-us > a::before,
+.nav-item > a[href*="about"]::before {
+  content: "\f05a"; /* Info circle */
+}
+
+.nav-item.menu-services > a::before,
+.nav-item.menu-services > .nav-link::before,
+.nav-item > a[href*="service"]::before {
+  content: "\f0ad"; /* Wrench/Tools */
+}
+
+.nav-item.menu-contact > a::before,
+.nav-item.menu-contact > .nav-link::before,
+.nav-item.menu-contact-us > a::before,
+.nav-item > a[href*="contact"]::before {
+  content: "\f0e0"; /* Envelope */
+}
+
+.nav-item.menu-blog > a::before,
+.nav-item.menu-blog > .nav-link::before,
+.nav-item > a[href*="blog"]::before {
+  content: "\f1ea"; /* Newspaper */
+}
+
+.nav-item.menu-news > a::before,
+.nav-item.menu-news > .nav-link::before,
+.nav-item > a[href*="news"]::before {
+  content: "\f1ea"; /* Newspaper */
+}
+
+.nav-item.menu-gallery > a::before,
+.nav-item.menu-gallery > .nav-link::before,
+.nav-item.menu-photos > a::before,
+.nav-item > a[href*="gallery"]::before,
+.nav-item > a[href*="photo"]::before {
+  content: "\f03e"; /* Image */
+}
+
+.nav-item.menu-events > a::before,
+.nav-item.menu-events > .nav-link::before,
+.nav-item > a[href*="event"]::before {
+  content: "\f073"; /* Calendar alt */
+}
+
+.nav-item.menu-shop > a::before,
+.nav-item.menu-shop > .nav-link::before,
+.nav-item.menu-store > a::before,
+.nav-item > a[href*="shop"]::before,
+.nav-item > a[href*="store"]::before {
+  content: "\f07a"; /* Shopping cart */
+}
+
+.nav-item.menu-team > a::before,
+.nav-item.menu-team > .nav-link::before,
+.nav-item.menu-staff > a::before,
+.nav-item > a[href*="team"]::before {
+  content: "\f0c0"; /* Users */
+}
+
+.nav-item.menu-portfolio > a::before,
+.nav-item.menu-portfolio > .nav-link::before,
+.nav-item > a[href*="portfolio"]::before {
+  content: "\f0b1"; /* Briefcase */
+}
+
+.nav-item.menu-testimonials > a::before,
+.nav-item.menu-testimonials > .nav-link::before,
+.nav-item > a[href*="testimonial"]::before {
+  content: "\f27a"; /* Quote left */
+}
+
+.nav-item.menu-resources > a::before,
+.nav-item.menu-resources > .nav-link::before,
+.nav-item > a[href*="resource"]::before {
+  content: "\f02d"; /* Book */
+}
+
+.nav-item.menu-downloads > a::before,
+.nav-item.menu-downloads > .nav-link::before,
+.nav-item > a[href*="download"]::before {
+  content: "\f019"; /* Download */
+}
+
+.nav-item.menu-support > a::before,
+.nav-item.menu-support > .nav-link::before,
+.nav-item.menu-help > a::before,
+.nav-item > a[href*="support"]::before,
+.nav-item > a[href*="help"]::before {
+  content: "\f1cd"; /* Life ring */
+}
+
+.nav-item.menu-pricing > a::before,
+.nav-item.menu-pricing > .nav-link::before,
+.nav-item > a[href*="pricing"]::before {
+  content: "\f155"; /* Dollar sign */
+}
+
+.nav-item.menu-location > a::before,
+.nav-item.menu-location > .nav-link::before,
+.nav-item.menu-locations > a::before,
+.nav-item > a[href*="location"]::before {
+  content: "\f3c5"; /* Map marker alt */
 }
 
 /* #endregion | NAVBAR Menu Icons */

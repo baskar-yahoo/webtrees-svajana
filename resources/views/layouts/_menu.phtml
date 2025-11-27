@@ -22,7 +22,22 @@ if (!function_exists('render_wp_menu_recursive')) {
                 }
             }
 
-            $li_classes = 'nav-item ' . ($has_children ? 'menu-item-has-children' : '') . ($active ? ' current-menu-item' : '');
+            // Generate menu-item-specific class based on title (for icon support)
+            $title_slug = strtolower(preg_replace('/[^a-z0-9]+/i', '-', trim($item['title'])));
+            $menu_class = 'menu-' . $title_slug;
+
+            // Build li classes including WordPress classes and our menu-specific class
+            $li_classes = 'nav-item ' . $menu_class;
+            if ($has_children) {
+                $li_classes .= ' menu-item-has-children';
+            }
+            if ($active) {
+                $li_classes .= ' current-menu-item';
+            }
+            // Add any WordPress-provided classes
+            if (!empty($item['classes']) && is_array($item['classes'])) {
+                $li_classes .= ' ' . implode(' ', $item['classes']);
+            }
 
             $html .= '<li class="' . $li_classes . '">';
             $html .= '<a href="' . e($item['url']) . '" class="nav-link" ' . (!empty($item['target']) ? 'target="' . e($item['target']) . '"' : '') . '>';
