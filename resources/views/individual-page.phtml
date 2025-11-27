@@ -18,11 +18,16 @@ use Fisharebest\Webtrees\Contracts\UserInterface;
 use Illuminate\Support\Collection;
 
 /**
- * @var Individual              $record
- * @var Collection<string,Fact> $name_facts
- * @var Collection<string,Fact> $sex_facts
- * @var Collection<string,Fact> $individual_facts
- * @var Tree                    $tree
+ * @var string                                 $age
+ * @var bool                                   $can_upload_media
+ * @var Collection<int,Fact>                   $clipboard_facts
+ * @var Collection<int,Media>                  $individual_media
+ * @var Individual                             $record
+ * @var Collection<int,string>                 $shares
+ * @var Collection<int,ModuleSidebarInterface> $sidebars
+ * @var Collection<int,ModuleTabInterface>     $tabs
+ * @var Tree                                   $tree
+ * @var Collection<int,User>                   $users
  */
 
 // Get the theme (should be WebtreesSvajana)
@@ -50,34 +55,30 @@ $individualHeaderClass = $relationship ? 'wt-individual-header-with-relationship
         <?php if ($record->tree()->getPreference('SHOW_HIGHLIGHT_IMAGES')) : ?>
             <tr>
                 <td rowspan="4" class="individual-photo">
-                    <?= $record->displayImage(150, 150, 'crop', ['class' => 'wt-individual-silhouette wt-individual-silhouette-' . strtolower($record->sex())]) ?>
+                    <?= view('individual-page-images', ['can_upload_media' => $can_upload_media, 'individual_media' => $individual_media, 'record' => $record, 'tree' => $tree]) ?>
                 </td>
                 <td colspan="2" class="individual-name">
                     <h2>
-                        <?= view('individual-page-names', ['name_facts' => $name_facts, 'individual' => $individual, 'tree' => $tree]) ?>
+                        <?= view('individual-page-names', ['record' => $record]) ?>
                     </h2>
                 </td>
             </tr>
             <tr>
                 <td colspan="2" class="individual-lifespan">
-                    <?= $individual->lifespan() ?>
-                    <?php if ($sex_facts->isNotEmpty()) : ?>
-                        <?php foreach ($sex_facts as $fact) : ?>
-                            <?php
-                            $sex_icon = '';
-                            if ($fact->value() === 'M') {
-                                $sex_icon = '<i class="fas fa-mars wt-sex-m" title="' . I18N::translate('Male') . '"></i>';
-                            } elseif ($fact->value() === 'F') {
-                                $sex_icon = '<i class="fas fa-venus wt-sex-f" title="' . I18N::translate('Female') . '"></i>';
-                            } elseif ($fact->value() === 'U') {
-                                $sex_icon = '<i class="fas fa-genderless wt-sex-u" title="' . I18N::translate('Unknown') . '"></i>';
-                            } elseif ($fact->value() === 'X') {
-                                $sex_icon = '<i class="fas fa-transgender wt-sex-x" title="' . I18N::translate('Other') . '"></i>';
-                            }
-                            ?>
-                            <?= $sex_icon ?>
-                        <?php endforeach ?>
-                    <?php endif ?>
+                    <?= $record->lifespan() ?>
+                    <?php
+                    // Display sex icon
+                    $sex = $record->sex();
+                    if ($sex === 'M') {
+                        echo '<i class="fas fa-mars wt-sex-m" title="' . I18N::translate('Male') . '"></i>';
+                    } elseif ($sex === 'F') {
+                        echo '<i class="fas fa-venus wt-sex-f" title="' . I18N::translate('Female') . '"></i>';
+                    } elseif ($sex === 'U') {
+                        echo '<i class="fas fa-genderless wt-sex-u" title="' . I18N::translate('Unknown') . '"></i>';
+                    } elseif ($sex === 'X') {
+                        echo '<i class="fas fa-transgender wt-sex-x" title="' . I18N::translate('Other') . '"></i>';
+                    }
+                    ?>
                 </td>
             </tr>
             <?php if ($relationship) : ?>
@@ -96,30 +97,26 @@ $individualHeaderClass = $relationship ? 'wt-individual-header-with-relationship
             <tr>
                 <td colspan="2" class="individual-name">
                     <h2>
-                        <?= view('individual-page-names', ['name_facts' => $name_facts, 'record' => $record, 'tree' => $tree]) ?>
+                        <?= view('individual-page-names', ['record' => $record]) ?>
                     </h2>
                 </td>
             </tr>
             <tr>
                 <td colspan="2" class="individual-lifespan">
-                    <?= $individual->lifespan() ?>
-                    <?php if ($sex_facts->isNotEmpty()) : ?>
-                        <?php foreach ($sex_facts as $fact) : ?>
-                            <?php
-                            $sex_icon = '';
-                            if ($fact->value() === 'M') {
-                                $sex_icon = '<i class="fas fa-mars wt-sex-m" title="' . I18N::translate('Male') . '"></i>';
-                            } elseif ($fact->value() === 'F') {
-                                $sex_icon = '<i class="fas fa-venus wt-sex-f" title="' . I18N::translate('Female') . '"></i>';
-                            } elseif ($fact->value() === 'U') {
-                                $sex_icon = '<i class="fas fa-genderless wt-sex-u" title="' . I18N::translate('Unknown') . '"></i>';
-                            } elseif ($fact->value() === 'X') {
-                                $sex_icon = '<i class="fas fa-transgender wt-sex-x" title="' . I18N::translate('Other') . '"></i>';
-                            }
-                            ?>
-                            <?= $sex_icon ?>
-                        <?php endforeach ?>
-                    <?php endif ?>
+                    <?= $record->lifespan() ?>
+                    <?php
+                    // Display sex icon
+                    $sex = $record->sex();
+                    if ($sex === 'M') {
+                        echo '<i class="fas fa-mars wt-sex-m" title="' . I18N::translate('Male') . '"></i>';
+                    } elseif ($sex === 'F') {
+                        echo '<i class="fas fa-venus wt-sex-f" title="' . I18N::translate('Female') . '"></i>';
+                    } elseif ($sex === 'U') {
+                        echo '<i class="fas fa-genderless wt-sex-u" title="' . I18N::translate('Unknown') . '"></i>';
+                    } elseif ($sex === 'X') {
+                        echo '<i class="fas fa-transgender wt-sex-x" title="' . I18N::translate('Other') . '"></i>';
+                    }
+                    ?>
                 </td>
             </tr>
             <?php if ($relationship) : ?>
@@ -137,5 +134,5 @@ $individualHeaderClass = $relationship ? 'wt-individual-header-with-relationship
         <?php endif ?>
     </table>
 
-    <?= view('individual-page-tabs', ['record' => $record, 'facts' => $individual_facts, 'tree' => $tree]) ?>
+    <?= view('individual-page-tabs', ['record' => $record, 'tabs' => $tabs]) ?>
 </div>

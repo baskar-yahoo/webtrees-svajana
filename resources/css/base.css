@@ -62,3 +62,26 @@ a:hover {
         padding: 0 20px;
     }
 }
+
+/* Statistics Table Styling - Fix for missing numbers in stats block */
+.wt-facts-table caption {
+    caption-side: top;
+}
+
+.wt-facts-table th {
+    font-weight: 400;
+    min-width: 20%;
+}
+
+.wt-facts-table td,
+.wt-facts-table th {
+    padding: 4px;
+    vertical-align: top;
+    border: 1px solid #ddd;
+}
+
+.wt-facts-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 0 auto;
+}
