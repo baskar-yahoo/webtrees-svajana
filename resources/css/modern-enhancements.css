@@ -181,9 +181,18 @@ img.img-thumbnail {
 
 .wt-family-navigator-family-heading {
     background: var(--global-palette1);
-    color: var(--global-palette8);
+    color: var(--global-palette8) !important;
     padding: 0.75rem;
     font-weight: 600;
+    text-transform: capitalize !important;
+}
+
+/* Ensure family navigator table captions are styled */
+.wt-family-navigator-family caption {
+    background: var(--global-palette8) !important;
+    color: var(--global-palette1) !important;
+    text-transform: capitalize !important;
+    font-weight: 600 !important;
 }
 
 .wt-family-navigator-label {
@@ -409,12 +418,15 @@ div.card,
    EVENTS OF CLOSE RELATIVES STYLING
    =================================== */
 
-/* Checkbox label for "Events of close relatives" */
+/* Checkbox label for "Events of close relatives" - ENHANCED */
 .form-check-label,
-label[for*="show-"] {
+label[for*="show-"],
+.wt-page-options label,
+.form-check label {
     color: var(--global-palette1) !important;
     font-size: 14px !important;
-    font-weight: 500;
+    font-weight: 500 !important;
+    background: transparent !important;
 }
 
 .form-check {
@@ -422,29 +434,69 @@ label[for*="show-"] {
     margin-bottom: 0.5rem;
 }
 
+/* Force checkbox visibility */
+.form-check-input {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
 /* ===================================
-   FACTS TABLE DISPLAY FIX
+   FACTS TABLE DISPLAY FIX - ENHANCED
    =================================== */
 
-/* Ensure facts table 2nd column shows fact values, not just icons */
-.wt-facts-table td.wt-fact-value {
-    width: auto;
-    min-width: 50%;
+/* Ensure facts table shows fact values in 2nd column */
+.wt-facts-table td {
+    color: var(--global-palette3) !important;
+    vertical-align: top !important;
 }
 
-/* Make sure fact edit links don't take up the entire cell */
+/* Make edit links inline at the end of fact label cell */
+.wt-facts-table th {
+    position: relative;
+    padding-right: 80px !important;
+}
+
 .wt-fact-edit-links {
-    display: inline-block;
-    float: right;
-    margin-left: 0.5rem;
+    position: absolute !important;
+    right: 0.5rem !important;
+    top: 0.5rem !important;
+    display: inline-flex !important;
+    gap: 0.25rem !important;
 }
 
-/* Fact value content should be visible */
+/* Ensure fact values are visible - the actual content */
+.wt-facts-table td.wt-fact-value {
+    width: auto !important;
+}
+
+/* Make sure fact content displays properly */
 .wt-fact-main-attributes,
+.wt-fact-value,
 .wt-fact-value > div,
 .wt-fact-value > span {
-    display: block;
-    margin-bottom: 0.25rem;
+    display: block !important;
+}
+
+/* Fact icons should be inline with label, not below */
+.wt-fact-label {
+    display: inline !important;
+    margin-right: 0.5rem !important;
+}
+
+.wt-fact-icon {
+    display: inline-block !important;
+    margin-left: 0.5rem !important;
+    vertical-align: middle !important;
+    font-size: 1em !important;
+}
+
+/* Make sure the label and icon are on same line */
+.wt-facts-table th {
+    white-space: nowrap;
+}
+
+.wt-facts-table th > * {
+    display: inline !important;
 }
 
 /* ===================================
@@ -484,5 +536,49 @@ footer,
 .main-navigation,
 #masthead {
     font-size: 18px !important;
+}
+
+/* ===================================
+   LINK HOVER STYLING FOR CONTENT AREA
+   =================================== */
+
+/* Content area links (not buttons) should show orange underline on hover */
+.wt-main-container a:hover,
+.wt-page-content a:hover,
+.wt-facts-table a:hover,
+.wt-sidebar-content a:hover,
+.card-body a:hover,
+.wt-chart-box a:hover,
+main a:hover {
+    color: var(--global-palette2) !important;
+    text-decoration: underline !important;
+}
+
+/* Exclude buttons from link hover styling */
+.btn:hover,
+button:hover,
+.wt-page-menu-button:hover,
+.nav-link:hover,
+.dropdown-item:hover {
+    text-decoration: none !important;
+}
+
+/* ===================================
+   FACT NAMES/TITLES CAPITALIZATION
+   =================================== */
+
+/* Capitalize all fact labels and relationship names */
+.wt-fact-label,
+.wt-facts-table th,
+.wt-family-navigator-label,
+.relationship,
+.wt-chart-box-facts,
+.wt-fact-main-attributes .wt-fact-value a {
+    text-transform: capitalize;
+}
+
+/* Ensure fact labels in sidebars are also capitalized */
+.wt-sidebar-content .wt-fact-label {
+    text-transform: capitalize;
 }
 
