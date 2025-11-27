@@ -1,103 +1,102 @@
 <?php
 
+declare(strict_types=1);
+
 use Fisharebest\Webtrees\Auth;
-use Fisharebest\Webtrees\Date;
 use Fisharebest\Webtrees\Elements\UnknownElement;
+use Fisharebest\Webtrees\Elements\XrefAssociate;
 use Fisharebest\Webtrees\Fact;
 use Fisharebest\Webtrees\Family;
 use Fisharebest\Webtrees\Gedcom;
 use Fisharebest\Webtrees\GedcomRecord;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
+use Fisharebest\Webtrees\Media;
 use Fisharebest\Webtrees\Module\ModuleChartInterface;
 use Fisharebest\Webtrees\Module\ModuleInterface;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Services\RelationshipService;
+
 use Fisharebest\Webtrees\Tree;
-use Ramsey\Uuid\Uuid;
 
 /**
- * @var Fact   $fact
- * @var string $id
+ * @var Fact         $fact
+ * @var GedcomRecord $record
  */
 
-$tree   = $fact->record()->tree();
-$record = $fact->record();
+$parent  = $fact->record();
+$tree    = $parent->tree();
+[, $tag] = explode(':', $fact->tag());
+$label   = $fact->label();
+$value   = $fact->value();
+$type    = $fact->attribute('TYPE');
+$id      = $fact->id();
 
-// Does this fact have an explicit DATE tag?
-$date = $fact->date();
-
-// Get the tag for this fact
-$tag = $fact->tag();
-
-// Get the value of this fact
-$value = $fact->value();
-
-// Get the type of this fact
-$type = $fact->attribute('TYPE');
-
-// Create a unique identifier for this fact
-$id = $id ?? 'fact-' . Uuid::uuid4()->toString();
-
-// Get an element object for this fact
 $element = Registry::elementFactory()->make($fact->tag());
 
-// What record are we displaying this fact on?
-$record_tag = $record->tag();
-
-// Get a label for this fact
-if ($tag === 'EVEN' || $tag === 'FACT') {
-    $label = $element->label();
-    if ($type !== '') {
-        $label = I18N::translate($type);
-    } elseif ($value !== '') {
-        $label = $value;
-    }
-} else {
-    $label = $element->label();
+// New or deleted facts need different styling
+$styles = [];
+if ($fact->isPendingAddition()) {
+    $styles[] = 'wt-new';
+}
+if ($fact->isPendingDeletion()) {
+    $styles[] = 'wt-old';
 }
 
-// If this fact is from a parent family, get that family
-$parent = null;
-$associates = $fact->attribute('ASSO');
-if ($associates !== '') {
-    $parent = Registry::familyFactory()->make($associates, $tree) ?? Registry::individualFactory()->make($associates, $tree);
+// Event of close relative
+if ($tag === 'EVEN' && $value === 'CLOSE_RELATIVE') {
+    $value    = '';
+    $styles[] = 'wt-relation-fact collapse';
 }
 
-// If this is a death fact, see if there is an AGE tag
-$age = '';
-if ($tag === 'DEAT' && $record instanceof Individual) {
-    foreach ($fact->attributes() as $key => $val) {
-        if ($key === 'AGE') {
-            $age = $val;
-            break;
-        }
-    }
+// Event of close associates
+if ($id === 'asso') {
+    $styles[] = 'wt-associate-fact collapse';
+}
+
+if ($element instanceof UnknownElement && $tree->getPreference('HIDE_GEDCOM_ERRORS') === '0') {
+    $styles[] = 'd-none';
+}
+
+
+// historical facts
+if ($id === 'histo') {
+    $styles[] = 'wt-historic-fact collapse';
+}
+
+// Use marriage type as the label.  e.g. "Civil partnership"
+if ($tag === 'MARR') {
+    $label = $fact->label();
+    $type  = '';
 }
 
 ?>
+<tr class="<?= implode(' ', $styles) ?>">
+    <th scope="row">
+        <div class="wt-fact-label ut"><?= $label?></div>
 
-<tr class="<?= $fact->isPendingAddition() ? 'wt-new' : '' ?> <?= $fact->isPendingDeletion() ? 'wt-old' : '' ?>" id="<?= e($id) ?>">
-    <th scope="row" class="wt-fact-label">
-        <?= $label ?>
-        
+        <?php if ($id !== 'histo' && $id !== 'asso' && $fact->canEdit() && !in_array($tag, ['HUSB', 'WIFE', 'CHIL', 'FAMC', 'FAMS'], true)) : ?>
+            <?= view('fact-edit-links', ['fact' => $fact, 'url' => $record->url()]) ?>
+        <?php endif ?>
+
         <?php if ($tree->getPreference('SHOW_FACT_ICONS') === '1') : ?>
-            <?php
-            // Sex icons using Font Awesome
-            if ($tag === 'SEX') {
-                if ($value === 'M') {
-                    echo '<i class="fas fa-mars wt-sex-m" title="' . I18N::translate('Male') . '"></i>';
-                } elseif ($value === 'F') {
-                    echo '<i class="fas fa-venus wt-sex-f" title="' . I18N::translate('Female') . '"></i>';
-                } elseif ($value === 'U') {
-                    echo '<i class="fas fa-genderless wt-sex-u" title="' . I18N::translate('Unknown') . '"></i>';
-                } elseif ($value === 'X') {
-                    echo '<i class="fas fa-transgender wt-sex-x" title="' . I18N::translate('Other') . '"></i>';
-                }
-            }
-            ?>
+            <span class="wt-fact-icon wt-fact-icon-<?= e($tag) ?>" title="<?= strip_tags($label) ?>"></span>
+        <?php endif ?>
+    </th>
+
+    <td>
+        <?php if ($fact->target() instanceof Media) : ?>
+            <div class="d-flex flex-wrap">
+                <?php foreach ($fact->target()->mediaFiles() as $media_file) : ?>
+                    <div class="me-1 mb-1">
+                        <?= $media_file->displayImage(100, 100, 'contain', []) ?>
+                    </div>
+                <?php endforeach ?>
+            </div>
+
+            <a href="<?= e($fact->target()->url()) ?>"><?= $fact->target()->fullName() ?></a>
         <?php endif ?>
 
         <?= view('fact-edit-links', ['fact' => $fact, 'url' => $record->url()]) ?>
@@ -110,7 +109,7 @@ if ($tag === 'DEAT' && $record instanceof Individual) {
             <?php endforeach ?>
         <?php else : ?>
             <div class="wt-fact-main-attributes">
-                <?php if ($parent !== null) : ?>
+                <?php if ($parent !== $record) : ?>
                     <div class="wt-fact-record">
                         <?php if ($parent instanceof Family) : ?>
                             <?php foreach ($parent->spouses()->filter(static fn ($individual): bool => $individual !== $record) as $spouse) : ?>

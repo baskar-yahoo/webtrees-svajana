@@ -1,45 +1,58 @@
 <?php
 
+use Fisharebest\Webtrees\Fact;
+use Fisharebest\Webtrees\Http\RequestHandlers\AddNewFact;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Media;
+use Fisharebest\Webtrees\Module\ModuleSidebarInterface;
+use Fisharebest\Webtrees\Module\ModuleTabInterface;
 use Fisharebest\Webtrees\Tree;
 use Illuminate\Support\Collection;
 
 /**
- * @var bool                   $can_upload_media
- * @var Collection<int,Media>  $individual_media
- * @var Individual             $record
- * @var Tree                   $tree
+ * @var string                                 $age
+ * @var bool                                   $can_upload_media
+ * @var Collection<int,Media>                  $individual_media
+ * @var Collection<int,Fact>                   $name_records
+ * @var Individual                             $record
+ * @var Collection<int,Fact>                   $sex_records
+ * @var Collection<int,string>                 $shares
+ * @var Collection<int,ModuleSidebarInterface> $sidebars
+ * @var Collection<int,ModuleTabInterface>     $tabs
+ * @var Tree                                   $tree
+ * @var string                                 $user_link
  */
 
 ?>
 
-<?php if ($individual_media->isEmpty()) : ?>
-    <div class="wt-individual-silhouette wt-individual-silhouette-<?= strtolower($record->sex()) ?>"></div>
-<?php elseif ($individual_media->count() === 1) : ?>
-    <?= $individual_media->first()->displayImage(150, 150, 'crop', ['class' => 'wt-individual-silhouette wt-individual-silhouette-' . strtolower($record->sex())]) ?>
-<?php else : ?>
-    <div id="individual-images-<?= e($record->xref()) ?>" class="carousel slide" data-ride="carousel" data-interval="false">
-        <div class="carousel-indicators">
-            <?php foreach ($individual_media as $n => $media_file) : ?>
-                <button type="button" data-slide-target="#individual-images-<?= e($record->xref()) ?>" data-slide-to="<?= $n ?>" <?= $n === 0 ? 'class="active"' : '' ?>></button>
-            <?php endforeach ?>
-        </div>
-        <div class="carousel-inner">
-            <?php foreach ($individual_media as $n => $media_file) : ?>
-                <div class="carousel-item <?= $n === 0 ? 'active' : '' ?>">
-                    <?= $media_file->displayImage(150, 150, 'crop', ['class' => 'wt-individual-silhouette wt-individual-silhouette-' . strtolower($record->sex())]) ?>
+<?php if ($individual_media->isNotEmpty() || $tree->getPreference('USE_SILHOUETTE') === '1') : ?>
+        <?php if ($individual_media->isEmpty()) : ?>
+            <div class="img-thumbnail">
+                <i class="wt-individual-silhouette wt-individual-silhouette-<?= strtolower($record->sex()) ?> wt-icon-flip-rtl"></i>
+            </div>
+        <?php elseif ($individual_media->count() === 1) : ?>
+            <?= $individual_media->first()->displayImage(100, 100, 'crop', ['class' => 'img-thumbnail img-fluid']) ?>
+        <?php else : ?>
+            <div id="individual-images" class="carousel slide" data-bs-interval="false">
+                <div class="carousel-inner">
+                    <?php foreach ($individual_media as $n => $media_file) : ?>
+                        <div class="carousel-item <?= $n === 0 ? 'active' : '' ?>">
+                            <?= $media_file->displayImage(100, 100, 'crop', ['class' => 'img-thumbnail img-fluid']) ?>
+                        </div>
+                    <?php endforeach ?>
                 </div>
-            <?php endforeach ?>
-        </div>
-        <a class="carousel-control-prev" href="#individual-images-<?= e($record->xref()) ?>" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden"><?= I18N::translate('Previous') ?></span>
-        </a>
-        <a class="carousel-control-next" href="#individual-images-<?= e($record->xref()) ?>" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden"><?= I18N::translate('Next') ?></span>
-        </a>
-    </div>
+                <button type="button" class="carousel-control-prev" data-bs-target="#individual-images" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden"><?= I18N::translate('previous') ?></span>
+                </button>
+                <button type="button" class="carousel-control-next" data-bs-target="#individual-images" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden"><?= I18N::translate('next') ?></span>
+                </button>
+            </div>
+        <?php endif ?>
+
+
+
 <?php endif ?>

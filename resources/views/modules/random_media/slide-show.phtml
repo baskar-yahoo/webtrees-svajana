@@ -62,15 +62,15 @@ div.wt-slide-show-container:before {
     <?php if ($show_controls) : ?>
         <div class="wt-slide-show-controls text-center">
             <a href="#" title="<?= I18N::translate('Play') ?>" <?= $start_automatically ? 'hidden' : '' ?>>
-                <i class="fas fa-play"></i>
+                <?= view('icons/media-play') ?>
                 <span class="visually-hidden"><?= I18N::translate('Play') ?></span>
             </a>
             <a href="#" title="<?= I18N::translate('Stop') ?>" <?= $start_automatically ? '' : 'hidden' ?>>
-                <i class="fas fa-stop"></i>
+                <?= view('icons/media-stop') ?>
                 <span class="visually-hidden"><?= I18N::translate('Stop') ?></span>
             </a>
             <a href="#" title="<?= I18N::translate('Next image') ?>">
-                <i class="fas fa-step-forward"></i>
+                <?= view('icons/media-next') ?>
                 <span class="visually-hidden"><?= I18N::translate('Next image') ?></span>
             </a>
         </div>
