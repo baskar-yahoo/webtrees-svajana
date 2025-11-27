@@ -90,7 +90,7 @@ $individualHeaderClass = $relationship ? 'wt-individual-header-with-relationship
             <?php endif ?>
             <tr>
                 <td colspan="2" class="individual-menu">
-                    <?= view('individual-page-menu', ['record' => $record, 'tree' => $tree]) ?>
+                    <?= view('individual-page-menu', ['can_upload_media' => $can_upload_media, 'clipboard_facts' => $clipboard_facts, 'record' => $record, 'shares' => $shares]) ?>
                 </td>
             </tr>
         <?php else : ?>
@@ -128,7 +128,7 @@ $individualHeaderClass = $relationship ? 'wt-individual-header-with-relationship
             <?php endif ?>
             <tr>
                 <td colspan="2" class="individual-menu">
-                    <?= view('individual-page-menu', ['record' => $record, 'tree' => $tree]) ?>
+                    <?= view('individual-page-menu', ['can_upload_media' => $can_upload_media, 'clipboard_facts' => $clipboard_facts, 'record' => $record, 'shares' => $shares]) ?>
                 </td>
             </tr>
         <?php endif ?>
