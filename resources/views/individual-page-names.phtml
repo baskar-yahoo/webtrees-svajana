@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 
 /**
  * @var Collection<string,Fact> $name_facts
- * @var Individual              $individual
+ * @var Individual              $record
  * @var Tree                    $tree
  */
 
@@ -15,6 +15,6 @@ use Illuminate\Support\Collection;
 
 <div class="accordion" id="individual-names">
     <?php foreach ($name_facts as $fact) : ?>
-        <?= view('individual-page-name', ['fact' => $fact, 'individual' => $individual, 'tree' => $tree]) ?>
+        <?= view('individual-page-name', ['fact' => $fact, 'record' => $record, 'tree' => $tree]) ?>
     <?php endforeach ?>
 </div>

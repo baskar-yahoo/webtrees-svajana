@@ -18,11 +18,11 @@ use Fisharebest\Webtrees\Contracts\UserInterface;
 use Illuminate\Support\Collection;
 
 /**
- * @var Individual $individual
+ * @var Individual              $record
  * @var Collection<string,Fact> $name_facts
  * @var Collection<string,Fact> $sex_facts
  * @var Collection<string,Fact> $individual_facts
- * @var Tree $tree
+ * @var Tree                    $tree
  */
 
 // Get the theme (should be WebtreesSvajana)
@@ -31,10 +31,13 @@ $theme = Registry::container()->get(ModuleThemeInterface::class);
 // Calculate relationship if we have a logged-in user with a gedcom record
 $relationship = '';
 $user = Auth::user();
-if ($user && $user->getPreference(UserInterface::PREF_TREE_ACCOUNT_XREF)) {
-    $my_individual = Registry::individualFactory()->make($user->getPreference(UserInterface::PREF_TREE_ACCOUNT_XREF), $tree);
-    if ($my_individual && $my_individual !== $individual && method_exists($theme, 'getRelationshipCached')) {
-        $relationship = $theme->getRelationshipCached($my_individual, $individual, $tree);
+if ($user) {
+    $user_xref = $user->getPreference(UserInterface::PREF_TREE_ACCOUNT_XREF);
+    if ($user_xref) {
+        $my_individual = Registry::individualFactory()->make($user_xref, $tree);
+        if ($my_individual && $my_individual !== $record && method_exists($theme, 'getRelationshipCached')) {
+            $relationship = $theme->getRelationshipCached($my_individual, $record, $tree);
+        }
     }
 }
 
@@ -44,10 +47,10 @@ $individualHeaderClass = $relationship ? 'wt-individual-header-with-relationship
 
 <div class="wt-individual-page">
     <table id="individual-header-table" class="<?= $individualHeaderClass ?>">
-        <?php if ($individual->tree()->getPreference('SHOW_HIGHLIGHT_IMAGES')) : ?>
+        <?php if ($record->tree()->getPreference('SHOW_HIGHLIGHT_IMAGES')) : ?>
             <tr>
                 <td rowspan="4" class="individual-photo">
-                    <?= $individual->displayImage(150, 150, 'crop', ['class' => 'wt-individual-silhouette wt-individual-silhouette-' . strtolower($individual->sex())]) ?>
+                    <?= $record->displayImage(150, 150, 'crop', ['class' => 'wt-individual-silhouette wt-individual-silhouette-' . strtolower($record->sex())]) ?>
                 </td>
                 <td colspan="2" class="individual-name">
                     <h2>
@@ -86,14 +89,14 @@ $individualHeaderClass = $relationship ? 'wt-individual-header-with-relationship
             <?php endif ?>
             <tr>
                 <td colspan="2" class="individual-menu">
-                    <?= view('individual-page-menu', ['individual' => $individual, 'tree' => $tree]) ?>
+                    <?= view('individual-page-menu', ['record' => $record, 'tree' => $tree]) ?>
                 </td>
             </tr>
         <?php else : ?>
             <tr>
                 <td colspan="2" class="individual-name">
                     <h2>
-                        <?= view('individual-page-names', ['name_facts' => $name_facts, 'individual' => $individual, 'tree' => $tree]) ?>
+                        <?= view('individual-page-names', ['name_facts' => $name_facts, 'record' => $record, 'tree' => $tree]) ?>
                     </h2>
                 </td>
             </tr>
@@ -128,11 +131,11 @@ $individualHeaderClass = $relationship ? 'wt-individual-header-with-relationship
             <?php endif ?>
             <tr>
                 <td colspan="2" class="individual-menu">
-                    <?= view('individual-page-menu', ['individual' => $individual, 'tree' => $tree]) ?>
+                    <?= view('individual-page-menu', ['record' => $record, 'tree' => $tree]) ?>
                 </td>
             </tr>
         <?php endif ?>
     </table>
 
-    <?= view('individual-page-tabs', ['individual' => $individual, 'facts' => $individual_facts, 'tree' => $tree]) ?>
+    <?= view('individual-page-tabs', ['record' => $record, 'facts' => $individual_facts, 'tree' => $tree]) ?>
 </div>
