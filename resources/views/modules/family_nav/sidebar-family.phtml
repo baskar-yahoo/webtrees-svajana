@@ -6,9 +6,10 @@ use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Services\RelationshipService;
 
 /**
- * @var Individual $individual
- * @var Family     $family
- * @var string     $title
+ * @var Individual          $individual
+ * @var Family              $family
+ * @var RelationshipService $relationship_service
+ * @var string              $title
  */
 
 ?>
@@ -24,12 +25,12 @@ use Fisharebest\Webtrees\Services\RelationshipService;
             <tr class="text-center wt-family-navigator-parent wt-sex-<?= strtolower($spouse->sex()) ?>">
                 <th class="align-middle wt-family-navigator-label" scope="row">
                     <?php if ($spouse === $individual) : ?>
-                        <?= app(RelationshipService::class)->getCloseRelationshipName($individual, $spouse) ?>
+                        <?= $relationship_service->getCloseRelationshipName($individual, $spouse) ?>
                         <i class="icon-selected"></i>
                     <?php elseif ($spouse->childFamilies()->isNotEmpty()) : ?>
                     <div class="dropdown">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdown-<?= e($spouse->xref()) ?>" data-dropdown-toggle aria-expanded="false">
-                            <?= app(RelationshipService::class)->getCloseRelationshipName($individual, $spouse) ?>
+                            <?= $relationship_service->getCloseRelationshipName($individual, $spouse) ?>
                         </a>
 
                         <div class="dropdown-menu wt-family-navigator-dropdown">
@@ -49,7 +50,7 @@ use Fisharebest\Webtrees\Services\RelationshipService;
                         </div>
                     </div>
                     <?php else : ?>
-                        <?= app(RelationshipService::class)->getCloseRelationshipName($individual, $spouse) ?>
+                        <?= $relationship_service->getCloseRelationshipName($individual, $spouse) ?>
                     <?php endif ?>
                 </th>
 
@@ -83,12 +84,12 @@ use Fisharebest\Webtrees\Services\RelationshipService;
             <tr class="text-center wt-family-navigator-child wt-sex-<?= strtolower($child->sex()) ?>">
                 <th class="align-middle wt-family-navigator-label" scope="row">
                     <?php if ($child === $individual) : ?>
-                        <?= app(RelationshipService::class)->getCloseRelationshipName($individual, $child) ?>
+                        <?= $relationship_service->getCloseRelationshipName($individual, $child) ?>
                         <i class="icon-selected"></i>
                     <?php elseif ($child->spouseFamilies()->isNotEmpty()) : ?>
                         <div class="dropdown">
                             <a class="dropdown-toggle" href="#" role="button" id="dropdown-<?= e($child->xref()) ?>" data-dropdown-toggle aria-expanded="false">
-                                <?= app(RelationshipService::class)->getCloseRelationshipName($individual, $child) ?>
+                                <?= $relationship_service->getCloseRelationshipName($individual, $child) ?>
                             </a>
 
                             <div class="dropdown-menu">
@@ -121,7 +122,7 @@ use Fisharebest\Webtrees\Services\RelationshipService;
                             </div>
                         </div>
                     <?php else : ?>
-                        <?= app(RelationshipService::class)->getCloseRelationshipName($individual, $child) ?>
+                        <?= $relationship_service->getCloseRelationshipName($individual, $child) ?>
                     <?php endif ?>
                 </th>
 
