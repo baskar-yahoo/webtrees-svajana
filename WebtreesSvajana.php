@@ -88,8 +88,9 @@ class WebtreesSvajana extends MinimalTheme implements
         View::registerCustomView('::individual-page-names', self::CUSTOM_NAMESPACE . '::individual-page-names');
         View::registerCustomView('::individual-page-images', self::CUSTOM_NAMESPACE . '::individual-page-images');
         
-        // 3. Override fact view for enhanced display
+        // 3. Override fact views for two-row layout (icon+label / edit links)
         View::registerCustomView('::fact', self::CUSTOM_NAMESPACE . '::fact');
+        View::registerCustomView('::fact-edit-links', self::CUSTOM_NAMESPACE . '::fact-edit-links');
         
         // 4. Override chart box with orange dashed border
         View::registerCustomView('::chart-box', self::CUSTOM_NAMESPACE . '::chart-box');

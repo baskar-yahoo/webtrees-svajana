@@ -441,62 +441,112 @@ label[for*="show-"],
 }
 
 /* ===================================
-   FACTS TABLE DISPLAY FIX - ENHANCED
+   FACTS TABLE DISPLAY FIX - TWO-ROW LAYOUT
+   Icon + Label on top row, Edit links on bottom row
    =================================== */
 
-/* Ensure facts table shows fact values in 2nd column */
+/* Fact table header cell - contains two rows */
+.wt-facts-table th {
+    padding: 0.75rem !important;
+    vertical-align: top !important;
+    width: 20% !important;
+}
+
+/* First row: Icon + Label */
+.wt-fact-label-row {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+}
+
+/* Fact icon appears before the label */
+.wt-fact-icon {
+    display: inline-block !important;
+    font-size: 1.1em !important;
+    color: var(--global-palette1) !important;
+    flex-shrink: 0 !important;
+}
+
+/* Fact label text */
+.wt-fact-label {
+    display: inline !important;
+    font-weight: 600 !important;
+    color: var(--global-palette1) !important;
+    text-transform: capitalize !important;
+}
+
+/* Second row: Edit links (Edit, Copy, Delete) */
+.wt-fact-edit-links {
+    display: flex !important;
+    gap: 0.5rem !important;
+    margin-top: 0.5rem !important;
+    padding-top: 0.5rem !important;
+    border-top: 1px solid var(--global-palette7) !important;
+}
+
+.wt-fact-edit-links a,
+.wt-fact-edit-links .btn-link {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.25rem !important;
+    padding: 0.25rem 0.5rem !important;
+    font-size: 13px !important;
+    color: var(--global-palette1) !important;
+    background: var(--global-palette8) !important;
+    border: 1px solid var(--global-palette6) !important;
+    border-radius: 3px !important;
+    text-decoration: none !important;
+    transition: all 0.2s !important;
+    white-space: nowrap !important;
+}
+
+.wt-fact-edit-links a:hover,
+.wt-fact-edit-links .btn-link:hover {
+    background: var(--global-palette1) !important;
+    color: var(--global-palette9) !important;
+    border-color: var(--global-palette1) !important;
+    text-decoration: none !important;
+}
+
+/* Show icon and text in edit links */
+.wt-fact-edit-links svg {
+    width: 14px !important;
+    height: 14px !important;
+    fill: currentColor !important;
+}
+
+.wt-fact-edit-links .visually-hidden {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    clip: auto !important;
+    clip-path: none !important;
+    overflow: visible !important;
+}
+
+/* Fact value cell - ensure content is visible */
 .wt-facts-table td {
     color: var(--global-palette3) !important;
     vertical-align: top !important;
+    padding: 0.75rem !important;
 }
 
-/* Make edit links inline at the end of fact label cell */
-.wt-facts-table th {
-    position: relative;
-    padding-right: 80px !important;
-}
-
-.wt-fact-edit-links {
-    position: absolute !important;
-    right: 0.5rem !important;
-    top: 0.5rem !important;
-    display: inline-flex !important;
-    gap: 0.25rem !important;
-}
-
-/* Ensure fact values are visible - the actual content */
 .wt-facts-table td.wt-fact-value {
     width: auto !important;
 }
 
-/* Make sure fact content displays properly */
+/* Ensure fact values display properly */
 .wt-fact-main-attributes,
 .wt-fact-value,
 .wt-fact-value > div,
 .wt-fact-value > span {
     display: block !important;
+    color: var(--global-palette3) !important;
 }
 
-/* Fact icons should be inline with label, not below */
-.wt-fact-label {
-    display: inline !important;
-    margin-right: 0.5rem !important;
-}
-
-.wt-fact-icon {
-    display: inline-block !important;
-    margin-left: 0.5rem !important;
-    vertical-align: middle !important;
-    font-size: 1em !important;
-}
-
-/* Make sure the label and icon are on same line */
-.wt-facts-table th {
-    white-space: nowrap;
-}
-
-.wt-facts-table th > * {
-    display: inline !important;
+.wt-fact-main-attributes .wt-fact-value {
+    margin-bottom: 0.25rem !important;
 }
 
 /* ===================================
@@ -569,6 +619,7 @@ button:hover,
 
 /* Capitalize all fact labels and relationship names */
 .wt-fact-label,
+.wt-fact-label-row,
 .wt-facts-table th,
 .wt-family-navigator-label,
 .relationship,

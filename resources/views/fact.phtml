@@ -75,18 +75,19 @@ if ($tag === 'MARR') {
 ?>
 <tr class="<?= implode(' ', $styles) ?>">
     <th scope="row">
-        <div class="wt-fact-label ut"><?= $label?></div>
+        <div class="wt-fact-label-row">
+            <?php if ($tree->getPreference('SHOW_FACT_ICONS') === '1') : ?>
+                <span class="wt-fact-icon wt-fact-icon-<?= e($tag) ?>" title="<?= strip_tags($label) ?>"></span>
+            <?php endif ?>
+            <span class="wt-fact-label"><?= $label ?></span>
+        </div>
 
         <?php if ($id !== 'histo' && $id !== 'asso' && $fact->canEdit() && !in_array($tag, ['HUSB', 'WIFE', 'CHIL', 'FAMC', 'FAMS'], true)) : ?>
             <?= view('fact-edit-links', ['fact' => $fact, 'url' => $record->url()]) ?>
         <?php endif ?>
-
-        <?php if ($tree->getPreference('SHOW_FACT_ICONS') === '1') : ?>
-            <span class="wt-fact-icon wt-fact-icon-<?= e($tag) ?>" title="<?= strip_tags($label) ?>"></span>
-        <?php endif ?>
     </th>
 
-    <td>
+    <td class="wt-fact-value">
         <?php if ($fact->target() instanceof Media) : ?>
             <div class="d-flex flex-wrap">
                 <?php foreach ($fact->target()->mediaFiles() as $media_file) : ?>
@@ -97,9 +98,11 @@ if ($tag === 'MARR') {
             </div>
 
             <a href="<?= e($fact->target()->url()) ?>"><?= $fact->target()->fullName() ?></a>
-        <?php endif ?>
 
-        <?= view('fact-edit-links', ['fact' => $fact, 'url' => $record->url()]) ?>
+            <?php foreach ($fact->target()->facts(['NOTE']) as $note) : ?>
+                <?= view('fact-gedcom-fields', ['gedcom' => $note->gedcom(), 'parent' => $fact->target()->tag(), 'tree' => $fact->record()->tree()]) ?>
+            <?php endforeach ?>
+        <?php endif ?>
     </th>
 
     <td class="wt-fact-value">
@@ -113,25 +116,11 @@ if ($tag === 'MARR') {
                     <div class="wt-fact-record">
                         <?php if ($parent instanceof Family) : ?>
                             <?php foreach ($parent->spouses()->filter(static fn ($individual): bool => $individual !== $record) as $spouse) : ?>
-                                <div>
-                                <?php if ($spouse->tree()->getPreference('SHOW_HIGHLIGHT_IMAGES')) : ?>
-                                    <div class="wt-chart-box-thumbnail float-start me-1">
-                                        <?= $spouse->displayImage(40, 50, 'crop', ['class' => 'wt-chart-box-thumbnail']) ?>
-                                    </div>
-                                <?php endif ?>                                  
                                 <a href="<?= e($spouse->url()) ?>"><?= $spouse->fullName() ?></a> —
-                                </div>
                             <?php endforeach ?>
                             <a href="<?= e($parent->url()) ?>"><?= I18N::translate('View this family') ?></a>
                         <?php elseif ($parent instanceof Individual) : ?>
-                            <div class=thumbnail_container>
-                            <?php if ($parent->tree()->getPreference('SHOW_HIGHLIGHT_IMAGES')) : ?>
-                                <div class="wt-chart-box-thumbnail float-start me-1">
-                                    <?= $parent->displayImage(40, 50, 'crop', ['class' => 'wt-chart-box-thumbnail']) ?>
-                                </div>
-                            <?php endif ?>                              
                             <a href="<?= e($parent->url()) ?>"><?= $parent->fullName() ?></a>
-                            </div>
                         <?php endif ?>
                     </div>
                 <?php endif ?>
@@ -144,7 +133,7 @@ if ($tag === 'MARR') {
                             ->first(static fn (ModuleInterface $module): bool => $module instanceof RelationshipsChartModule)
                         ?>
 
-                        <?php if ($module instanceof RelationshipsChartModule && $record instanceof Individual) : ?>                             
+                        <?php if ($module instanceof RelationshipsChartModule && $record instanceof Individual) : ?>
                             — <a href="<?= $module->chartUrl($fact->target(), ['xref2' => $record->xref()]) ?>" rel="nofollow">
                                 <?= Registry::container()->get(RelationshipService::class)->getCloseRelationshipName($record, $fact->target()) ?>
                             </a>

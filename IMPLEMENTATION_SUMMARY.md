@@ -31,9 +31,19 @@ Successfully implemented modern theme's enhanced individual pages and comprehens
 - Fixed facts table display issues
 - Fixed active tab color to use navy blue
 
+### Phase 4: Facts Table Two-Row Layout (November 27, 2025)
+- Restructured facts table layout with icon + label on first row
+- Moved edit links (Edit, Copy, Delete) to second row below fact label
+- Fixed fact values not displaying (removed duplicate fact-edit-links call)
+- Created custom fact-edit-links.phtml to remove pt-2 padding
+- Updated CSS for proper two-row layout with border separator
+- Made edit link text visible (unhid visually-hidden spans)
+- Styled edit links as buttons with hover effects
+- Fixed template to match original webtrees structure for proper content display
+
 ## Files Created/Modified
 
-### 1. View Files (13 files total)
+### 1. View Files (14 files total)
 Created/Modified in `modules_v4/webtrees-svajana/resources/views/`:
 
 1. **individual-page.phtml** ⭐ UPDATED
@@ -45,52 +55,59 @@ Created/Modified in `modules_v4/webtrees-svajana/resources/views/`:
    - Inline capitalize style for relationship text
    - **Latest**: Removed bottom margin, added text-transform for relationship
 
-2. **individual-page-tabs.phtml** - Pills navigation wrapper using regex replacement
+2. **fact.phtml** ⭐ PHASE 4 UPDATE
+   - Restructured th cell with two-row layout
+   - First row: wt-fact-label-row div with icon + label
+   - Second row: wt-fact-edit-links with Edit/Copy/Delete
+   - Removed duplicate fact-edit-links call that was hiding values
+   - Fixed template structure to match original webtrees
+   - Proper td.wt-fact-value class for value cell
 
-3. **individual-page-menu.phtml** ⭐ UPDATED
+3. **fact-edit-links.phtml** ⭐ NEW
+   - Custom override without pt-2 padding class
+   - Contains three icon views (edit, copy, delete)
+   - Wrapped in wt-fact-edit-links div
+
+4. **individual-page-tabs.phtml** - Pills navigation wrapper using regex replacement
+
+5. **individual-page-menu.phtml** ⭐ UPDATED
    - Dropdown menu with data-dropdown-toggle
    - Font Awesome icons via view('icons/...')
    - All Bootstrap data-bs-* attributes replaced with custom attributes
    - Share modal button with data-wt-modal
    - **Latest**: Consistent dropdown toggle attributes
 
-4. **individual-page-names.phtml** ⭐ UPDATED
+6. **individual-page-names.phtml** ⭐ UPDATED
    - Accordion structure for NAME facts
    - **Latest**: Added col-sm class for responsive layout
 
-5. **individual-page-images.phtml** ⭐ UPDATED
+7. **individual-page-images.phtml** ⭐ UPDATED
    - Image carousel with Bootstrap 5 controls
    - img-thumbnail wrapper for silhouettes
    - 100x100px thumbnails (not 150x150)
    - data-bs-interval, data-bs-target, data-bs-slide attributes
    - **Latest**: Updated carousel controls, removed indicators, proper docblock
 
-6. **fact.phtml** ⭐ UPDATED
-   - Enhanced fact display with cleaner logic
-   - Proper parent record checking ($parent !== $record)
-   - Media display with flex-wrap
-   - **Latest**: Updated docblock, removed Uuid dependency, cleaner variable logic
+8. **chart-box.phtml** - Orange dashed border wrapper using var(--global-palette2)
 
-7. **chart-box.phtml** - Orange dashed border wrapper using var(--global-palette2)
+9. **webmanifest-json.phtml** - Svajana branding with navy theme color
 
-8. **webmanifest-json.phtml** - Svajana branding with navy theme color
-
-9. **modules/family_nav/sidebar-family.phtml** ⭐ UPDATED
+10. **modules/family_nav/sidebar-family.phtml** ⭐ UPDATED
    - Family navigator with click dropdowns
    - Uses $relationship_service parameter (not app())
    - **Latest**: Fixed 6 instances of app() calls
 
-10. **modules/statistics-chart/page.phtml** - Pills navigation for statistics
+11. **modules/statistics-chart/page.phtml** - Pills navigation for statistics
 
-11. **modules/random_media/slide-show.phtml** ⭐ UPDATED
+12. **modules/random_media/slide-show.phtml** ⭐ UPDATED
     - Media slideshow with view('icons/...') calls
     - **Latest**: Replaced direct FA icons with icon views
 
-12. **modules/place-hierarchy/map.phtml** ⭐ NEW
+13. **modules/place-hierarchy/map.phtml** ⭐ NEW
     - Place hierarchy map with Leaflet integration
     - Marker clustering and popup handling
 
-13. **modules/place-hierarchy/list.phtml** ⭐ NEW
+14. **modules/place-hierarchy/list.phtml** ⭐ NEW
     - Place list display with Bootstrap grid
 
 ### 2. CSS Files (3 files)
@@ -125,10 +142,14 @@ Created/Modified in `modules_v4/webtrees-svajana/resources/views/`:
   - Hover tabs: var(--global-palette2) color (orange)
 - **NEW**: Events of close relatives styling
   - Checkbox labels: var(--global-palette1) color, 14px, font-weight 500
-- **NEW**: Facts table display fixes
-  - Proper column widths for fact values
-  - Edit links floated right
-  - Fact content displayed as blocks
+- **PHASE 4**: Facts table two-row layout
+  - .wt-fact-label-row: flexbox container for icon + label (gap: 0.5rem)
+  - .wt-fact-icon: inline-block, 1.1em size, navy color, before label
+  - .wt-fact-label: inline, bold 600, navy color, capitalized
+  - .wt-fact-edit-links: flex row with 0.5rem gap, border-top separator
+  - Edit link buttons: styled with padding, borders, hover effects
+  - Edit link text visible (visually-hidden overridden)
+  - Fact values: proper display with palette3 color
 - Silhouette backgrounds with rgba opacity
 - Chart boxes with svajana palette borders
 - Relationship display with orange accent border
@@ -169,7 +190,7 @@ Created/Modified in `modules_v4/webtrees-svajana/resources/views/`:
 
 **WebtreesSvajana.php** - 4 method updates:
 
-1. **boot()** method - Added 13 view registrations (11 original + 2 new):
+1. **boot()** method - Added 14 view registrations (11 original + 3 new):
 ```php
 View::registerCustomView('::individual-page', self::CUSTOM_NAMESPACE . '::individual-page');
 View::registerCustomView('::individual-page-tabs', self::CUSTOM_NAMESPACE . '::individual-page-tabs');
@@ -177,6 +198,7 @@ View::registerCustomView('::individual-page-menu', self::CUSTOM_NAMESPACE . '::i
 View::registerCustomView('::individual-page-names', self::CUSTOM_NAMESPACE . '::individual-page-names');
 View::registerCustomView('::individual-page-images', self::CUSTOM_NAMESPACE . '::individual-page-images');
 View::registerCustomView('::fact', self::CUSTOM_NAMESPACE . '::fact');
+View::registerCustomView('::fact-edit-links', self::CUSTOM_NAMESPACE . '::fact-edit-links'); // PHASE 4
 View::registerCustomView('::chart-box', self::CUSTOM_NAMESPACE . '::chart-box');
 View::registerCustomView('::webmanifest-json', self::CUSTOM_NAMESPACE . '::webmanifest-json');
 View::registerCustomView('::modules/family_nav/sidebar-family', self::CUSTOM_NAMESPACE . '::modules/family_nav/sidebar-family');
