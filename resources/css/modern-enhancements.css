@@ -675,7 +675,7 @@ button:hover,
 
 /* Dropdown items - match sub-menu link style */
 .dropdown-item,
-.dropdown-menu a {
+.dropdown-menu a:not(.wt-chart-box-zoom-dropdown a) {
     display: block !important;
     padding: 8px 15px !important;
     color: var(--global-palette8) !important;
@@ -688,7 +688,7 @@ button:hover,
 
 .dropdown-item:hover,
 .dropdown-item:focus,
-.dropdown-menu a:hover {
+.dropdown-menu a:not(.wt-chart-box-zoom-dropdown a):hover {
     background: var(--global-palette4) !important;
     color: var(--global-palette2) !important;
     padding-left: 20px !important;
@@ -733,6 +733,7 @@ button:hover,
     padding: 8px 15px !important;
     border-bottom: 1px solid var(--global-palette4) !important;
     background: transparent !important;
+    color: var(--global-palette8) !important;
 }
 
 .wt-chart-box-zoom-dropdown > div:last-child {
@@ -740,27 +741,28 @@ button:hover,
 }
 
 /* Fact labels - bold and white */
-.wt-chart-box-zoom-dropdown .label {
+.wt-chart-box-zoom-dropdown span.label {
     font-weight: 600 !important;
     color: var(--global-palette8) !important;
 }
 
 /* Fact values - normal weight and light blue */
-.wt-chart-box-zoom-dropdown .field {
+.wt-chart-box-zoom-dropdown span.field {
     font-weight: 400 !important;
     color: var(--global-palette6) !important;
 }
 
-/* Links inside zoom dropdown facts */
-.wt-chart-box-zoom-dropdown a {
+/* Links inside zoom dropdown facts - highest specificity */
+.wt-chart-box-zoom-dropdown > div a {
     color: var(--global-palette2) !important;
     text-decoration: none !important;
     padding: 0 !important;
     display: inline !important;
     background: transparent !important;
+    font-weight: 400 !important;
 }
 
-.wt-chart-box-zoom-dropdown a:hover {
+.wt-chart-box-zoom-dropdown > div a:hover {
     color: var(--global-palette6) !important;
     text-decoration: underline !important;
     padding: 0 !important;
