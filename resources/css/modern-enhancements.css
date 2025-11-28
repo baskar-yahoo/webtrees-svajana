@@ -406,12 +406,13 @@ div.card,
 }
 
 /* 
- * Force display of chart box icons in Family tab.
- * Minimal theme may hide .wt-chart-box-extra in certain contexts.
+ * Force display of chart box icons globally.
+ * Minimal theme hides .wt-chart-box-extra in certain contexts.
+ * This ensures icons appear in both Families page and Individual Families tab.
  */
-.wt-family-members .wt-chart-box-extra,
-.wt-family-members .wt-chart-box-zoom,
-.wt-family-members .wt-chart-box-links {
+.wt-chart-box-extra,
+.wt-chart-box-zoom,
+.wt-chart-box-links {
     display: block !important;
 }
 
