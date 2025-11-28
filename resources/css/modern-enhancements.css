@@ -406,10 +406,14 @@ div.card,
 }
 
 /* 
- * Family members chart boxes inherit default behavior from core webtrees.
- * Icons (.wt-chart-box-extra with zoom/links) are visible by default.
- * No additional CSS needed - matches modern theme approach.
+ * Force display of chart box icons in Family tab.
+ * Minimal theme may hide .wt-chart-box-extra in certain contexts.
  */
+.wt-family-members .wt-chart-box-extra,
+.wt-family-members .wt-chart-box-zoom,
+.wt-family-members .wt-chart-box-links {
+    display: block !important;
+}
 
 /* Sidebar content */
 .wt-sidebar-content .card-body {
