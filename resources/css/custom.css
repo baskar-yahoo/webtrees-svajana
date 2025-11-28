@@ -83,6 +83,20 @@ body {
     line-height: 1.5;
 }
 
+/* Content container spacing - ensure box-shadow/borders are visible on all sides */
+.content-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* Main container box styling with shadow */
+.wt-main-container {
+    background-color: var(--global-palette9);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
 input {
     font-style: normal;
     font-weight: normal;

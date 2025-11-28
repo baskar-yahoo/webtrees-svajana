@@ -52,11 +52,11 @@
 }
 
 #individual-header-table .relationship {
-    font-size: 1rem;
-    color: var(--global-palette3);
-    font-style: normal;
+    font-size: 1.25rem;
+    color: var(--global-palette1);
+    font-style: italic;
     text-transform: capitalize;
-    border-bottom: 1px solid var(--global-palette6);
+    font-weight: 400;
 }
 
 #individual-header-table .individual-menu {
@@ -142,6 +142,8 @@ img.img-thumbnail {
     width: 100%;
     border-collapse: collapse;
     margin-top: 1rem;
+    border-left: 1px solid var(--global-palette7);
+    border-right: 1px solid var(--global-palette7);
 }
 
 .wt-facts-table td,
@@ -177,12 +179,12 @@ div[style*="outline:dashed"] {
 
 /* Fact Labels */
 .wt-fact-label {
-    background: var(--global-palette7);
     font-weight: 600;
+    background: transparent;
 }
 
 .wt-fact-value {
-    background: var(--global-palette8);
+    background: transparent;
 }
 
 /* Family Navigator */
@@ -493,8 +495,7 @@ label[for*="show-"],
     display: flex !important;
     gap: 0.5rem !important;
     margin-top: 0.5rem !important;
-    padding-top: 0.5rem !important;
-    border-top: 1px solid var(--global-palette7) !important;
+    padding-top: 0 !important;
 }
 
 .wt-fact-edit-links a,
