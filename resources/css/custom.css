@@ -85,8 +85,8 @@ body {
 
 /* Content container spacing - ensure box-shadow/borders are visible on all sides */
 .content-container {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-top: 12px;
+    padding-bottom: 12px;
 }
 
 /* Main container box styling with shadow */
