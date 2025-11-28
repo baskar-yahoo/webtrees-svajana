@@ -729,14 +729,56 @@ button:hover,
     text-decoration: none !important;
 }
 
-/* Zoom dropdown fact styling */
-.wt-chart-box-zoom-dropdown .wt-fact-label {
+/* Zoom dropdown fact styling - override generic link styles */
+.wt-chart-box-zoom-dropdown table,
+.wt-chart-box-zoom-dropdown tr,
+.wt-chart-box-zoom-dropdown th,
+.wt-chart-box-zoom-dropdown td {
+    background: transparent !important;
+    border: none !important;
+}
+
+.wt-chart-box-zoom-dropdown tr {
+    border-bottom: 1px solid var(--global-palette4) !important;
+}
+
+.wt-chart-box-zoom-dropdown tr:last-child {
+    border-bottom: none !important;
+}
+
+.wt-chart-box-zoom-dropdown th,
+.wt-chart-box-zoom-dropdown td {
+    padding: 8px 15px !important;
+}
+
+.wt-chart-box-zoom-dropdown .wt-fact-label,
+.wt-chart-box-zoom-dropdown th .wt-fact-label {
     font-weight: 600 !important;
     color: var(--global-palette8) !important; /* White/light gray - readable on dark background */
 }
 
-.wt-chart-box-zoom-dropdown .wt-fact-value {
+.wt-chart-box-zoom-dropdown .wt-fact-value,
+.wt-chart-box-zoom-dropdown td .wt-fact-value,
+.wt-chart-box-zoom-dropdown .wt-fact-value *,
+.wt-chart-box-zoom-dropdown td {
     font-weight: 400 !important;
     color: var(--global-palette6) !important; /* Light blue - softer but still readable */
+}
+
+/* Links inside zoom dropdown facts */
+.wt-chart-box-zoom-dropdown td a,
+.wt-chart-box-zoom-dropdown .wt-fact-value a {
+    color: var(--global-palette2) !important; /* Orange for links */
+    text-decoration: none !important;
+    padding: 0 !important; /* Override the generic padding */
+    display: inline !important; /* Override block display */
+}
+
+.wt-chart-box-zoom-dropdown td a:hover,
+.wt-chart-box-zoom-dropdown .wt-fact-value a:hover {
+    color: var(--global-palette6) !important;
+    text-decoration: underline !important;
+    padding: 0 !important;
+    background: transparent !important;
 }
 
