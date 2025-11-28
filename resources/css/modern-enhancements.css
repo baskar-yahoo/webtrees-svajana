@@ -154,12 +154,25 @@ img.img-thumbnail {
     text-align: left;
     font-weight: 600;
     color: var(--global-palette1);
-    width: 20%;
+    width: 40%;
     vertical-align: top;
 }
 
 .wt-facts-table td {
+    width: 60%;
     color: var(--global-palette9);
+}
+
+/* Fix for WelcomeBlockModule duplicate array entry causing empty icon placeholder */
+.wt-block-content a:has(> span:empty),
+.wt-block-content a:has(> span:not([class])) {
+    display: none !important;
+}
+
+/* Remove orange dashed outlines from all elements with inline outline styles */
+div[style*="outline: dashed"],
+div[style*="outline:dashed"] {
+    outline: none !important;
 }
 
 /* Fact Labels */
@@ -473,7 +486,6 @@ label[for*="show-"],
     display: inline !important;
     font-weight: 600 !important;
     color: var(--global-palette1) !important;
-    text-transform: capitalize !important;
 }
 
 /* Second row: Edit links (Edit, Copy, Delete) */
