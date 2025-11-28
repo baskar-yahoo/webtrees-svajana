@@ -41,6 +41,102 @@ Successfully implemented modern theme's enhanced individual pages and comprehens
 - Styled edit links as buttons with hover effects
 - Fixed template to match original webtrees structure for proper content display
 
+### Phase 5: Additional Bug Fixes & Style Refinements (November 27, 2025)
+
+#### 5.1 Fact Template NULL Pointer Fix
+**Issue**: Error "Call to a member function facts() on null" when displaying NOTE/SHARED_NOTE facts
+**Solution**: Removed erroneous `elseif` block at lines 106-109 in fact.phtml that attempted to call `facts()` on NOTE/SHARED_NOTE targets
+- **File Modified**: `resources/views/fact.phtml`
+- **Lines Removed**: 106-109 (elseif for NOTE/SHARED_NOTE handling)
+- **Result**: NOTE and SHARED_NOTE facts now handled correctly in the else block using `$element->value()`
+
+#### 5.2 Title Case Display Fix
+**Issue**: Fact labels displayed as "Death Of A Paternal Grandfather" instead of proper title case
+**Solution**: Removed `text-transform: capitalize !important` from `.wt-fact-label` CSS rule
+- **File Modified**: `resources/css/modern-enhancements.css`
+- **Line Modified**: 482 (removed text-transform property)
+- **Result**: Fact labels now display with proper capitalization as stored in the database
+
+#### 5.3 Statistics Table Width Adjustment
+**Issue**: Fact labels wrapping unnecessarily due to narrow column width
+**Solution**: Adjusted table column widths to give more space to labels
+- **File Modified**: `resources/css/modern-enhancements.css`
+- **Changes**:
+  - Line 157: Changed `.wt-facts-table th` width from 20% to 40%
+  - Lines 161-163: Merged duplicate `.wt-facts-table td` rules, added width 60%
+- **Result**: Better layout with fact labels having adequate space, values using remaining 60%
+
+#### 5.4 Empty Icon Placeholder Fix (Tree Card)
+**Issue**: WelcomeBlockModule.php (core file) contains duplicate array entry at line 78 causing empty icon to appear
+**Decision**: Cannot modify core webtrees files per user requirement
+**Solution**: CSS-only workaround to hide empty icon placeholders
+- **File Modified**: `resources/css/modern-enhancements.css`
+- **Lines Added**: 166-169
+- **CSS Rule**: `.welcome-block-link:has(> span:not([class])) { display: none !important; }`
+- **Result**: Empty icon placeholder hidden, only 2 valid icons display
+
+#### 5.5 Orange Dashed Outline Removal
+**Issue**: Orange dotted borders appearing throughout the site from inline styles
+**Root Cause**: Inline `outline: dashed thick var(--global-palette2)` styles on divs in charts
+**Solution**: CSS override to remove all dashed outlines
+- **File Modified**: `resources/css/modern-enhancements.css`
+- **Lines Added**: 172-175
+- **CSS Rule**: `div[style*="outline: dashed"] { outline: none !important; }`
+- **Result**: Orange dashed borders removed site-wide
+
+#### 5.6 Button Style Consolidation (MAJOR REFACTOR)
+**Issue**: Button styles scattered across multiple CSS files with duplicates and conflicts
+- modern-components.css: Base `.btn` definition (transparent background)
+- custom.css: Full `.btn` redefinition with colors (conflicting)
+- modern-enhancements.css: Font size overrides
+- Webtrees core: Bootstrap button variants
+
+**Solution**: Consolidated ALL button styling into single section in custom.css
+- **Files Modified**:
+  1. `resources/css/modern-components.css` (lines 135-162)
+     - Removed duplicate `.btn` base class definition
+     - Kept only `.btn-link` utility variant
+     - Added comment explaining consolidation
+  
+  2. `resources/css/custom.css` (lines ~1085-1260)
+     - Created comprehensive consolidated button section
+     - Added all missing button variants
+     - Unified font size (14px) for all buttons
+     - Added proper specificity with !important to override core styles
+
+**New Button System in custom.css**:
+- **Base Buttons**: `.btn`, `.wt-button`, `input[type="submit"]`, `input[type="button"]`
+  - Default: Light gray background (global-palette8)
+  - Hover: Darker gray (global-palette7)
+  - Font size: 14px (matches content area)
+
+- **Button Variants** (all with hover states):
+  - `.btn-primary` / `.wt-button-primary`: Navy blue (global-palette1 → global-palette2 on hover)
+  - `.btn-secondary` / `.wt-button-secondary`: Gray (global-palette4 → global-palette3 on hover)
+  - `.btn-success`: Green (#28a745 → #218838 on hover)
+  - `.btn-danger`: Red (#dc3545 → #c82333 on hover)
+  - `.btn-warning`: Orange (#ffc107 → #e0a800 on hover)
+  - `.btn-info`: Light blue (#17a2b8 → #138496 on hover)
+  - `.btn-light`: Light gray (global-palette8 → global-palette7 on hover)
+  - `.btn-dark`: Dark gray (#343a40 → #23272b on hover)
+
+- **Button Sizes**:
+  - `.btn-sm`: Small buttons (12px font, smaller padding)
+  - `.btn-lg`: Large buttons (16px font, larger padding)
+  - `.btn-block`: Full-width buttons
+
+- **Disabled State**: Opacity 0.65, pointer-events none, not-allowed cursor
+
+**Benefits**:
+1. Single source of truth for all button styling
+2. No more conflicts between CSS files
+3. Easy to modify colors, sizes, hover states in one place
+4. Consistent button appearance across all pages (svajana and core templates)
+5. Overrides webtrees core Bootstrap styles with proper specificity
+6. Includes submit/button inputs for form consistency
+
+**Commit**: Button consolidation (Phase 5.6)
+
 ## Files Created/Modified
 
 ### 1. View Files (14 files total)
