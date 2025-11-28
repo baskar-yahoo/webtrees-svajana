@@ -707,8 +707,8 @@ button:hover,
     padding: 0 !important;
 }
 
+/* Links in dropdown and links dropdown - but NOT zoom dropdown (has different structure) */
 .wt-chart-box-dropdown a,
-.wt-chart-box-zoom-dropdown a,
 .wt-chart-box-links-dropdown a {
     display: block !important;
     padding: 8px 15px !important;
@@ -721,7 +721,6 @@ button:hover,
 }
 
 .wt-chart-box-dropdown a:hover,
-.wt-chart-box-zoom-dropdown a:hover,
 .wt-chart-box-links-dropdown a:hover {
     background: var(--global-palette4) !important;
     color: var(--global-palette2) !important;
@@ -730,52 +729,38 @@ button:hover,
 }
 
 /* Zoom dropdown fact styling - override generic link styles */
-.wt-chart-box-zoom-dropdown table,
-.wt-chart-box-zoom-dropdown tr,
-.wt-chart-box-zoom-dropdown th,
-.wt-chart-box-zoom-dropdown td {
-    background: transparent !important;
-    border: none !important;
-}
-
-.wt-chart-box-zoom-dropdown tr {
+.wt-chart-box-zoom-dropdown > div {
+    padding: 8px 15px !important;
     border-bottom: 1px solid var(--global-palette4) !important;
+    background: transparent !important;
 }
 
-.wt-chart-box-zoom-dropdown tr:last-child {
+.wt-chart-box-zoom-dropdown > div:last-child {
     border-bottom: none !important;
 }
 
-.wt-chart-box-zoom-dropdown th,
-.wt-chart-box-zoom-dropdown td {
-    padding: 8px 15px !important;
-}
-
-.wt-chart-box-zoom-dropdown .wt-fact-label,
-.wt-chart-box-zoom-dropdown th .wt-fact-label {
+/* Fact labels - bold and white */
+.wt-chart-box-zoom-dropdown .label {
     font-weight: 600 !important;
-    color: var(--global-palette8) !important; /* White/light gray - readable on dark background */
+    color: var(--global-palette8) !important;
 }
 
-.wt-chart-box-zoom-dropdown .wt-fact-value,
-.wt-chart-box-zoom-dropdown td .wt-fact-value,
-.wt-chart-box-zoom-dropdown .wt-fact-value *,
-.wt-chart-box-zoom-dropdown td {
+/* Fact values - normal weight and light blue */
+.wt-chart-box-zoom-dropdown .field {
     font-weight: 400 !important;
-    color: var(--global-palette6) !important; /* Light blue - softer but still readable */
+    color: var(--global-palette6) !important;
 }
 
 /* Links inside zoom dropdown facts */
-.wt-chart-box-zoom-dropdown td a,
-.wt-chart-box-zoom-dropdown .wt-fact-value a {
-    color: var(--global-palette2) !important; /* Orange for links */
+.wt-chart-box-zoom-dropdown a {
+    color: var(--global-palette2) !important;
     text-decoration: none !important;
-    padding: 0 !important; /* Override the generic padding */
-    display: inline !important; /* Override block display */
+    padding: 0 !important;
+    display: inline !important;
+    background: transparent !important;
 }
 
-.wt-chart-box-zoom-dropdown td a:hover,
-.wt-chart-box-zoom-dropdown .wt-fact-value a:hover {
+.wt-chart-box-zoom-dropdown a:hover {
     color: var(--global-palette6) !important;
     text-decoration: underline !important;
     padding: 0 !important;
