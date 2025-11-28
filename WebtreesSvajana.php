@@ -172,7 +172,7 @@ class WebtreesSvajana extends MinimalTheme implements
             font-weight: 900;
             font-display: block;
         }
-        .fa, .fas {
+        .fa, .fas, .fa-solid {
             font-family: "Font Awesome 5 Free";
             font-weight: 900;
         }
