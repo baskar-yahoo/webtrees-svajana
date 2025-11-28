@@ -729,3 +729,14 @@ button:hover,
     text-decoration: none !important;
 }
 
+/* Zoom dropdown fact styling */
+.wt-chart-box-zoom-dropdown .wt-fact-label {
+    font-weight: 600 !important;
+    color: var(--global-palette8) !important; /* White/light gray - readable on dark background */
+}
+
+.wt-chart-box-zoom-dropdown .wt-fact-value {
+    font-weight: 400 !important;
+    color: var(--global-palette6) !important; /* Light blue - softer but still readable */
+}
+
