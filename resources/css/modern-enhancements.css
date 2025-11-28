@@ -405,6 +405,12 @@ div.card,
     font-size: 13px !important;
 }
 
+/* 
+ * Family members chart boxes inherit default behavior from core webtrees.
+ * Icons (.wt-chart-box-extra with zoom/links) are visible by default.
+ * No additional CSS needed - matches modern theme approach.
+ */
+
 /* Sidebar content */
 .wt-sidebar-content .card-body {
     font-size: 14px !important;

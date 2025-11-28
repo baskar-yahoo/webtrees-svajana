@@ -140,6 +140,14 @@ if ($theme) {
         <script src="<?= e($theme->assetUrl('js/theme.js')) ?>"></script>
         <?php endif; ?>
         <?php echo View::stack('javascript'); ?>
+        
+        <?php
+        // Load body content from all ModuleGlobalInterface modules (including dropdown-toggle.js)
+        echo Registry::container()->get(ModuleService::class)
+            ->findByInterface(ModuleGlobalInterface::class)
+            ->map(static fn (ModuleGlobalInterface $module): string => $module->bodyContent())
+            ->implode('');
+        ?>
     </div>
 </body>
 </html>
