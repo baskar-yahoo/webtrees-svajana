@@ -105,9 +105,16 @@ if ($user !== null) {
             </tr>
             <tr style="height:14px;">
                 <td style="text-align: center">
+                    <?php
+                    use Fisharebest\Webtrees\Module\HourglassChartModule;
+                    use Fisharebest\Webtrees\Registry;
+                    
+                    $hourglass_module = Registry::container()->get(HourglassChartModule::class);
+                    $hourglass_url = $hourglass_module->chartUrl($record);
+                    ?>
                     <ul id="tree-link" class="horizontal-list">                                                       
                         <li class="nav-item dropdown menu-chart" style="padding:0">
-                            <a id=tree-link href="../../hourglass-3-1/<?= $record->xref() ?>" class="nav-link" role="button">&nbsp;View Tree</a>                              
+                            <a id="tree-link" href="<?= e($hourglass_url) ?>" class="nav-link" role="button">&nbsp;View Tree</a>                              
                         </li>
                     </ul>                                              
                 </td>
