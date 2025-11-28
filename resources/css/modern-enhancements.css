@@ -8,9 +8,7 @@
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 0;
-    background: var(--global-palette8);
-    border: 1px solid var(--global-palette6);
-    border-radius: 4px;
+    background: transparent;
 }
 
 #individual-header-table td {
@@ -59,6 +57,10 @@
 #individual-header-table .relationship {
     font-size: 1.25rem;
     color: var(--global-palette1);
+    background: transparent;
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
     font-style: italic;
     text-transform: capitalize;
     font-weight: 400;
@@ -264,21 +266,21 @@ div[style*="outline:dashed"] {
     #individual-header-table .individual-photo {
         width: 100px;
     }
-    
+
     #individual-header-table .individual-photo img {
         max-width: 100px;
         max-height: 100px;
     }
-    
+
     #individual-header-table .individual-name {
         font-size: 1.25rem;
     }
-    
+
     .wt-facts-table th {
         width: 30%;
         font-size: 0.9rem;
     }
-    
+
     .wt-family-navigator-label {
         width: 35%;
         font-size: 0.9rem;
@@ -289,21 +291,21 @@ div[style*="outline:dashed"] {
     #individual-header-table {
         display: block;
     }
-    
+
     #individual-header-table tbody,
     #individual-header-table tr,
     #individual-header-table td {
         display: block;
         width: 100%;
     }
-    
+
     #individual-header-table .individual-photo {
         border-right: none;
         border-bottom: 1px solid var(--global-palette6);
         text-align: center;
         padding: 1rem;
     }
-    
+
     #individual-header-table .individual-name,
     #individual-header-table .individual-lifespan,
     #individual-header-table .relationship,
@@ -433,7 +435,7 @@ div.card,
 
 /* Active tab should use navy blue */
 .nav-pills .nav-link.active,
-.nav-pills .show > .nav-link {
+.nav-pills .show>.nav-link {
     background-color: var(--global-palette1) !important;
     color: var(--global-palette9) !important;
 }
@@ -569,8 +571,8 @@ label[for*="show-"],
 /* Ensure fact values display properly */
 .wt-fact-main-attributes,
 .wt-fact-value,
-.wt-fact-value > div,
-.wt-fact-value > span {
+.wt-fact-value>div,
+.wt-fact-value>span {
     display: block !important;
     color: var(--global-palette3) !important;
 }
@@ -735,14 +737,14 @@ button:hover,
 }
 
 /* Zoom dropdown fact styling - override generic link styles */
-.wt-chart-box-zoom-dropdown > div {
+.wt-chart-box-zoom-dropdown>div {
     padding: 8px 15px !important;
     border-bottom: 1px solid var(--global-palette4) !important;
     background: transparent !important;
     color: var(--global-palette8) !important;
 }
 
-.wt-chart-box-zoom-dropdown > div:last-child {
+.wt-chart-box-zoom-dropdown>div:last-child {
     border-bottom: none !important;
 }
 
@@ -759,7 +761,7 @@ button:hover,
 }
 
 /* Links inside zoom dropdown facts - highest specificity */
-.wt-chart-box-zoom-dropdown > div a {
+.wt-chart-box-zoom-dropdown>div a {
     color: var(--global-palette2) !important;
     text-decoration: none !important;
     padding: 0 !important;
@@ -768,10 +770,9 @@ button:hover,
     font-weight: 400 !important;
 }
 
-.wt-chart-box-zoom-dropdown > div a:hover {
+.wt-chart-box-zoom-dropdown>div a:hover {
     color: var(--global-palette6) !important;
     text-decoration: underline !important;
     padding: 0 !important;
     background: transparent !important;
 }
-
