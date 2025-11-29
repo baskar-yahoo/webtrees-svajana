@@ -40,7 +40,7 @@
     --global-calc-content-width: calc(1242px - var(--global-content-edge-padding) - var(--global-content-edge-padding));
     --wp--style--global--content-size: var(--global-calc-content-width);
     --global-vw: calc(100vw - (0.5 * var(--scrollbar-offset)));
-    
+
     /* Modern theme enhancements - chart and relationship styling */
     --chart-line: var(--global-palette1);
     --link-color: var(--global-palette1);
@@ -76,9 +76,9 @@ body {
 .wt-main-container,
 .wt-page-content,
 #content,
-.site-container > .wt-route-individual,
-.site-container > .wt-route-family,
-.site-container > .wt-route-chart {
+.site-container>.wt-route-individual,
+.site-container>.wt-route-family,
+.site-container>.wt-route-chart {
     font-size: 14px;
     line-height: 1.5;
 }
@@ -1244,14 +1244,14 @@ larger left spacing */
 
     /* Button sizes */
     .btn-sm,
-    .btn-group-sm > .btn {
+    .btn-group-sm>.btn {
         padding: 0.25rem 0.5rem;
         font-size: 12px !important;
         border-radius: 0.2rem;
     }
 
     .btn-lg,
-    .btn-group-lg > .btn {
+    .btn-group-lg>.btn {
         padding: 0.5rem 1rem;
         font-size: 16px !important;
         border-radius: 0.3rem;
@@ -2766,4 +2766,213 @@ overriding any conflicting rules from earlier in this file. The `content`
 
         }
     }
+}
+
+/* Ensure Header Background is Transparent initially (handled by JS/CSS state, but enforcing defaults) */
+.site-header {
+    background: transparent;
+    /* Let webtrees-menus.css handle sticky state */
+}
+
+/* Fix Vertical Alignment in Header */
+.site-header .site-container {
+    align-items: center !important;
+}
+
+/* Header Right Stack - Spacing */
+.header-right-stack {
+    gap: 10px !important;
+}
+
+/* Navigation Links - Colors & Hover 
+.main-navigation a,
+.webtrees-navigation a {
+    color: var(--global-palette1) !important;
+    /* Navy * /
+    font-weight: 600 !important;
+    transition: color 0.2s ease !important;
+}
+*/
+.main-navigation a:hover,
+.webtrees-navigation a:hover,
+.main-navigation .current-menu-item>a,
+.webtrees-navigation .active>a {
+    color: var(--global-palette2) !important;
+    /* Orange */
+}
+
+/* Dropdown Menus - Unified Style */
+.sub-menu,
+.dropdown-menu {
+    background-color: var(--global-palette1) !important;
+    /* Navy Background */
+    border-top: 3px solid var(--global-palette2) !important;
+    /* Orange Top Border */
+    border-radius: 0 0 4px 4px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
+}
+
+.sub-menu a,
+.dropdown-item {
+    color: #ffffff !important;
+    /* White Text */
+    background-color: transparent !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.sub-menu a:hover,
+.dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: var(--global-palette2) !important;
+    /* Orange Hover */
+    padding-left: 15px !important;
+    /* Slide effect */
+}
+
+/* --- FOOTER OVERRIDES --- */
+
+.site-footer {
+    margin-top: auto !important;
+    /* Push to bottom if flex container */
+    background-color: var(--global-palette8) !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+.footer-row {
+    padding: 2rem 0 !important;
+}
+
+.footer-bottom {
+    background-color: var(--global-palette1) !important;
+    /* Navy Footer Bottom */
+    color: rgba(255, 255, 255, 0.7) !important;
+    padding: 1rem 0 !important;
+}
+
+.footer-bottom a {
+    color: #ffffff !important;
+    text-decoration: none !important;
+}
+
+/* --- MODERN COMPONENT STYLING --- */
+
+/* Tables - Modern Look */
+.table,
+.wt-facts-table {
+    width: 100% !important;
+    margin-bottom: 1rem !important;
+    color: var(--global-palette3) !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    border: 1px solid var(--global-palette6) !important;
+    /* Light border */
+    border-radius: 8px !important;
+    overflow: hidden !important;
+}
+
+.table th,
+.wt-facts-table th {
+    background-color: var(--global-palette7) !important;
+    /* Light Blue Header */
+    color: var(--global-palette1) !important;
+    /* Navy Text */
+    font-weight: 600 !important;
+    padding: 1rem !important;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.05) !important;
+    text-transform: uppercase !important;
+    font-size: 0.85rem !important;
+    letter-spacing: 0.05em !important;
+}
+
+.table td,
+.wt-facts-table td {
+    padding: 1rem !important;
+    vertical-align: top !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+.table tr:last-child td,
+.wt-facts-table tr:last-child td {
+    border-bottom: none !important;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.02) !important;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(var(--global-palette2-rgb), 0.05) !important;
+    /* Subtle Orange Tint */
+}
+
+/* Cards / Boxes */
+.card,
+.wt-chart-box {
+    background-color: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.card:hover,
+.wt-chart-box:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1) !important;
+    border-color: var(--global-palette2) !important;
+    /* Orange Border on Hover */
+}
+
+.card-header {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+    font-weight: 700 !important;
+    color: var(--global-palette1) !important;
+    padding: 1rem 1.25rem !important;
+}
+
+.card-body {
+    padding: 1.25rem !important;
+}
+
+/* Buttons - Modern */
+.btn-primary {
+    background-color: var(--global-palette1) !important;
+    border-color: var(--global-palette1) !important;
+    border-radius: 4px !important;
+    padding: 0.5rem 1rem !important;
+    font-weight: 600 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--global-palette2) !important;
+    border-color: var(--global-palette2) !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Genealogy Chart Lines */
+.wt-chart-box-connect-down,
+.wt-chart-box-connect-up,
+.wt-chart-box-connect-left,
+.wt-chart-box-connect-right {
+    background-color: var(--global-palette1) !important;
+    /* Navy Lines */
+}
+
+/* Headings in Content */
+.wt-main-container h1,
+.wt-main-container h2,
+.wt-main-container h3 {
+    color: var(--global-palette1) !important;
+    margin-top: 1.5rem !important;
+    margin-bottom: 1rem !important;
+}
+
+.wt-main-container h1 {
+    border-bottom: 2px solid var(--global-palette2) !important;
+    /* Orange Underline */
+    padding-bottom: 0.5rem !important;
+    display: inline-block !important;
 }

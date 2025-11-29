@@ -111,6 +111,19 @@
     border-radius: 4px;
     padding: 0.5rem;
     margin: 0.25rem;
+    overflow: visible !important;
+    /* Allow dropdowns to spill out */
+    position: relative;
+    /* Establish positioning context */
+    z-index: 1;
+    transition: z-index 0s;
+    /* Instant z-index change */
+}
+
+.wt-chart-box:hover,
+.wt-chart-box:focus-within {
+    z-index: 2000 !important;
+    /* Ensure hovered box is above siblings */
 }
 
 .wt-chart-box-thumbnail {
@@ -506,7 +519,6 @@ label[for*="show-"],
 .wt-fact-label {
     display: inline !important;
     font-weight: 600 !important;
-    color: var(--global-palette1) !important;
 }
 
 /* Second row: Edit links (Edit, Copy, Delete) */
@@ -713,6 +725,13 @@ button:hover,
     border-radius: 0 0 4px 4px !important;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1) !important;
     padding: 0 !important;
+    /* Fix for visibility and flashing */
+    position: absolute !important;
+    z-index: 1000 !important;
+    margin-top: -1px !important;
+    /* Overlap slightly to prevent mouse gap */
+    min-width: 200px;
+    /* Ensure enough width */
 }
 
 /* Links in dropdown and links dropdown - but NOT zoom dropdown (has different structure) */
