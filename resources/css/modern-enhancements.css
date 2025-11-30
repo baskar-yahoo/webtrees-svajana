@@ -796,6 +796,9 @@ button:hover,
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12) !important;
 }
 
+/* Universal caption hover fix - ensures captions move with tables that have transform on hover */
+/* Note: CSS transforms don't automatically apply to <caption> elements, they must be explicit */
+
 /* Enhanced table headers - better visual hierarchy */
 .wt-facts-table th {
     background-color: var(--global-palette7) !important;
@@ -995,6 +998,11 @@ button:hover,
     transform: translateY(-1.5px) !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
     border-color: var(--global-palette2) !important;
+}
+
+/* Ensure caption participates in table hover - caption moves with table */
+.wt-family-navigator-family:hover caption {
+    transform: translateY(-1.5px) !important;
 }
 
 /* Ensure links in family navigator are clickable */
@@ -1198,13 +1206,16 @@ a,
     .card,
     .wt-facts-table,
     .wt-block,
+    .wt-family-navigator-family,
     #individual-header-table {
         box-shadow: none !important;
         transform: none !important;
     }
     
     .wt-chart-box:hover,
-    .card:hover {
+    .card:hover,
+    .wt-family-navigator-family:hover,
+    .wt-family-navigator-family:hover caption {
         transform: none !important;
     }
 }
