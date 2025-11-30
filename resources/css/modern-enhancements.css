@@ -1124,6 +1124,22 @@ a,
 .wt-family-navigator-family .dropdown-menu {
     z-index: 9999 !important;
     position: absolute !important;
+    clip-path: none !important;
+    overflow: visible !important;
+}
+
+/* Ensure dropdown containers allow overflow */
+.wt-facts-table .dropdown,
+.wt-chart-box .dropdown,
+.wt-family-navigator-family .dropdown {
+    position: static !important;
+    overflow: visible !important;
+}
+
+/* Ensure table cells with dropdowns don't clip */
+.wt-facts-table td:has(.dropdown),
+.wt-facts-table th:has(.dropdown) {
+    overflow: visible !important;
 }
 
 /* Ensure dropdown parent containers don't have transforms that create stacking context issues */
