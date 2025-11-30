@@ -849,11 +849,11 @@ button:hover,
 /* Make fact table cells with dropdowns/icons have proper stacking */
 .wt-facts-table td {
     position: relative !important;
-    z-index: 1 !important;
+    /* z-index removed to allow dropdowns with higher z-index to appear above */
 }
 
 .wt-facts-table td:hover {
-    z-index: 20 !important;
+    /* z-index removed to allow dropdowns with higher z-index to appear above */
 }
 
 /* First row styling */
@@ -1121,21 +1121,32 @@ a,
 }
 
 /* Ensure dropdown menus in chart boxes have high z-index and proper positioning */
-/* Using position:fixed allows dropdown to escape ALL parent containers */
+/* Using position:absolute with very high z-index and overflow:visible on all parents */
 .wt-chart-box-dropdown,
 .wt-chart-box-zoom-dropdown,
 .wt-chart-box-links-dropdown {
-    z-index: 9999 !important;
-    position: fixed !important;
+    z-index: 99999 !important;
+    position: absolute !important;
 }
 
-/* Ensure dropdown containers don't interfere */
+/* Ensure dropdown containers don't interfere - Bootstrap sets position-static in HTML */
 .wt-chart-box .dropdown {
     overflow: visible !important;
 }
 
-/* Ensure chart box itself doesn't clip dropdowns */
+/* Ensure chart box itself doesn't clip dropdowns and allows proper stacking */
 .wt-chart-box {
+    overflow: visible !important;
+}
+
+/* Ensure table cells containing chart boxes don't clip */
+.wt-facts-table td,
+.wt-facts-table th {
+    overflow: visible !important;
+}
+
+/* Ensure table rows don't clip */
+.wt-facts-table tr {
     overflow: visible !important;
 }
 
