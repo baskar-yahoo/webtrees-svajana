@@ -902,8 +902,9 @@ button:hover,
     position: relative !important;
 }
 
-/* ALL cards get hover effect with orange border and lift */
-.card:hover {
+/* ALL cards get hover effect with orange border and lift - including cards inside ajax-load wrappers */
+.card:hover,
+.wt-ajax-load:hover > .card {
     transform: translateY(-1.5px) !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
     border-color: var(--global-palette2) !important;
