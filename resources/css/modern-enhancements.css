@@ -565,16 +565,18 @@ label[for*="show-"],
 }
 
 .wt-facts-table td.wt-fact-value {
-    width: auto !important;
+    padding: 0 !important;
 }
 
-/* Ensure fact values display properly */
+/* Ensure fact values display properly and fill parent cell */
 .wt-fact-main-attributes,
 .wt-fact-value,
 .wt-fact-value>div,
 .wt-fact-value>span {
     display: block !important;
     color: var(--global-palette3) !important;
+    padding: 0.75rem !important;
+    margin: 0 !important;
 }
 
 .wt-fact-main-attributes .wt-fact-value {
