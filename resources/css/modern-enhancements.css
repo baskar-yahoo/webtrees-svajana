@@ -822,21 +822,24 @@ button:hover,
 }
 
 /* Row hover effect for tracking across wide tables */
+/* DISABLED: Transform and border cause dropdown clipping issues */
 .wt-facts-table tbody tr {
-    transition: all 0.2s ease !important;
+    transition: background-color 0.2s ease !important;
     position: relative !important;
 }
 
 .wt-facts-table tbody tr:hover {
     background-color: rgba(255, 136, 0, 0.08) !important;
-    transform: translateX(2px) !important;
+    /* transform: translateX(2px) !important; */ /* DISABLED - causes dropdown clipping */
 }
 
-/* Orange border on first cell of hovered row */
+/* Orange border on first cell of hovered row - DISABLED */
+/*
 .wt-facts-table tbody tr:hover th:first-child,
 .wt-facts-table tbody tr:hover td:first-child {
     border-left: 3px solid var(--global-palette2) !important;
 }
+*/
 
 /* Ensure all links in facts table are clickable and on top */
 .wt-facts-table a {
