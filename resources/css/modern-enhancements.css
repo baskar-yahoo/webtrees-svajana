@@ -841,10 +841,17 @@ button:hover,
     border-radius: 6px !important;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
-    will-change: transform, box-shadow !important;
-    cursor: pointer !important;
+    position: relative !important;
 }
 
+/* Chart box links should always be clickable */
+.wt-chart-box a {
+    position: relative !important;
+    z-index: 10 !important;
+    pointer-events: auto !important;
+}
+
+/* Hover effect on the chart box itself when it contains links */
 .wt-chart-box:hover {
     transform: translateY(-1.5px) !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
@@ -856,18 +863,39 @@ button:hover,
     outline-offset: 2px !important;
 }
 
-/* Card styling - consistent with chart boxes */
+/* Card styling - Apply base styles to all cards */
 .card {
     border-radius: 6px !important;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
     border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
+    position: relative !important;
 }
 
+/* ALL cards get hover effect with orange border and lift */
 .card:hover {
     transform: translateY(-1.5px) !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
     border-color: var(--global-palette2) !important;
+}
+
+/* Make sure ALL links inside cards are fully interactive and on top */
+.card a,
+.card .wt-block-content a,
+.wt-block-content a {
+    position: relative !important;
+    z-index: 10 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+}
+
+/* Hover effect on links - color change for clear feedback */
+.card a:hover,
+.card .wt-block-content a:hover,
+.wt-block-content a:hover {
+    color: var(--global-palette2) !important;
+    text-decoration: underline !important;
 }
 
 /* Enhanced card headers */
@@ -923,15 +951,26 @@ button:hover,
     box-shadow: 0 1px 2px rgba(0, 51, 102, 0.2) !important;
 }
 
-/* Family Navigator enhancements */
+/* Family Navigator enhancements - full hover effect with lift and orange border */
 .wt-family-navigator-family {
     border-radius: 6px !important;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
-    transition: box-shadow 0.2s ease !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
+    position: relative !important;
 }
 
 .wt-family-navigator-family:hover {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    transform: translateY(-1.5px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+    border-color: var(--global-palette2) !important;
+}
+
+/* Ensure links in family navigator are clickable */
+.wt-family-navigator-family a {
+    position: relative !important;
+    z-index: 10 !important;
+    pointer-events: auto !important;
 }
 
 /* Smooth scrolling for better UX */
@@ -963,15 +1002,25 @@ html {
     outline-offset: 2px !important;
 }
 
-/* Enhanced sidebar blocks */
+/* Enhanced sidebar blocks - subtle styling only, no hover on container */
 .wt-block {
     border-radius: 6px !important;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
-    transition: box-shadow 0.2s ease !important;
 }
 
-.wt-block:hover {
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
+/* Global rule: ALL links must be clickable with proper z-index */
+a,
+.nav-link,
+.btn-link {
+    position: relative !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+/* Ensure links in tab content are fully functional */
+.tab-pane a,
+.wt-page-content a {
+    z-index: 10 !important;
 }
 
 /* Image thumbnails with subtle hover effect */
@@ -1015,13 +1064,13 @@ html {
     }
 }
 
-/* Link hover effects for better feedback */
-.wt-main-container a:not(.btn):not(.wt-page-menu-button) {
+/* Link hover effects for better feedback - ONLY in main content text, not in cards/blocks */
+.wt-main-container .wt-page-content a:not(.btn):not(.wt-page-menu-button):not(.card a) {
     transition: color 0.15s ease !important;
     position: relative !important;
 }
 
-.wt-main-container a:not(.btn):not(.wt-page-menu-button)::after {
+.wt-main-container .wt-page-content a:not(.btn):not(.wt-page-menu-button):not(.card a)::after {
     content: '' !important;
     position: absolute !important;
     bottom: -2px !important;
@@ -1030,21 +1079,34 @@ html {
     height: 2px !important;
     background-color: var(--global-palette2) !important;
     transition: width 0.2s ease !important;
+    pointer-events: none !important;
 }
 
-.wt-main-container a:not(.btn):not(.wt-page-menu-button):hover::after {
+.wt-main-container .wt-page-content a:not(.btn):not(.wt-page-menu-button):not(.card a):hover::after {
     width: 100% !important;
 }
 
-/* Enhanced tab styling */
-.nav-pills .nav-link {
+/* Enhanced tab styling - ensure tabs are clickable */
+.nav-pills .nav-link,
+.nav-tabs .nav-link {
     transition: all 0.2s ease !important;
     border-radius: 4px !important;
+    position: relative !important;
+    z-index: 10 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
 }
 
 .nav-pills .nav-link:not(.active):hover {
     background-color: rgba(255, 136, 0, 0.1) !important;
     transform: translateY(-1px) !important;
+}
+
+/* Ensure active tab is clearly visible and clickable */
+.nav-pills .nav-link.active,
+.nav-tabs .nav-link.active {
+    pointer-events: auto !important;
+    cursor: default !important;
 }
 
 /* Form control enhancements */
