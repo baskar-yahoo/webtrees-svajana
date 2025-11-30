@@ -819,8 +819,33 @@ button:hover,
 }
 
 /* Row hover effect for tracking across wide tables */
+.wt-facts-table tbody tr {
+    transition: all 0.2s ease !important;
+    position: relative !important;
+}
+
 .wt-facts-table tbody tr:hover {
-    background-color: rgba(255, 136, 0, 0.05) !important;
+    background-color: rgba(255, 136, 0, 0.08) !important;
+    transform: translateX(2px) !important;
+    border-left: 3px solid var(--global-palette2) !important;
+}
+
+/* Ensure all links in facts table are clickable and on top */
+.wt-facts-table a {
+    position: relative !important;
+    z-index: 10 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+/* Make fact table cells with dropdowns/icons have proper stacking */
+.wt-facts-table td {
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+.wt-facts-table td:hover {
+    z-index: 20 !important;
 }
 
 /* First row styling */
@@ -1002,10 +1027,31 @@ html {
     outline-offset: 2px !important;
 }
 
-/* Enhanced sidebar blocks - subtle styling only, no hover on container */
-.wt-block {
+/* Enhanced sidebar blocks and user page blocks */
+.wt-block,
+.wt-user-block {
     border-radius: 6px !important;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
+    position: relative !important;
+}
+
+/* Hover effects for blocks */
+.wt-block:hover,
+.wt-user-block:hover {
+    transform: translateY(-1.5px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+    border-color: var(--global-palette2) !important;
+}
+
+/* Ensure links in blocks are clickable */
+.wt-block a,
+.wt-user-block a {
+    position: relative !important;
+    z-index: 10 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
 }
 
 /* Global rule: ALL links must be clickable with proper z-index */
@@ -1051,6 +1097,16 @@ a,
     border-radius: 6px !important;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
     animation: fadeInDown 0.2s ease !important;
+    z-index: 1050 !important;
+    position: absolute !important;
+}
+
+/* Ensure dropdown menus in facts table are on top */
+.wt-facts-table .dropdown-menu,
+.wt-chart-box-dropdown,
+.wt-chart-box-zoom-dropdown,
+.wt-chart-box-links-dropdown {
+    z-index: 1060 !important;
 }
 
 @keyframes fadeInDown {
