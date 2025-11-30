@@ -167,7 +167,7 @@
     ;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
     /* Refined Shadow */
-    z-index: 999;
+    z-index: 10000;
     border-top: 3px solid var(--global-palette2);
     min-width: 180px;
     padding: 0px 0;

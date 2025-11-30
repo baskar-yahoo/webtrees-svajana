@@ -787,7 +787,7 @@ button:hover,
     border-collapse: separate !important;
     border-spacing: 0 !important;
     border-radius: 8px !important;
-    overflow: hidden !important;
+    overflow: visible !important;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
     transition: box-shadow 0.2s ease !important;
 }
@@ -992,6 +992,7 @@ button:hover,
     border: 1px solid rgba(0, 0, 0, 0.08) !important;
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
     position: relative !important;
+    overflow: visible !important;
 }
 
 .wt-family-navigator-family:hover {
@@ -1115,12 +1116,22 @@ a,
     position: absolute !important;
 }
 
-/* Ensure dropdown menus in facts table are on top */
+/* Ensure dropdown menus in facts table and chart boxes are on top with proper positioning */
 .wt-facts-table .dropdown-menu,
 .wt-chart-box-dropdown,
 .wt-chart-box-zoom-dropdown,
-.wt-chart-box-links-dropdown {
-    z-index: 1060 !important;
+.wt-chart-box-links-dropdown,
+.wt-family-navigator-family .dropdown-menu {
+    z-index: 9999 !important;
+    position: absolute !important;
+}
+
+/* Ensure dropdown parent containers don't have transforms that create stacking context issues */
+.wt-chart-box:has(.dropdown-menu.show),
+.wt-facts-table:has(.dropdown-menu.show),
+.wt-family-navigator-family:has(.dropdown-menu.show) {
+    transform: none !important;
+    z-index: 9990 !important;
 }
 
 @keyframes fadeInDown {
