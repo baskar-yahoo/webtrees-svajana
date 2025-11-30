@@ -885,8 +885,9 @@ button:hover,
 }
 
 /* Hover effect on the chart box itself when it contains links */
+/* DISABLED: transform creates stacking context that clips dropdowns */
 .wt-chart-box:hover {
-    transform: translateY(-1.5px) !important;
+    /* transform: translateY(-1.5px) !important; */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
     border-color: var(--global-palette2) !important;
 }
@@ -995,15 +996,16 @@ button:hover,
     overflow: visible !important;
 }
 
+/* DISABLED: transform creates stacking context that clips dropdowns */
 .wt-family-navigator-family:hover {
-    transform: translateY(-1.5px) !important;
+    /* transform: translateY(-1.5px) !important; */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
     border-color: var(--global-palette2) !important;
 }
 
 /* Ensure caption participates in table hover - caption moves with table */
 .wt-family-navigator-family:hover caption {
-    transform: translateY(-1.5px) !important;
+    /* transform: translateY(-1.5px) !important; */
 }
 
 /* Ensure links in family navigator are clickable */
