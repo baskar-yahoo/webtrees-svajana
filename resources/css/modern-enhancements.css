@@ -827,6 +827,11 @@ button:hover,
 .wt-facts-table tbody tr:hover {
     background-color: rgba(255, 136, 0, 0.08) !important;
     transform: translateX(2px) !important;
+}
+
+/* Orange border on first cell of hovered row */
+.wt-facts-table tbody tr:hover th:first-child,
+.wt-facts-table tbody tr:hover td:first-child {
     border-left: 3px solid var(--global-palette2) !important;
 }
 
