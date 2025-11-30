@@ -850,15 +850,10 @@ button:hover,
 .wt-facts-table td {
     position: relative !important;
     z-index: 1 !important;
-    overflow: visible !important;
 }
 
 .wt-facts-table td:hover {
     z-index: 20 !important;
-}
-
-.wt-facts-table th {
-    overflow: visible !important;
 }
 
 /* First row styling */
@@ -880,7 +875,6 @@ button:hover,
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
     position: relative !important;
-    overflow: visible !important;
 }
 
 /* Chart box links should always be clickable */
@@ -1129,14 +1123,7 @@ a,
 .wt-chart-box-links-dropdown,
 .wt-family-navigator-family .dropdown-menu {
     z-index: 9999 !important;
-    position: fixed !important;
-}
-
-/* Ensure table cells with open dropdowns have high z-index and visible overflow */
-.wt-facts-table td:has(.dropdown-menu.show),
-.wt-facts-table th:has(.dropdown-menu.show) {
-    z-index: 9990 !important;
-    overflow: visible !important;
+    position: absolute !important;
 }
 
 /* Ensure dropdown parent containers don't have transforms that create stacking context issues */
@@ -1145,7 +1132,6 @@ a,
 .wt-family-navigator-family:has(.dropdown-menu.show) {
     transform: none !important;
     z-index: 9990 !important;
-    overflow: visible !important;
 }
 
 @keyframes fadeInDown {
