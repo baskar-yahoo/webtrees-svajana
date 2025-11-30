@@ -894,10 +894,13 @@ button:hover,
 }
 */
 
+/* Focus-within DISABLED to fix dropdowns - was causing orange border when clicking icons */
+/*
 .wt-chart-box:focus-within {
     outline: 2px solid var(--global-palette2) !important;
     outline-offset: 2px !important;
 }
+*/
 
 /* Card styling - Apply base styles to all cards */
 .card {
