@@ -1185,8 +1185,8 @@ a,
     overflow: hidden !important;
 }
 
-/* Enhanced loading states */
-.wt-ajax-load {
+/* Enhanced loading states - only apply to empty (loading) ajax wrappers */
+.wt-ajax-load:empty {
     opacity: 0.6 !important;
     pointer-events: none !important;
     transition: opacity 0.2s ease !important;
