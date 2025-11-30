@@ -868,13 +868,14 @@ button:hover,
 }
 
 /* Enhanced Chart Boxes - Interactive Cards with Hover Effects */
+/* SIMPLIFIED: Removed transform/hover effects to allow dropdowns to work properly */
 .wt-chart-box {
     background: var(--global-palette9) !important;
     border: 1px solid var(--global-palette6) !important;
     border-radius: 6px !important;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
     position: relative !important;
+    overflow: visible !important;
 }
 
 /* Chart box links should always be clickable */
@@ -884,13 +885,14 @@ button:hover,
     pointer-events: auto !important;
 }
 
-/* Hover effect on the chart box itself when it contains links */
-/* DISABLED: transform creates stacking context that clips dropdowns */
+/* Hover effect DISABLED to fix dropdowns */
+/*
 .wt-chart-box:hover {
-    /* transform: translateY(-1.5px) !important; */
+    transform: translateY(-1.5px) !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
     border-color: var(--global-palette2) !important;
 }
+*/
 
 .wt-chart-box:focus-within {
     outline: 2px solid var(--global-palette2) !important;
@@ -1118,38 +1120,23 @@ a,
     position: absolute !important;
 }
 
-/* Ensure dropdown menus in facts table and chart boxes are on top with proper positioning */
-.wt-facts-table .dropdown-menu,
+/* Ensure dropdown menus in chart boxes have high z-index and proper positioning */
+/* Using position:fixed allows dropdown to escape ALL parent containers */
 .wt-chart-box-dropdown,
 .wt-chart-box-zoom-dropdown,
-.wt-chart-box-links-dropdown,
-.wt-family-navigator-family .dropdown-menu {
+.wt-chart-box-links-dropdown {
     z-index: 9999 !important;
-    position: absolute !important;
-    clip-path: none !important;
+    position: fixed !important;
+}
+
+/* Ensure dropdown containers don't interfere */
+.wt-chart-box .dropdown {
     overflow: visible !important;
 }
 
-/* Ensure dropdown containers allow overflow */
-.wt-facts-table .dropdown,
-.wt-chart-box .dropdown,
-.wt-family-navigator-family .dropdown {
-    position: static !important;
+/* Ensure chart box itself doesn't clip dropdowns */
+.wt-chart-box {
     overflow: visible !important;
-}
-
-/* Ensure table cells with dropdowns don't clip */
-.wt-facts-table td:has(.dropdown),
-.wt-facts-table th:has(.dropdown) {
-    overflow: visible !important;
-}
-
-/* Ensure dropdown parent containers don't have transforms that create stacking context issues */
-.wt-chart-box:has(.dropdown-menu.show),
-.wt-facts-table:has(.dropdown-menu.show),
-.wt-family-navigator-family:has(.dropdown-menu.show) {
-    transform: none !important;
-    z-index: 9990 !important;
 }
 
 @keyframes fadeInDown {
