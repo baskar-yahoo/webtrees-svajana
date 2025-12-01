@@ -183,7 +183,13 @@ li {
     position: relative;
 }
 
+/* Show dropdown on hover (CSS-based) */
 li:hover>.sub-menu {
+    display: block;
+}
+
+/* Show dropdown when clicked (JS adds this class) */
+.menu-item-has-children.dropdown-open > .sub-menu {
     display: block;
 }
 

@@ -169,10 +169,7 @@
     vertical-align: middle !important;
 }
 
-.d-print-none {
-    display: none !important;
-}
-
+/* Bootstrap utility: Hide elements only when printing, not on screen */
 @media print {
     .d-print-none {
         display: none !important;
