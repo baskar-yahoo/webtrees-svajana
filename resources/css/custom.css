@@ -52,7 +52,28 @@
     --global-palette1-rgb: 0, 51, 102;
     --global-palette2-rgb: 255, 136, 0;
     --global-palette4-rgb: 85, 85, 85;
+        /* Semantic colors for sex icons and chart lines */
+        --sex-male: #468bb6;           /* Male (icons) */
+        --sex-female: #ce5380;         /* Female (icons) */
+        --sex-intersex: #9370db;       /* Intersex */
+        --sex-unknown: var(--global-palette4); /* Unknown/other */
+
+        --sex-male-chart: #1e90ff;     /* Male (chart context) */
+        --sex-female-chart: #ff69b4;   /* Female (chart context) */
+
+        --chart-line-primary: #dee2e6; /* Connector lines */
+        --chart-line-secondary: #81a9cb; /* TV tree/dashed lines */
 }
+
+    /* Shared dropdown base styling utility */
+    .sv-dropdown-base {
+        background: var(--global-palette3);
+        border-top: 3px solid var(--global-palette2);
+        border-radius: 0 0 4px 4px;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        padding: 0;
+        min-width: 180px;
+    }
 
 /* ======================
    Kadence Base Body and Typography Styles

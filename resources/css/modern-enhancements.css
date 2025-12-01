@@ -72,19 +72,19 @@
 
 /* Sex Icons */
 .wt-sex-m {
-    color: #1e90ff;
+    color: var(--sex-male-chart);
 }
 
 .wt-sex-f {
-    color: #ff69b4;
+    color: var(--sex-female-chart);
 }
 
 .wt-sex-u {
-    color: var(--global-palette4);
+    color: var(--sex-unknown);
 }
 
 .wt-sex-x {
-    color: #9370db;
+    color: var(--sex-intersex);
 }
 
 /* Sex Icon Backgrounds for Silhouettes */
@@ -317,17 +317,17 @@ div[style*="outline:dashed"] {
 /* Sex Icon Colors */
 .fa-venus,
 .wt-icon-sex-f {
-    color: #ce5380 !important;
+    color: var(--sex-female) !important;
 }
 
 .fa-mars,
 .wt-icon-sex-m {
-    color: #468bb6 !important;
+    color: var(--sex-male) !important;
 }
 
 .wt-icon-sex-u,
 .wt-icon-sex-x {
-    color: grey !important;
+    color: var(--sex-unknown) !important;
 }
 
 /* Tree Link and Horizontal List */
@@ -674,8 +674,8 @@ button:hover,
 
 /* Bootstrap dropdown menus - match navigation sub-menu style */
 .dropdown-menu {
+    /* Use shared utility to ensure consistent dropdown styling */
     background: var(--global-palette3) !important;
-    border: none !important;
     border-top: 3px solid var(--global-palette2) !important;
     border-radius: 0 0 4px 4px !important;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1) !important;
@@ -710,7 +710,6 @@ button:hover,
 .wt-chart-box-zoom-dropdown,
 .wt-chart-box-links-dropdown {
     background: var(--global-palette3) !important;
-    border: none !important;
     border-top: 3px solid var(--global-palette2) !important;
     border-radius: 0 0 4px 4px !important;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1) !important;
@@ -1085,7 +1084,7 @@ button:hover,
 /* TV Tree (Interactive Tree) Connection Lines - From base.css lines 152-219 */
 #tv_tree div.tv_hline,
 #tv_tree div.tv_vline {
-    background-color: #81a9cb;
+    background-color: var(--chart-line-secondary);
 }
 
 #tv_tree table.tv_tree td.tv_vline {
@@ -1147,7 +1146,7 @@ button:hover,
 
 /* Pedigree Chart Connection Lines - From base.css lines 534-580 */
 .dashed {
-    border-top: thin dashed #81a9cb !important;
+    border-top: thin dashed var(--chart-line-secondary) !important;
 }
 
 .wt-chart-pedigree {
@@ -1259,50 +1258,50 @@ button:hover,
 
 .wt-chart .wt-chart-horizontal-line,
 .wt-family-members .wt-chart-horizontal-line {
-    border-bottom: 1px solid #dee2e6;
+    border-bottom: 1px solid var(--chart-line-primary);
     height: 50%;
     width: 1rem;
 }
 
 .wt-chart .wt-chart-horizontal-first-child,
 .wt-family-members .wt-chart-horizontal-first-child {
-    border-top: 1px solid #dee2e6;
+    border-top: 1px solid var(--chart-line-primary);
     height: 50%;
     position: relative;
     top: 50%;
     border-radius: 0 .25rem 0 0;
-    border-right: 1px solid #dee2e6;
+    border-right: 1px solid var(--chart-line-primary);
 }
 
 .wt-chart .wt-chart-horizontal-middle-child,
 .wt-family-members .wt-chart-horizontal-middle-child {
     height: 100%;
-    border-right: 1px solid #dee2e6;
+    border-right: 1px solid var(--chart-line-primary);
 }
 
 .wt-chart .wt-chart-horizontal-last-child,
 .wt-family-members .wt-chart-horizontal-last-child {
-    border-bottom: 1px solid #dee2e6;
+    border-bottom: 1px solid var(--chart-line-primary);
     height: 50%;
     border-radius: 0 0 .25rem 0;
-    border-right: 1px solid #dee2e6;
+    border-right: 1px solid var(--chart-line-primary);
 }
 
 .wt-chart .wt-chart-horizontal-first-parent,
 .wt-family-members .wt-chart-horizontal-first-parent {
-    border-top: 1px solid #dee2e6;
+    border-top: 1px solid var(--chart-line-primary);
     height: 50%;
     position: relative;
     top: 50%;
-    border-left: 1px solid #dee2e6;
+    border-left: 1px solid var(--chart-line-primary);
     border-radius: .25rem 0 0 0;
 }
 
 .wt-chart .wt-chart-horizontal-last-parent,
 .wt-family-members .wt-chart-horizontal-last-parent {
-    border-bottom: 1px solid #dee2e6;
+    border-bottom: 1px solid var(--chart-line-primary);
     height: 50%;
-    border-left: 1px solid #dee2e6;
+    border-left: 1px solid var(--chart-line-primary);
     border-radius: 0 0 0 .25rem;
 }
 
@@ -1316,13 +1315,13 @@ button:hover,
 .wt-chart-descendants .wt-chart-vertical-line {
     height: 100%;
     width: 50%;
-    border-left: 1px solid #dee2e6;
+    border-left: 1px solid var(--chart-line-primary);
     right: 0;
 }
 
 .wt-chart-ancestors .wt-chart-vertical-child-line,
 .wt-chart-descendants .wt-chart-vertical-child-line {
-    border-bottom: thin solid #dee2e6;
+    border-bottom: thin solid var(--chart-line-primary);
     height: 1.5rem;
     top: 0;
     width: 50%;
@@ -1331,11 +1330,11 @@ button:hover,
 
 .wt-chart-ancestors .wt-chart-vertical-last-child-line,
 .wt-chart-descendants .wt-chart-vertical-last-child-line {
-    border-bottom: 1px solid #dee2e6;
+    border-bottom: 1px solid var(--chart-line-primary);
     height: 1.5rem;
     top: 0;
     width: 50%;
-    border-left: 1px solid #dee2e6;
+    border-left: 1px solid var(--chart-line-primary);
     border-radius: 0 0 0 .25rem;
     right: 0;
 }
