@@ -576,6 +576,7 @@ label[for*="show-"],
     display: block !important;
     color: var(--global-palette3) !important;
     background: transparent !important;
+    border: none !important;
 }
 
 .wt-fact-main-attributes .wt-fact-value {
@@ -957,6 +958,290 @@ button:hover,
 .wt-chart-box-connect-right {
     background-color: var(--global-palette1) !important;
     opacity: 0.85 !important;
+}
+
+/* ===================================
+   CHART-SPECIFIC STYLES FROM MODERN THEME
+   Charts need specific sizing and visibility rules
+   =================================== */
+
+/* Chart blocks - ensure proper rendering */
+.wt-block.wt-block-charts {
+    opacity: 0.99;
+}
+
+.wt-block-charts .wt-chart-box {
+    height: 3.5rem;
+    width: 15rem;
+}
+
+.wt-block-charts .wt-chart-box .wt-chart-box-extra,
+.wt-block-charts .wt-chart-box .wt-chart-box-facts,
+.wt-block-charts .wt-chart-box .wt-chart-box-name-alt {
+    display: none;
+}
+
+.wt-block-charts .wt-chart-box .wt-chart-box-lifespan,
+.wt-block-tree_favorites .wt-chart-box-facts,
+.wt-block-user_favorites .wt-chart-box-facts {
+    display: block;
+}
+
+.wt-block-tree_favorites .wt-chart-box-extra,
+.wt-block-tree_favorites .wt-chart-box-lifespan,
+.wt-block-user_favorites .wt-chart-box-extra,
+.wt-block-user_favorites .wt-chart-box-lifespan {
+    display: none;
+}
+
+/* Ancestors chart (Pedigree) */
+.wt-chart-ancestors .wt-chart-box {
+    width: 20rem;
+}
+
+.wt-chart-ancestors .wt-chart-box-lifespan {
+    display: none;
+}
+
+.wt-sosa-number {
+    border: thin dotted grey;
+}
+
+/* Compact chart mode */
+.wt-chart.wt-chart-compact {
+    overflow-x: inherit;
+}
+
+.wt-chart-compact .wt-chart-box {
+    min-width: 5rem;
+}
+
+.wt-chart-compact .wt-chart-box-extra,
+.wt-chart-compact .wt-chart-box-facts,
+.wt-chart-compact .wt-chart-box-thumbnail {
+    display: none;
+}
+
+/* Descendants chart */
+.wt-chart-descendants .wt-chart-box {
+    width: 20rem;
+}
+
+.wt-chart-descendants .wt-chart-box-lifespan {
+    display: none;
+}
+
+.wt-daboville-number {
+    border: thin dotted grey;
+}
+
+/* Family book chart */
+.wt-chart-family-book .wt-chart-box {
+    width: 15rem;
+}
+
+.wt-chart-family-book .wt-chart-box-lifespan {
+    display: none;
+}
+
+.wt-chart-family-book .wt-family-break {
+    page-break-before: always;
+}
+
+/* Hourglass chart */
+.wt-chart-hourglass {
+    overflow-y: auto;
+}
+
+.wt-chart-hourglass .wt-chart-box {
+    width: 15rem;
+}
+
+.wt-chart-hourglass .wt-chart-box-lifespan {
+    display: none;
+}
+
+/* Chart table elements - for tree-style charts */
+.tvertline {
+    vertical-align: bottom;
+}
+
+.descriptionbox,
+.optionbox {
+    vertical-align: top;
+    border: 1px solid #000;
+    padding: 3px;
+}
+
+#childbox {
+    display: none;
+}
+
+/* ===================================
+   CHART CONNECTION LINES - FROM MODERN THEME base.css
+   Lines that connect boxes in family trees
+   =================================== */
+
+/* TV Tree (Interactive Tree) Connection Lines - From base.css lines 152-219 */
+#tv_tree div.tv_hline,
+#tv_tree div.tv_vline {
+    background-color: #81a9cb;
+}
+
+#tv_tree table.tv_tree td.tv_vline {
+    height: 100%;
+    width: 1px;
+    background: repeat-x 50% 50%;
+}
+
+#tv_tree table.tv_tree td.tv_vline_h {
+    background-image: url("data:image/gif;base64,R0lGODdhAQDiBIABAIGpzP///ywAAAAAAQDiBAACIoSPqcvtD6OctNqLs968+w+G4kiW5omm6sq27gvH8kzXXQEAOw==");
+}
+
+#tv_tree table.tv_tree td.tv_vline_t {
+    vertical-align: bottom;
+    background-image: url("data:image/gif;base64,R0lGODlhAQDECeMKAIGoyX6py4GpzISpxn6qz3+qzYGqyoOqy4CrzYKry////////////////////////yH5BAEKAA8ALAAA4gQBAOIEAAQwUMhJq7046827/2AojmRpnmiqrmzrvnAsz3Rt33iu73zv/8Bgp1AYDAgEQwJwCCAiADs=");
+}
+
+#tv_tree table.tv_tree td.tv_vline_b {
+    vertical-align: top;
+    background-image: url("data:image/gif;base64,R0lGODlhAQDECaEDAICpyYGpzIKry////yH5BAEKAAMALAAAAAABAOIEAAIjjI+py+0Po5y02ouz3rz7D4biSJbmiabqyrbuC8fyTNcbIBQAOw==");
+}
+
+#tv_tree table.tv_tree td.tv_vline_c,
+.tv_in table.tv_tree td.tv_vline_h {
+    vertical-align: middle;
+}
+
+#tv_tree table.tv_tree td.tv_vline_c {
+    height: 1px;
+}
+
+#tv_tree table.tv_tree div.tv_vline {
+    width: 1px;
+}
+
+#tv_tree table.tv_tree div.tv_vline_b,
+#tv_tree table.tv_tree div.tv_vline_t {
+    height: 50%;
+}
+
+#tv_tree table.tv_tree div.tv_vline_c {
+    height: 1px;
+    overflow: hidden;
+}
+
+#tv_tree table.tv_tree div.tv_vline_h {
+    height: 100%;
+}
+
+#tv_tree div.tv_hline,
+#tv_tree td.tv_hline {
+    overflow: hidden;
+    width: 8px;
+}
+
+#tv_tree div.tv_hline {
+    height: 1px;
+}
+
+/* Pedigree Chart Connection Lines - From base.css lines 534-580 */
+.dashed {
+    border-top: thin dashed #81a9cb !important;
+}
+
+.wt-chart-pedigree {
+    overflow-y: auto;
+}
+
+.wt-chart-pedigree-left .wt-chart-box,
+.wt-chart-pedigree-right .wt-chart-box {
+    width: 15rem;
+}
+
+.wt-chart-pedigree-down .wt-chart-box,
+.wt-chart-pedigree-up .wt-chart-box {
+    height: 8rem;
+    width: 10rem;
+}
+
+.wt-chart-pedigree .wt-chart-box-lifespan {
+    display: none;
+}
+
+.wt-chart-pedigree-right .wt-pedigree-lines {
+    bottom: 25%;
+    height: 50%;
+    top: 25%;
+    width: 25%;
+    border: thin solid gray;
+}
+
+.wt-chart-pedigree-right .wt-pedigree-lines {
+    border-radius: 1rem 0 0 1rem;
+    border-right: none;
+    right: 0;
+}
+
+.wt-chart-pedigree-right .wt-generation-rev-2 > .wt-pedigree-lines {
+    bottom: 12.5%;
+    height: 75%;
+    top: 12.5%;
+}
+
+/* Horizontal Chart Connection Lines - From base.css lines 2217-2323 */
+.wt-chart .wt-chart-horizontal-spacer,
+.wt-family-members .wt-chart-horizontal-spacer {
+    width: 1rem;
+}
+
+.wt-chart .wt-chart-horizontal-line,
+.wt-family-members .wt-chart-horizontal-line {
+    border-bottom: 1px solid #dee2e6;
+    height: 50%;
+    width: 1rem;
+}
+
+.wt-chart .wt-chart-horizontal-first-child,
+.wt-family-members .wt-chart-horizontal-first-child {
+    border-top: 1px solid #dee2e6;
+    height: 50%;
+    position: relative;
+    top: 50%;
+    border-radius: 0 .25rem 0 0;
+    border-right: 1px solid #dee2e6;
+}
+
+.wt-chart .wt-chart-horizontal-middle-child,
+.wt-family-members .wt-chart-horizontal-middle-child {
+    height: 100%;
+    border-right: 1px solid #dee2e6;
+}
+
+.wt-chart .wt-chart-horizontal-last-child,
+.wt-family-members .wt-chart-horizontal-last-child {
+    border-bottom: 1px solid #dee2e6;
+    height: 50%;
+    border-radius: 0 0 .25rem 0;
+    border-right: 1px solid #dee2e6;
+}
+
+.wt-chart .wt-chart-horizontal-first-parent,
+.wt-family-members .wt-chart-horizontal-first-parent {
+    border-top: 1px solid #dee2e6;
+    height: 50%;
+    position: relative;
+    top: 50%;
+    border-left: 1px solid #dee2e6;
+    border-radius: .25rem 0 0 0;
+}
+
+.wt-chart .wt-chart-horizontal-last-parent,
+.wt-family-members .wt-chart-horizontal-last-parent {
+    border-bottom: 1px solid #dee2e6;
+    height: 50%;
+    border-left: 1px solid #dee2e6;
+    border-radius: 0 0 0 .25rem;
 }
 
 /* Enhanced headings with visual separation */
