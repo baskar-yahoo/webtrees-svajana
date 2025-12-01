@@ -575,6 +575,8 @@ label[for*="show-"],
 .wt-fact-value>span {
     display: block !important;
     color: var(--global-palette3) !important;
+    background: transparent !important;
+    border: none !important;
 }
 
 .wt-fact-main-attributes .wt-fact-value {
@@ -775,4 +777,883 @@ button:hover,
     text-decoration: underline !important;
     padding: 0 !important;
     background: transparent !important;
+}
+
+/* ===================================
+   MODERN UI ENHANCEMENTS
+   Enhanced table styling, interactive cards, and visual polish
+   =================================== */
+
+/* Modern Table Styling - Enhanced for Genealogy Data */
+.wt-facts-table {
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    border-radius: 8px !important;
+    overflow: visible !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+    transition: box-shadow 0.2s ease !important;
+}
+
+.wt-facts-table:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Universal caption hover fix - ensures captions move with tables that have transform on hover */
+/* Note: CSS transforms don't automatically apply to <caption> elements, they must be explicit */
+
+/* Enhanced table headers - better visual hierarchy */
+.wt-facts-table th {
+    background-color: var(--global-palette7) !important;
+    padding: 0.75rem !important;
+    text-transform: uppercase !important;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.03em !important;
+    font-weight: 700 !important;
+    border-bottom: 2px solid var(--global-palette6) !important;
+}
+
+/* Enhanced table cells */
+.wt-facts-table td {
+    padding: 0.75rem !important;
+    transition: background-color 0.15s ease !important;
+}
+
+/* Striped rows for better readability */
+.wt-facts-table tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 51, 102, 0.02) !important;
+}
+
+/* Row hover effect for tracking across wide tables */
+/* DISABLED: Transform and border cause dropdown clipping issues */
+.wt-facts-table tbody tr {
+    transition: background-color 0.2s ease !important;
+    position: relative !important;
+}
+
+.wt-facts-table tbody tr:hover {
+    background-color: rgba(255, 136, 0, 0.08) !important;
+    /* transform: translateX(2px) !important; */ /* DISABLED - causes dropdown clipping */
+}
+
+/* Orange border on first cell of hovered row - DISABLED */
+/*
+.wt-facts-table tbody tr:hover th:first-child,
+.wt-facts-table tbody tr:hover td:first-child {
+    border-left: 3px solid var(--global-palette2) !important;
+}
+*/
+
+/* Ensure all links in facts table are clickable and on top */
+.wt-facts-table a {
+    position: relative !important;
+    z-index: 10 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+/* Make fact table cells with dropdowns/icons have proper stacking */
+.wt-facts-table td {
+    position: relative !important;
+    /* z-index removed to allow dropdowns with higher z-index to appear above */
+}
+
+.wt-facts-table td:hover {
+    /* z-index removed to allow dropdowns with higher z-index to appear above */
+}
+
+/* First row styling */
+.wt-facts-table tr:first-child th,
+.wt-facts-table tr:first-child td {
+    border-top: none !important;
+}
+
+/* Last row styling */
+.wt-facts-table tr:last-child td {
+    border-bottom: none !important;
+}
+
+/* Enhanced Chart Boxes - Interactive Cards with Hover Effects */
+/* SIMPLIFIED: Removed transform/hover effects to allow dropdowns to work properly */
+.wt-chart-box {
+    background: var(--global-palette9) !important;
+    border: 1px solid var(--global-palette6) !important;
+    border-radius: 6px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
+    position: relative !important;
+    overflow: visible !important;
+}
+
+/* Chart box links should always be clickable */
+.wt-chart-box a {
+    position: relative !important;
+    z-index: 10 !important;
+    pointer-events: auto !important;
+}
+
+/* Hover effect DISABLED to fix dropdowns */
+/*
+.wt-chart-box:hover {
+    transform: translateY(-1.5px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+    border-color: var(--global-palette2) !important;
+}
+*/
+
+/* Focus-within DISABLED to fix dropdowns - was causing orange border when clicking icons */
+/*
+.wt-chart-box:focus-within {
+    outline: 2px solid var(--global-palette2) !important;
+    outline-offset: 2px !important;
+}
+*/
+
+/* Card styling - Apply base styles to all cards */
+.card {
+    border-radius: 6px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
+    position: relative !important;
+}
+
+/* ALL cards get hover effect with orange border and lift - including cards inside ajax-load wrappers */
+.card:hover,
+.wt-ajax-load:hover > .card {
+    transform: translateY(-1.5px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+    border-color: var(--global-palette2) !important;
+}
+
+/* Make sure ALL links inside cards are fully interactive and on top */
+.card a,
+.card .wt-block-content a,
+.wt-block-content a {
+    position: relative !important;
+    z-index: 10 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+}
+
+/* Hover effect on links - color change for clear feedback */
+.card a:hover,
+.card .wt-block-content a:hover,
+.wt-block-content a:hover {
+    color: var(--global-palette2) !important;
+    text-decoration: underline !important;
+}
+
+/* Enhanced card headers */
+.card-header {
+    background: linear-gradient(to bottom, var(--global-palette8), var(--global-palette7)) !important;
+    border-bottom: 1px solid var(--global-palette6) !important;
+    font-weight: 700 !important;
+    padding: 0.875rem 1.25rem !important;
+}
+
+/* Chart Connection Lines - Explicit Navy Styling */
+.wt-chart-box-connect-down,
+.wt-chart-box-connect-up,
+.wt-chart-box-connect-left,
+.wt-chart-box-connect-right {
+    background-color: var(--global-palette1) !important;
+    opacity: 0.85 !important;
+}
+
+/* ===================================
+   CHART-SPECIFIC STYLES FROM MODERN THEME
+   Charts need specific sizing and visibility rules
+   =================================== */
+
+/* Chart blocks - ensure proper rendering */
+.wt-block.wt-block-charts {
+    opacity: 0.99;
+}
+
+.wt-block-charts .wt-chart-box {
+    height: 3.5rem;
+    width: 15rem;
+}
+
+.wt-block-charts .wt-chart-box .wt-chart-box-extra,
+.wt-block-charts .wt-chart-box .wt-chart-box-facts,
+.wt-block-charts .wt-chart-box .wt-chart-box-name-alt {
+    display: none;
+}
+
+.wt-block-charts .wt-chart-box .wt-chart-box-lifespan,
+.wt-block-tree_favorites .wt-chart-box-facts,
+.wt-block-user_favorites .wt-chart-box-facts {
+    display: block;
+}
+
+.wt-block-tree_favorites .wt-chart-box-extra,
+.wt-block-tree_favorites .wt-chart-box-lifespan,
+.wt-block-user_favorites .wt-chart-box-extra,
+.wt-block-user_favorites .wt-chart-box-lifespan {
+    display: none;
+}
+
+/* Ancestors chart (Pedigree) */
+.wt-chart-ancestors .wt-chart-box {
+    width: 20rem;
+}
+
+.wt-chart-ancestors .wt-chart-box-lifespan {
+    display: none;
+}
+
+.wt-sosa-number {
+    border: thin dotted grey;
+}
+
+/* Compact chart mode */
+.wt-chart.wt-chart-compact {
+    overflow-x: inherit;
+}
+
+.wt-chart-compact .wt-chart-box {
+    min-width: 5rem;
+}
+
+.wt-chart-compact .wt-chart-box-extra,
+.wt-chart-compact .wt-chart-box-facts,
+.wt-chart-compact .wt-chart-box-thumbnail {
+    display: none;
+}
+
+/* Descendants chart */
+.wt-chart-descendants .wt-chart-box {
+    width: 20rem;
+}
+
+.wt-chart-descendants .wt-chart-box-lifespan {
+    display: none;
+}
+
+.wt-daboville-number {
+    border: thin dotted grey;
+}
+
+/* Family book chart */
+.wt-chart-family-book .wt-chart-box {
+    width: 15rem;
+}
+
+.wt-chart-family-book .wt-chart-box-lifespan {
+    display: none;
+}
+
+.wt-chart-family-book .wt-family-break {
+    page-break-before: always;
+}
+
+/* Hourglass chart */
+.wt-chart-hourglass {
+    overflow-y: visible;
+}
+
+.wt-chart-hourglass .wt-chart-box {
+    width: 15rem;
+}
+
+.wt-chart-hourglass .wt-chart-box-lifespan {
+    display: none;
+}
+
+/* Chart table elements - for tree-style charts */
+.tvertline {
+    vertical-align: bottom;
+}
+
+.descriptionbox,
+.optionbox {
+    vertical-align: top;
+    border: 1px solid #000;
+    padding: 3px;
+}
+
+#childbox {
+    display: none;
+}
+
+/* ===================================
+   CHART CONNECTION LINES - FROM MODERN THEME base.css
+   Lines that connect boxes in family trees
+   =================================== */
+
+/* TV Tree (Interactive Tree) Connection Lines - From base.css lines 152-219 */
+#tv_tree div.tv_hline,
+#tv_tree div.tv_vline {
+    background-color: #81a9cb;
+}
+
+#tv_tree table.tv_tree td.tv_vline {
+    height: 100%;
+    width: 1px;
+    background: repeat-x 50% 50%;
+}
+
+#tv_tree table.tv_tree td.tv_vline_h {
+    background-image: url("data:image/gif;base64,R0lGODdhAQDiBIABAIGpzP///ywAAAAAAQDiBAACIoSPqcvtD6OctNqLs968+w+G4kiW5omm6sq27gvH8kzXXQEAOw==");
+}
+
+#tv_tree table.tv_tree td.tv_vline_t {
+    vertical-align: bottom;
+    background-image: url("data:image/gif;base64,R0lGODlhAQDECeMKAIGoyX6py4GpzISpxn6qz3+qzYGqyoOqy4CrzYKry////////////////////////yH5BAEKAA8ALAAA4gQBAOIEAAQwUMhJq7046827/2AojmRpnmiqrmzrvnAsz3Rt33iu73zv/8Bgp1AYDAgEQwJwCCAiADs=");
+}
+
+#tv_tree table.tv_tree td.tv_vline_b {
+    vertical-align: top;
+    background-image: url("data:image/gif;base64,R0lGODlhAQDECaEDAICpyYGpzIKry////yH5BAEKAAMALAAAAAABAOIEAAIjjI+py+0Po5y02ouz3rz7D4biSJbmiabqyrbuC8fyTNcbIBQAOw==");
+}
+
+#tv_tree table.tv_tree td.tv_vline_c,
+.tv_in table.tv_tree td.tv_vline_h {
+    vertical-align: middle;
+}
+
+#tv_tree table.tv_tree td.tv_vline_c {
+    height: 1px;
+}
+
+#tv_tree table.tv_tree div.tv_vline {
+    width: 1px;
+}
+
+#tv_tree table.tv_tree div.tv_vline_b,
+#tv_tree table.tv_tree div.tv_vline_t {
+    height: 50%;
+}
+
+#tv_tree table.tv_tree div.tv_vline_c {
+    height: 1px;
+    overflow: hidden;
+}
+
+#tv_tree table.tv_tree div.tv_vline_h {
+    height: 100%;
+}
+
+#tv_tree div.tv_hline,
+#tv_tree td.tv_hline {
+    overflow: hidden;
+    width: 8px;
+}
+
+#tv_tree div.tv_hline {
+    height: 1px;
+}
+
+/* Pedigree Chart Connection Lines - From base.css lines 534-580 */
+.dashed {
+    border-top: thin dashed #81a9cb !important;
+}
+
+.wt-chart-pedigree {
+    overflow-y: visible;
+}
+
+.wt-chart-pedigree-left .wt-chart-box,
+.wt-chart-pedigree-right .wt-chart-box {
+    width: 15rem;
+}
+
+.wt-chart-pedigree-down .wt-chart-box,
+.wt-chart-pedigree-up .wt-chart-box {
+    height: 8rem;
+    width: 10rem;
+}
+
+.wt-chart-pedigree .wt-chart-box-lifespan {
+    display: none;
+}
+
+.wt-chart-pedigree-right .wt-pedigree-lines {
+    bottom: 25%;
+    height: 50%;
+    top: 25%;
+    width: 25%;
+    border: thin solid gray;
+}
+
+.wt-chart-pedigree-right .wt-pedigree-lines {
+    border-radius: 1rem 0 0 1rem;
+    border-right: none;
+    right: 0;
+}
+
+.wt-chart-pedigree-right .wt-generation-rev-2 > .wt-pedigree-lines {
+    bottom: 12.5%;
+    height: 75%;
+    top: 12.5%;
+}
+
+/* Pedigree LEFT layout lines */
+.wt-chart-pedigree-left .wt-pedigree-lines {
+    bottom: 25%;
+    height: 50%;
+    top: 25%;
+    width: 25%;
+    border: thin solid gray;
+    border-left: none;
+    border-radius: 0 1rem 1rem 0;
+    left: 0;
+}
+
+.wt-chart-pedigree-left .wt-generation-rev-2 > .wt-pedigree-lines {
+    bottom: 12.5%;
+    height: 75%;
+    top: 12.5%;
+}
+
+/* Pedigree DOWN layout lines */
+.wt-chart-pedigree-down {
+    width: max-content;
+}
+
+.wt-chart-pedigree-down .wt-pedigree-lines {
+    bottom: 0;
+    height: 25%;
+    width: 50%;
+    border: thin solid gray;
+    border-bottom: none;
+    border-radius: 1rem 1rem 0 0;
+    left: 25%;
+    right: 25%;
+}
+
+.wt-chart-pedigree-down .wt-generation-rev-2 > .wt-pedigree-lines {
+    width: 75%;
+    left: 12.5%;
+    right: 12.5%;
+}
+
+/* Pedigree UP layout lines */
+.wt-chart-pedigree-up {
+    width: max-content;
+}
+
+.wt-chart-pedigree-up .wt-pedigree-lines {
+    height: 25%;
+    top: 0;
+    width: 50%;
+    border: thin solid gray;
+    border-radius: 0 0 1rem 1rem;
+    border-top: none;
+    left: 25%;
+    right: 25%;
+}
+
+.wt-chart-pedigree-up .wt-generation-rev-2 > .wt-pedigree-lines {
+    width: 75%;
+    left: 12.5%;
+    right: 12.5%;
+}
+
+/* Horizontal Chart Connection Lines - From base.css lines 2217-2323 */
+.wt-chart .wt-chart-horizontal-spacer,
+.wt-family-members .wt-chart-horizontal-spacer {
+    width: 1rem;
+}
+
+.wt-chart .wt-chart-horizontal-line,
+.wt-family-members .wt-chart-horizontal-line {
+    border-bottom: 1px solid #dee2e6;
+    height: 50%;
+    width: 1rem;
+}
+
+.wt-chart .wt-chart-horizontal-first-child,
+.wt-family-members .wt-chart-horizontal-first-child {
+    border-top: 1px solid #dee2e6;
+    height: 50%;
+    position: relative;
+    top: 50%;
+    border-radius: 0 .25rem 0 0;
+    border-right: 1px solid #dee2e6;
+}
+
+.wt-chart .wt-chart-horizontal-middle-child,
+.wt-family-members .wt-chart-horizontal-middle-child {
+    height: 100%;
+    border-right: 1px solid #dee2e6;
+}
+
+.wt-chart .wt-chart-horizontal-last-child,
+.wt-family-members .wt-chart-horizontal-last-child {
+    border-bottom: 1px solid #dee2e6;
+    height: 50%;
+    border-radius: 0 0 .25rem 0;
+    border-right: 1px solid #dee2e6;
+}
+
+.wt-chart .wt-chart-horizontal-first-parent,
+.wt-family-members .wt-chart-horizontal-first-parent {
+    border-top: 1px solid #dee2e6;
+    height: 50%;
+    position: relative;
+    top: 50%;
+    border-left: 1px solid #dee2e6;
+    border-radius: .25rem 0 0 0;
+}
+
+.wt-chart .wt-chart-horizontal-last-parent,
+.wt-family-members .wt-chart-horizontal-last-parent {
+    border-bottom: 1px solid #dee2e6;
+    height: 50%;
+    border-left: 1px solid #dee2e6;
+    border-radius: 0 0 0 .25rem;
+}
+
+/* Vertical Chart Connection Lines - For Ancestors/Descendants charts */
+.wt-chart-ancestors .wt-chart-vertical-indent,
+.wt-chart-descendants .wt-chart-vertical-indent {
+    width: 2rem;
+}
+
+.wt-chart-ancestors .wt-chart-vertical-line,
+.wt-chart-descendants .wt-chart-vertical-line {
+    height: 100%;
+    width: 50%;
+    border-left: 1px solid #dee2e6;
+    right: 0;
+}
+
+.wt-chart-ancestors .wt-chart-vertical-child-line,
+.wt-chart-descendants .wt-chart-vertical-child-line {
+    border-bottom: thin solid #dee2e6;
+    height: 1.5rem;
+    top: 0;
+    width: 50%;
+    right: 0;
+}
+
+.wt-chart-ancestors .wt-chart-vertical-last-child-line,
+.wt-chart-descendants .wt-chart-vertical-last-child-line {
+    border-bottom: 1px solid #dee2e6;
+    height: 1.5rem;
+    top: 0;
+    width: 50%;
+    border-left: 1px solid #dee2e6;
+    border-radius: 0 0 0 .25rem;
+    right: 0;
+}
+
+/* Expand/collapse controls for descendants/ancestors charts */
+.wt-chart-ancestors .wt-daboville-number,
+.wt-chart-ancestors .wt-sosa-number,
+.wt-chart-descendants .wt-daboville-number,
+.wt-chart-descendants .wt-sosa-number {
+    border: 1px dotted #dee2e6;
+    font-size: .875rem;
+    margin: 0 .625rem;
+    padding: .313rem .625rem;
+}
+
+.wt-chart-ancestors .chart-expand,
+.wt-chart-ancestors .collapsed .chart-collapse,
+.wt-chart-descendants .chart-expand,
+.wt-chart-descendants .collapsed .chart-collapse {
+    display: none;
+}
+
+.wt-chart-ancestors .collapsed .chart-expand,
+.wt-chart-descendants .collapsed .chart-expand {
+    display: inline;
+}
+
+/* Enhanced headings with visual separation */
+.wt-main-container h1 {
+    border-bottom: 3px solid var(--global-palette2) !important;
+    padding-bottom: 0.5rem !important;
+    margin-bottom: 1.5rem !important;
+    display: inline-block !important;
+}
+
+.wt-main-container h2 {
+    border-bottom: 2px solid var(--global-palette6) !important;
+    padding-bottom: 0.4rem !important;
+    margin-bottom: 1.2rem !important;
+}
+
+.wt-main-container h3 {
+    border-bottom: 1px solid var(--global-palette7) !important;
+    padding-bottom: 0.3rem !important;
+    margin-bottom: 1rem !important;
+}
+
+/* Enhanced button styling */
+.btn-primary {
+    box-shadow: 0 2px 4px rgba(0, 51, 102, 0.2) !important;
+    transition: all 0.2s ease !important;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 8px rgba(0, 51, 102, 0.3) !important;
+}
+
+.btn-primary:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 1px 2px rgba(0, 51, 102, 0.2) !important;
+}
+
+/* Family Navigator enhancements - full hover effect with lift and orange border */
+.wt-family-navigator-family {
+    border-radius: 6px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
+    position: relative !important;
+    overflow: visible !important;
+}
+
+/* DISABLED: transform creates stacking context that clips dropdowns */
+.wt-family-navigator-family:hover {
+    /* transform: translateY(-1.5px) !important; */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+    border-color: var(--global-palette2) !important;
+}
+
+/* Ensure caption participates in table hover - caption moves with table */
+.wt-family-navigator-family:hover caption {
+    /* transform: translateY(-1.5px) !important; */
+}
+
+/* Ensure links in family navigator are clickable */
+.wt-family-navigator-family a {
+    position: relative !important;
+    z-index: 10 !important;
+    pointer-events: auto !important;
+}
+
+/* Smooth scrolling for better UX */
+html {
+    scroll-behavior: smooth !important;
+}
+
+/* Reduced motion support for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .wt-chart-box:hover,
+    .card:hover,
+    .btn-primary:hover {
+        transform: none !important;
+    }
+}
+
+/* Focus visible for keyboard navigation */
+*:focus-visible {
+    outline: 2px solid var(--global-palette2) !important;
+    outline-offset: 2px !important;
+}
+
+/* Enhanced sidebar blocks and user page blocks */
+.wt-block,
+.wt-user-block {
+    border-radius: 6px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
+    position: relative !important;
+}
+
+/* Hover effects for blocks */
+.wt-block:hover,
+.wt-user-block:hover {
+    transform: translateY(-1.5px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+    border-color: var(--global-palette2) !important;
+}
+
+/* Ensure links in blocks are clickable */
+.wt-block a,
+.wt-user-block a {
+    position: relative !important;
+    z-index: 10 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+/* Global rule: ALL links must be clickable with proper z-index */
+a,
+.nav-link,
+.btn-link {
+    position: relative !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+/* Ensure links in tab content are fully functional */
+.tab-pane a,
+.wt-page-content a {
+    z-index: 10 !important;
+}
+
+/* Image thumbnails with subtle hover effect */
+.img-thumbnail,
+.wt-chart-box-thumbnail {
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.img-thumbnail:hover,
+.wt-chart-box-thumbnail:hover {
+    transform: scale(1.05) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Enhanced page menu buttons */
+.wt-page-menu-button {
+    box-shadow: 0 2px 4px rgba(0, 51, 102, 0.15) !important;
+    transition: all 0.2s ease !important;
+}
+
+.wt-page-menu-button:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 8px rgba(0, 51, 102, 0.25) !important;
+}
+
+/* Dropdown menu enhancements */
+.dropdown-menu {
+    border-radius: 6px !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+    animation: fadeInDown 0.2s ease !important;
+    z-index: 1050 !important;
+    position: absolute !important;
+}
+
+/* Ensure dropdown menus in chart boxes have high z-index and proper positioning */
+/* Using position:absolute with very high z-index and overflow:visible on all parents */
+.wt-chart-box-dropdown,
+.wt-chart-box-zoom-dropdown,
+.wt-chart-box-links-dropdown {
+    z-index: 99999 !important;
+    position: absolute !important;
+}
+
+/* Ensure dropdown containers don't interfere - Bootstrap sets position-static in HTML */
+.wt-chart-box .dropdown {
+    overflow: visible !important;
+}
+
+/* Ensure chart box itself doesn't clip dropdowns and allows proper stacking */
+.wt-chart-box {
+    overflow: visible !important;
+}
+
+/* Ensure table cells containing chart boxes don't clip */
+.wt-facts-table td,
+.wt-facts-table th {
+    overflow: visible !important;
+}
+
+/* Ensure table rows don't clip */
+.wt-facts-table tr {
+    overflow: visible !important;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Link hover effects for better feedback - ONLY in main content text, not in cards/blocks */
+.wt-main-container .wt-page-content a:not(.btn):not(.wt-page-menu-button):not(.card a) {
+    transition: color 0.15s ease !important;
+    position: relative !important;
+}
+
+.wt-main-container .wt-page-content a:not(.btn):not(.wt-page-menu-button):not(.card a)::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: -2px !important;
+    left: 0 !important;
+    width: 0 !important;
+    height: 2px !important;
+    background-color: var(--global-palette2) !important;
+    transition: width 0.2s ease !important;
+    pointer-events: none !important;
+}
+
+.wt-main-container .wt-page-content a:not(.btn):not(.wt-page-menu-button):not(.card a):hover::after {
+    width: 100% !important;
+}
+
+/* Enhanced tab styling - ensure tabs are clickable */
+.nav-pills .nav-link,
+.nav-tabs .nav-link {
+    transition: all 0.2s ease !important;
+    border-radius: 4px !important;
+    position: relative !important;
+    z-index: 10 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+.nav-pills .nav-link:not(.active):hover {
+    background-color: rgba(255, 136, 0, 0.1) !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Ensure active tab is clearly visible and clickable */
+.nav-pills .nav-link.active,
+.nav-tabs .nav-link.active {
+    pointer-events: auto !important;
+    cursor: default !important;
+}
+
+/* Form control enhancements */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--global-palette2) !important;
+    box-shadow: 0 0 0 0.2rem rgba(255, 136, 0, 0.25) !important;
+}
+
+/* Individual header table enhancement */
+#individual-header-table {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
+    border-radius: 6px !important;
+    overflow: hidden !important;
+}
+
+/* Enhanced loading states - only apply to empty (loading) ajax wrappers */
+.wt-ajax-load:empty {
+    opacity: 0.6 !important;
+    pointer-events: none !important;
+    transition: opacity 0.2s ease !important;
+}
+
+/* Print media query - remove shadows and transforms for clean printing */
+@media print {
+    .wt-chart-box,
+    .card,
+    .wt-facts-table,
+    .wt-block,
+    .wt-family-navigator-family,
+    #individual-header-table {
+        box-shadow: none !important;
+        transform: none !important;
+    }
+    
+    .wt-chart-box:hover,
+    .card:hover,
+    .wt-family-navigator-family:hover,
+    .wt-family-navigator-family:hover caption {
+        transform: none !important;
+    }
 }

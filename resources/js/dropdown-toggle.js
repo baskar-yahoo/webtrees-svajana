@@ -53,6 +53,7 @@
         });
 
         // Handle WordPress menu dropdowns (.menu-item-has-children)
+        // Support both hover (CSS) and click (JS) - they work together
         document.querySelectorAll('.menu-item-has-children > a').forEach(function(toggle) {
             toggle.addEventListener('click', function(e) {
                 const parent = toggle.parentElement;
@@ -62,16 +63,17 @@
                     e.preventDefault();
                     e.stopPropagation();
                     
-                    // Toggle submenu visibility
-                    const isOpen = submenu.style.display === 'block';
+                    // Check if submenu is already visible (from hover or previous click)
+                    const isOpen = parent.classList.contains('dropdown-open');
                     
-                    // Close all submenus first
-                    document.querySelectorAll('.sub-menu').forEach(function(sm) {
-                        sm.style.display = 'none';
+                    // Close all other dropdowns
+                    document.querySelectorAll('.menu-item-has-children').forEach(function(item) {
+                        item.classList.remove('dropdown-open');
                     });
                     
+                    // Toggle this dropdown
                     if (!isOpen) {
-                        submenu.style.display = 'block';
+                        parent.classList.add('dropdown-open');
                     }
                 }
             });
@@ -85,9 +87,9 @@
         if (!e.target.closest('.dropdown') && !e.target.closest('.menu-item-has-children')) {
             closeAllDropdowns();
             
-            // Close WordPress submenus
-            document.querySelectorAll('.sub-menu').forEach(function(submenu) {
-                submenu.style.display = 'none';
+            // Close click-opened WordPress submenus (not hover - CSS handles that)
+            document.querySelectorAll('.menu-item-has-children').forEach(function(item) {
+                item.classList.remove('dropdown-open');
             });
         }
     });
@@ -99,9 +101,9 @@
         if (e.key === 'Escape') {
             closeAllDropdowns();
             
-            // Close WordPress submenus
-            document.querySelectorAll('.sub-menu').forEach(function(submenu) {
-                submenu.style.display = 'none';
+            // Close click-opened WordPress submenus
+            document.querySelectorAll('.menu-item-has-children').forEach(function(item) {
+                item.classList.remove('dropdown-open');
             });
         }
     });
