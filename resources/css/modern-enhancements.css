@@ -1050,7 +1050,7 @@ button:hover,
 
 /* Hourglass chart */
 .wt-chart-hourglass {
-    overflow-y: auto;
+    overflow-y: visible;
 }
 
 .wt-chart-hourglass .wt-chart-box {
@@ -1151,7 +1151,7 @@ button:hover,
 }
 
 .wt-chart-pedigree {
-    overflow-y: auto;
+    overflow-y: visible;
 }
 
 .wt-chart-pedigree-left .wt-chart-box,
