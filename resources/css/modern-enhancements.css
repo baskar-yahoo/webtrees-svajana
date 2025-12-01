@@ -1189,6 +1189,68 @@ button:hover,
     top: 12.5%;
 }
 
+/* Pedigree LEFT layout lines */
+.wt-chart-pedigree-left .wt-pedigree-lines {
+    bottom: 25%;
+    height: 50%;
+    top: 25%;
+    width: 25%;
+    border: thin solid gray;
+    border-left: none;
+    border-radius: 0 1rem 1rem 0;
+    left: 0;
+}
+
+.wt-chart-pedigree-left .wt-generation-rev-2 > .wt-pedigree-lines {
+    bottom: 12.5%;
+    height: 75%;
+    top: 12.5%;
+}
+
+/* Pedigree DOWN layout lines */
+.wt-chart-pedigree-down {
+    width: max-content;
+}
+
+.wt-chart-pedigree-down .wt-pedigree-lines {
+    bottom: 0;
+    height: 25%;
+    width: 50%;
+    border: thin solid gray;
+    border-bottom: none;
+    border-radius: 1rem 1rem 0 0;
+    left: 25%;
+    right: 25%;
+}
+
+.wt-chart-pedigree-down .wt-generation-rev-2 > .wt-pedigree-lines {
+    width: 75%;
+    left: 12.5%;
+    right: 12.5%;
+}
+
+/* Pedigree UP layout lines */
+.wt-chart-pedigree-up {
+    width: max-content;
+}
+
+.wt-chart-pedigree-up .wt-pedigree-lines {
+    height: 25%;
+    top: 0;
+    width: 50%;
+    border: thin solid gray;
+    border-radius: 0 0 1rem 1rem;
+    border-top: none;
+    left: 25%;
+    right: 25%;
+}
+
+.wt-chart-pedigree-up .wt-generation-rev-2 > .wt-pedigree-lines {
+    width: 75%;
+    left: 12.5%;
+    right: 12.5%;
+}
+
 /* Horizontal Chart Connection Lines - From base.css lines 2217-2323 */
 .wt-chart .wt-chart-horizontal-spacer,
 .wt-family-members .wt-chart-horizontal-spacer {
@@ -1242,6 +1304,63 @@ button:hover,
     height: 50%;
     border-left: 1px solid #dee2e6;
     border-radius: 0 0 0 .25rem;
+}
+
+/* Vertical Chart Connection Lines - For Ancestors/Descendants charts */
+.wt-chart-ancestors .wt-chart-vertical-indent,
+.wt-chart-descendants .wt-chart-vertical-indent {
+    width: 2rem;
+}
+
+.wt-chart-ancestors .wt-chart-vertical-line,
+.wt-chart-descendants .wt-chart-vertical-line {
+    height: 100%;
+    width: 50%;
+    border-left: 1px solid #dee2e6;
+    right: 0;
+}
+
+.wt-chart-ancestors .wt-chart-vertical-child-line,
+.wt-chart-descendants .wt-chart-vertical-child-line {
+    border-bottom: thin solid #dee2e6;
+    height: 1.5rem;
+    top: 0;
+    width: 50%;
+    right: 0;
+}
+
+.wt-chart-ancestors .wt-chart-vertical-last-child-line,
+.wt-chart-descendants .wt-chart-vertical-last-child-line {
+    border-bottom: 1px solid #dee2e6;
+    height: 1.5rem;
+    top: 0;
+    width: 50%;
+    border-left: 1px solid #dee2e6;
+    border-radius: 0 0 0 .25rem;
+    right: 0;
+}
+
+/* Expand/collapse controls for descendants/ancestors charts */
+.wt-chart-ancestors .wt-daboville-number,
+.wt-chart-ancestors .wt-sosa-number,
+.wt-chart-descendants .wt-daboville-number,
+.wt-chart-descendants .wt-sosa-number {
+    border: 1px dotted #dee2e6;
+    font-size: .875rem;
+    margin: 0 .625rem;
+    padding: .313rem .625rem;
+}
+
+.wt-chart-ancestors .chart-expand,
+.wt-chart-ancestors .collapsed .chart-collapse,
+.wt-chart-descendants .chart-expand,
+.wt-chart-descendants .collapsed .chart-collapse {
+    display: none;
+}
+
+.wt-chart-ancestors .collapsed .chart-expand,
+.wt-chart-descendants .collapsed .chart-expand {
+    display: inline;
 }
 
 /* Enhanced headings with visual separation */
