@@ -317,17 +317,17 @@ div[style*="outline:dashed"] {
 /* Sex Icon Colors */
 .fa-venus,
 .wt-icon-sex-f {
-    color: var(--sex-female) !important;
+    color: var(--sex-female);
 }
 
 .fa-mars,
 .wt-icon-sex-m {
-    color: var(--sex-male) !important;
+    color: var(--sex-male);
 }
 
 .wt-icon-sex-u,
 .wt-icon-sex-x {
-    color: var(--sex-unknown) !important;
+    color: var(--sex-unknown);
 }
 
 /* Tree Link and Horizontal List */
@@ -681,6 +681,12 @@ button:hover,
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1) !important;
     padding: 0 !important;
     min-width: 180px !important;
+    /* Consolidated: include enhancements from later block */
+    border-radius: 6px !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+    animation: fadeInDown 0.2s ease !important;
+    z-index: 1050 !important;
+    position: absolute !important;
 }
 
 /* Dropdown items - match sub-menu link style */
@@ -857,7 +863,7 @@ button:hover,
 }
 
 .wt-facts-table td:hover {
-    /* z-index removed to allow dropdowns with higher z-index to appear above */
+    background-color: rgba(255, 136, 0, 0.08) !important;
 }
 
 /* First row styling */
@@ -1417,7 +1423,7 @@ button:hover,
 
 /* Ensure caption participates in table hover - caption moves with table */
 .wt-family-navigator-family:hover caption {
-    /* transform: translateY(-1.5px) !important; */
+    color: var(--global-palette2) !important;
 }
 
 /* Ensure links in family navigator are clickable */
