@@ -105,12 +105,16 @@
 }
 
 /* Chart Boxes */
+/* Chart box base styles (consolidated) */
 .wt-chart-box {
-    background: var(--global-palette8);
+    background: var(--global-palette9);
     border: 1px solid var(--global-palette6);
-    border-radius: 4px;
+    border-radius: 6px;
     padding: 0.5rem;
     margin: 0.25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    position: relative;
+    overflow: visible;
 }
 
 .wt-chart-box-thumbnail {
@@ -865,14 +869,7 @@ button:hover,
 
 /* Enhanced Chart Boxes - Interactive Cards with Hover Effects */
 /* SIMPLIFIED: Removed transform/hover effects to allow dropdowns to work properly */
-.wt-chart-box {
-    background: var(--global-palette9) !important;
-    border: 1px solid var(--global-palette6) !important;
-    border-radius: 6px !important;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
-    position: relative !important;
-    overflow: visible !important;
-}
+/* Duplicate consolidated above */
 
 /* Chart box links should always be clickable */
 .wt-chart-box a {
@@ -1524,9 +1521,7 @@ a,
 }
 
 /* Ensure chart box itself doesn't clip dropdowns and allows proper stacking */
-.wt-chart-box {
-    overflow: visible !important;
-}
+.wt-chart-box { overflow: visible !important; }
 
 /* Ensure table cells containing chart boxes don't clip */
 .wt-facts-table td,
