@@ -159,18 +159,7 @@ img.img-thumbnail {
     border-bottom: 1px solid var(--global-palette7);
 }
 
-.wt-facts-table th {
-    text-align: left;
-    font-weight: 600;
-    color: var(--global-palette1);
-    width: 40%;
-    vertical-align: top;
-}
-
-.wt-facts-table td {
-    width: 60%;
-    color: var(--global-palette9);
-}
+/* Base header/cell styles consolidated in later sections */
 
 /* Fix for WelcomeBlockModule duplicate array entry causing empty icon placeholder */
 .wt-block-content a:has(> span:empty),
@@ -1497,13 +1486,13 @@ a,
 /* Image thumbnails with subtle hover effect */
 .img-thumbnail,
 .wt-chart-box-thumbnail {
-    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .img-thumbnail:hover,
 .wt-chart-box-thumbnail:hover {
-    transform: scale(1.05) !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* Enhanced page menu buttons */
@@ -1586,7 +1575,7 @@ a,
 /* Enhanced tab styling - ensure tabs are clickable */
 .nav-pills .nav-link,
 .nav-tabs .nav-link {
-    transition: all 0.2s ease !important;
+    transition: all 0.2s ease;
     border-radius: 4px !important;
     position: relative !important;
     z-index: 10 !important;
@@ -1595,8 +1584,8 @@ a,
 }
 
 .nav-pills .nav-link:not(.active):hover {
-    background-color: rgba(255, 136, 0, 0.1) !important;
-    transform: translateY(-1px) !important;
+    background-color: rgba(255, 136, 0, 0.1);
+    transform: translateY(-1px);
 }
 
 /* Ensure active tab is clearly visible and clickable */
