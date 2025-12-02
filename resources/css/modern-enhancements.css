@@ -436,8 +436,8 @@ div.card,
 /* Active tab should use navy blue */
 .nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
-    background-color: var(--global-palette1) !important;
-    color: var(--global-palette9) !important;
+    background-color: var(--global-palette1);
+    color: var(--global-palette9);
 }
 
 .nav-pills .nav-link {
@@ -700,8 +700,11 @@ button:hover,
 }
 
 /* Dropdown items - match sub-menu link style */
+/* Consolidated dropdown link styling for main and chart dropdowns */
 .dropdown-item,
-.dropdown-menu a:not(.wt-chart-box-zoom-dropdown a) {
+.dropdown-menu a:not(.wt-chart-box-zoom-dropdown a),
+.wt-chart-box-dropdown a,
+.wt-chart-box-links-dropdown a {
     display: block !important;
     padding: 8px 15px !important;
     color: var(--global-palette8) !important;
@@ -714,7 +717,9 @@ button:hover,
 
 .dropdown-item:hover,
 .dropdown-item:focus,
-.dropdown-menu a:not(.wt-chart-box-zoom-dropdown a):hover {
+.dropdown-menu a:not(.wt-chart-box-zoom-dropdown a):hover,
+.wt-chart-box-dropdown a:hover,
+.wt-chart-box-links-dropdown a:hover {
     background: var(--global-palette4) !important;
     color: var(--global-palette2) !important;
     padding-left: 20px !important;
@@ -733,25 +738,7 @@ button:hover,
 }
 
 /* Links in dropdown and links dropdown - but NOT zoom dropdown (has different structure) */
-.wt-chart-box-dropdown a,
-.wt-chart-box-links-dropdown a {
-    display: block !important;
-    padding: 8px 15px !important;
-    color: var(--global-palette8) !important;
-    background: transparent !important;
-    border: none !important;
-    font-size: 0.95rem !important;
-    text-decoration: none !important;
-    transition: all 0.2s ease !important;
-}
-
-.wt-chart-box-dropdown a:hover,
-.wt-chart-box-links-dropdown a:hover {
-    background: var(--global-palette4) !important;
-    color: var(--global-palette2) !important;
-    padding-left: 20px !important;
-    text-decoration: none !important;
-}
+/* Removed duplicate chart dropdown link blocks; consolidated above */
 
 /* Zoom dropdown fact styling - override generic link styles */
 .wt-chart-box-zoom-dropdown>div {
