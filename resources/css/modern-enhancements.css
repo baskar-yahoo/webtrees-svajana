@@ -672,18 +672,28 @@ button:hover,
    Match navigation menu dropdown appearance
    =================================== */
 
+/* Shared dropdown utility for future reuse */
+.sv-dropdown-base {
+    background: var(--global-palette3);
+    border-top: 3px solid var(--global-palette2);
+    border-radius: 6px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    padding: 0;
+    min-width: 180px;
+    animation: fadeInDown 0.2s ease;
+    z-index: 1050;
+    position: absolute;
+}
+
 /* Bootstrap dropdown menus - match navigation sub-menu style */
 .dropdown-menu {
     /* Use shared utility to ensure consistent dropdown styling */
     background: var(--global-palette3) !important;
     border-top: 3px solid var(--global-palette2) !important;
-    border-radius: 0 0 4px 4px !important;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1) !important;
-    padding: 0 !important;
-    min-width: 180px !important;
-    /* Consolidated: include enhancements from later block */
     border-radius: 6px !important;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+    padding: 0 !important;
+    min-width: 180px !important;
     animation: fadeInDown 0.2s ease !important;
     z-index: 1050 !important;
     position: absolute !important;
@@ -717,8 +727,8 @@ button:hover,
 .wt-chart-box-links-dropdown {
     background: var(--global-palette3) !important;
     border-top: 3px solid var(--global-palette2) !important;
-    border-radius: 0 0 4px 4px !important;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1) !important;
+    border-radius: 6px !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
     padding: 0 !important;
 }
 
@@ -1528,13 +1538,7 @@ a,
 }
 
 /* Dropdown menu enhancements */
-.dropdown-menu {
-    border-radius: 6px !important;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
-    animation: fadeInDown 0.2s ease !important;
-    z-index: 1050 !important;
-    position: absolute !important;
-}
+/* Removed duplicate dropdown enhancement block; consolidated above */
 
 /* Ensure dropdown menus in chart boxes have high z-index and proper positioning */
 /* Using position:absolute with very high z-index and overflow:visible on all parents */
