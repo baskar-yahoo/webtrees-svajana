@@ -1367,38 +1367,38 @@ button:hover,
 
 /* Enhanced headings with visual separation */
 .wt-main-container h1 {
-    border-bottom: 3px solid var(--global-palette2) !important;
-    padding-bottom: 0.5rem !important;
-    margin-bottom: 1.5rem !important;
-    display: inline-block !important;
+    border-bottom: 3px solid var(--global-palette2);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
 }
 
 .wt-main-container h2 {
-    border-bottom: 2px solid var(--global-palette6) !important;
-    padding-bottom: 0.4rem !important;
-    margin-bottom: 1.2rem !important;
+    border-bottom: 2px solid var(--global-palette6);
+    padding-bottom: 0.4rem;
+    margin-bottom: 1.2rem;
 }
 
 .wt-main-container h3 {
-    border-bottom: 1px solid var(--global-palette7) !important;
-    padding-bottom: 0.3rem !important;
-    margin-bottom: 1rem !important;
+    border-bottom: 1px solid var(--global-palette7);
+    padding-bottom: 0.3rem;
+    margin-bottom: 1rem;
 }
 
 /* Enhanced button styling */
 .btn-primary {
-    box-shadow: 0 2px 4px rgba(0, 51, 102, 0.2) !important;
-    transition: all 0.2s ease !important;
+    box-shadow: 0 2px 4px rgba(0, 51, 102, 0.2);
+    transition: all 0.2s ease;
 }
 
 .btn-primary:hover {
-    transform: translateY(-1px) !important;
-    box-shadow: 0 4px 8px rgba(0, 51, 102, 0.3) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 51, 102, 0.3);
 }
 
 .btn-primary:active {
-    transform: translateY(0) !important;
-    box-shadow: 0 1px 2px rgba(0, 51, 102, 0.2) !important;
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 51, 102, 0.2);
 }
 
 /* Family Navigator enhancements - full hover effect with lift and orange border */
@@ -1508,25 +1508,25 @@ a,
 
 /* Enhanced page menu buttons */
 .wt-page-menu-button {
-    box-shadow: 0 2px 4px rgba(0, 51, 102, 0.15) !important;
-    transition: all 0.2s ease !important;
+    box-shadow: 0 2px 4px rgba(0, 51, 102, 0.15);
+    transition: all 0.2s ease;
 }
 
 .wt-page-menu-button:hover {
-    transform: translateY(-1px) !important;
-    box-shadow: 0 4px 8px rgba(0, 51, 102, 0.25) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 51, 102, 0.25);
 }
 
 /* Dropdown menu enhancements */
 /* Removed duplicate dropdown enhancement block; consolidated above */
 
 /* Ensure dropdown menus in chart boxes have high z-index and proper positioning */
-/* Using position:absolute with very high z-index and overflow:visible on all parents */
+/* Using position:absolute with high z-index and overflow:visible on all parents */
 .wt-chart-box-dropdown,
 .wt-chart-box-zoom-dropdown,
 .wt-chart-box-links-dropdown {
-    z-index: 99999 !important;
-    position: absolute !important;
+    z-index: 9999;
+    position: absolute;
 }
 
 /* Ensure dropdown containers don't interfere - Bootstrap sets position-static in HTML */
@@ -1632,13 +1632,7 @@ a,
     .wt-chart-box,
     .card,
     .wt-facts-table,
-    .wt-block,
-    .wt-family-navigator-family,
-    #individual-header-table {
-        box-shadow: none !important;
-        transform: none !important;
-    }
-    
+    /* z-index and pointer rules consolidated; avoid repetition */
     .wt-chart-box:hover,
     .card:hover,
     .wt-family-navigator-family:hover,
