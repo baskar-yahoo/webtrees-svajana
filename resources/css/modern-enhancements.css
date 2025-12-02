@@ -1491,7 +1491,7 @@ a,
 /* Ensure links in tab content are fully functional */
 .tab-pane a,
 .wt-page-content a {
-    z-index: 10 !important;
+    z-index: 10;
 }
 
 /* Image thumbnails with subtle hover effect */
@@ -1563,24 +1563,24 @@ a,
 
 /* Link hover effects for better feedback - ONLY in main content text, not in cards/blocks */
 .wt-main-container .wt-page-content a:not(.btn):not(.wt-page-menu-button):not(.card a) {
-    transition: color 0.15s ease !important;
+    transition: color 0.15s ease;
     position: relative !important;
 }
 
 .wt-main-container .wt-page-content a:not(.btn):not(.wt-page-menu-button):not(.card a)::after {
-    content: '' !important;
+    content: '';
     position: absolute !important;
     bottom: -2px !important;
     left: 0 !important;
     width: 0 !important;
     height: 2px !important;
-    background-color: var(--global-palette2) !important;
-    transition: width 0.2s ease !important;
+    background-color: var(--global-palette2);
+    transition: width 0.2s ease;
     pointer-events: none !important;
 }
 
 .wt-main-container .wt-page-content a:not(.btn):not(.wt-page-menu-button):not(.card a):hover::after {
-    width: 100% !important;
+    width: 100%;
 }
 
 /* Enhanced tab styling - ensure tabs are clickable */
