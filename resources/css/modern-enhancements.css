@@ -782,9 +782,9 @@ button:hover,
 }
 
 /* ===================================
-   MODERN UI ENHANCEMENTS
-   Enhanced table styling, interactive cards, and visual polish
-   =================================== */
+    UI ENHANCEMENTS
+    Table styling, interactive cards, and visual polish
+    =================================== */
 
 /* Modern Table Styling - Enhanced for Genealogy Data */
 .wt-facts-table {
@@ -963,9 +963,9 @@ button:hover,
 }
 
 /* ===================================
-   CHART-SPECIFIC STYLES FROM MODERN THEME
-   Charts need specific sizing and visibility rules
-   =================================== */
+    CHARTS
+    Specific sizing and visibility rules
+    =================================== */
 
 /* Chart blocks - ensure proper rendering */
 .wt-block.wt-block-charts {
@@ -1472,9 +1472,9 @@ html {
 /* Hover effects for blocks */
 .wt-block:hover,
 .wt-user-block:hover {
-    transform: translateY(-1.5px) !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
-    border-color: var(--global-palette2) !important;
+    transform: translateY(-1.5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    border-color: var(--global-palette2);
 }
 
 /* Ensure links in blocks are clickable - covered by consolidated rule above */
@@ -1609,8 +1609,8 @@ a,
 /* Form control enhancements */
 .form-control:focus,
 .form-select:focus {
-    border-color: var(--global-palette2) !important;
-    box-shadow: 0 0 0 0.2rem rgba(255, 136, 0, 0.25) !important;
+    border-color: var(--global-palette2);
+    box-shadow: 0 0 0 0.2rem rgba(255, 136, 0, 0.25);
 }
 
 /* Individual header table enhancement */
