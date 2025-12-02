@@ -9,6 +9,10 @@ Highlights (ongoing):
 - Normalized z-index usage (dropdowns to `9999`, tab/page links to standard values).
 - Removed duplicate selectors and tightened section headers for readability.
 
+Metrics (current):
+- `!important` occurrences in `modern-enhancements.css`: 230 (decreasing across commits).
+- Duplicate blocks consolidated: `.dropdown-menu`, chart dropdown links, `.wt-chart-box`, `.wt-facts-table th/td` (early block removed).
+
 Changes:
 - Consolidate `.dropdown-menu` into a single block with enhanced properties (radius, shadow, animation, positioning, z-index).
 - Replace empty rulesets with minimal hover adjustments:
