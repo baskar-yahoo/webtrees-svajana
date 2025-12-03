@@ -109,12 +109,18 @@
 .wt-chart-box {
     background: var(--global-palette9);
     border: 1px solid var(--global-palette6);
-    border-radius: 6px;
-    padding: 0.5rem;
+    border-radius: 8px;
+    padding: 1rem;
     margin: 0.25rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     position: relative;
     overflow: visible;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wt-chart-box:hover {
+    transform: translateY(-1.5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 .wt-chart-box-thumbnail {
