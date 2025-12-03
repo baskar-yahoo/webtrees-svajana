@@ -640,12 +640,12 @@ body.content-style-unboxed .site {
         padding-bottom: 0.1em;
         color: var(--global-palette1);
         
-        /* Typography from Kadence primary_navigation_typography */
+        /* Typography from Kadence primary_navigation_typography with production-ready fallbacks */
         font-family: var(--primary-nav-font-family, var(--global-primary-nav-font-family));
         font-weight: var(--primary-nav-font-weight, 700);
-        font-size: var(--primary-nav-font-size, 18px);
+        font-size: var(--primary-nav-font-size, 20px); /* Primary menu - prominent size */
         line-height: var(--primary-nav-line-height, 1.5);
-        letter-spacing: var(--primary-nav-letter-spacing, 0.016rem);
+        letter-spacing: var(--primary-nav-letter-spacing, 0.02rem); /* Slightly wider for larger text */
         text-transform: var(--primary-nav-text-transform, capitalize);
     }
 
@@ -689,12 +689,12 @@ body.content-style-unboxed .site {
         text-decoration: none;
         padding: 0.1em 0.6em !important;
         
-        /* Typography from Kadence secondary_navigation_typography (same as top row) */
+        /* Typography from Kadence secondary_navigation_typography with production-ready fallbacks */
         font-family: var(--secondary-nav-font-family, var(--global-primary-nav-font-family));
         font-weight: var(--secondary-nav-font-weight, 700);
-        font-size: var(--secondary-nav-font-size, 18px);
+        font-size: var(--secondary-nav-font-size, 16px); /* Secondary menu - medium size */
         line-height: var(--secondary-nav-line-height, 1.5);
-        letter-spacing: var(--secondary-nav-letter-spacing, 0.016rem);
+        letter-spacing: var(--secondary-nav-letter-spacing, 0.015rem); /* Balanced spacing for app nav */
         text-transform: var(--secondary-nav-text-transform, capitalize);
     }
 
