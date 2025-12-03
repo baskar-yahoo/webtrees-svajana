@@ -127,19 +127,29 @@
     transition: color 0.3s;
 }
 
-/* Header Right Stack - Ensure proper alignment and spacing */
+/* Header Right Stack - Space out navigation rows */
 .header-right-stack {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 12px;
+    justify-content: space-between; /* Push items to top and bottom */
+    min-height: 80px; /* Minimum height to create space */
     padding: 0;
 }
 
-/* Navigation containers - ensure right alignment */
-.header-right-stack .main-navigation,
+/* Main Navigation - Align to top */
+.header-right-stack .main-navigation {
+    width: auto;
+    align-self: flex-start; /* Align to top */
+    margin-right: 0;
+    margin-left: auto; /* Keep right justified */
+}
+
+/* Webtrees Navigation - Align to bottom */
 .header-right-stack .webtrees-navigation {
     width: auto;
+    align-self: flex-end; /* Align to bottom */
+    margin-top: auto; /* Push to bottom */
 }
 
 /* --- Desktop Navigation --- */
