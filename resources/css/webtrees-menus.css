@@ -179,6 +179,7 @@
 }
 
 /* Top Level Links (Utility & App) - Matched Style */
+/* Top Row & Bottom Row - Secondary Navigation (Uses Kadence secondary_navigation_typography) */
 .webtrees-navigation>ul>li>a,
 .secondary-navigation>ul>li>a {
     display: flex;
@@ -186,12 +187,18 @@
     padding: 8px 0;
     background-color: transparent;
     color: var(--header-text-color);
-    font-weight: 500;
-    font-size: 0.85rem;
     text-decoration: none;
     transition: color 0.2s ease;
     border-bottom: 2px solid transparent;
     white-space: nowrap;
+    
+    /* Typography from Kadence database */
+    font-size: var(--secondary-nav-font-size, 0.85rem);
+    font-weight: var(--secondary-nav-font-weight, 500);
+    font-family: var(--secondary-nav-font-family, inherit);
+    line-height: var(--secondary-nav-line-height, 1.5);
+    letter-spacing: var(--secondary-nav-letter-spacing, normal);
+    text-transform: var(--secondary-nav-text-transform, none);
 }
 
 .webtrees-navigation>ul>li>a:hover,

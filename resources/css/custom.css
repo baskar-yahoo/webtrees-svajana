@@ -632,18 +632,21 @@ body.content-style-unboxed .site {
 
 
 
-    /* Middle Bar Menu (WordPress Primary) */
+    /* Middle Bar Menu (WordPress Primary) - Uses Kadence primary_navigation_typography */
     #site-navigation .primary-menu-container>ul>li.menu-item>a {
         padding-left: calc(1.2em / 2);
         padding-right: calc(1.2em / 2);
         padding-top: 0.1em;
         padding-bottom: 0.1em;
         color: var(--global-palette1);
-        font-family: var(--global-primary-nav-font-family);
-        font-weight: 700;
-        font-size: 18px;
-        letter-spacing: 0.016rem;
-        text-transform: capitalize;
+        
+        /* Typography from Kadence primary_navigation_typography */
+        font-family: var(--primary-nav-font-family, var(--global-primary-nav-font-family));
+        font-weight: var(--primary-nav-font-weight, 700);
+        font-size: var(--primary-nav-font-size, 18px);
+        line-height: var(--primary-nav-line-height, 1.5);
+        letter-spacing: var(--primary-nav-letter-spacing, 0.016rem);
+        text-transform: var(--primary-nav-text-transform, capitalize);
     }
 
     #site-navigation .primary-menu-container>ul>li.menu-item>a:hover {
@@ -680,15 +683,19 @@ body.content-style-unboxed .site {
     }
 
 
+    /* Bottom Bar Menu (Webtrees Primary) - Uses Kadence secondary_navigation_typography (matches top row) */
     .wt-primary-navigation .nav-link {
         color: var(--global-palette1);
-        font-family: var(--global-primary-nav-font-family);
-        font-weight: 700;
-        font-size: 18px;
-        letter-spacing: 0.016rem;
-        text-transform: capitalize;
         text-decoration: none;
         padding: 0.1em 0.6em !important;
+        
+        /* Typography from Kadence secondary_navigation_typography (same as top row) */
+        font-family: var(--secondary-nav-font-family, var(--global-primary-nav-font-family));
+        font-weight: var(--secondary-nav-font-weight, 700);
+        font-size: var(--secondary-nav-font-size, 18px);
+        line-height: var(--secondary-nav-line-height, 1.5);
+        letter-spacing: var(--secondary-nav-letter-spacing, 0.016rem);
+        text-transform: var(--secondary-nav-text-transform, capitalize);
     }
 
 

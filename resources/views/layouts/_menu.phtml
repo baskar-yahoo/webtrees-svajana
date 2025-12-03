@@ -55,17 +55,63 @@ if (!function_exists('render_wp_menu_recursive')) {
     }
 }
 ?>
-<style>
+<!-- Database-Driven CSS Variables from Kadence (Generated Once Per Page Load) -->
+<style id="svajana-kadence-variables">
     :root {
+        /* Color Palette from Kadence */
         --global-palette1: <?= $wp_data['primary_color'] ?>;
-        /* Navy */
         --global-palette2: <?= $wp_data['secondary_color'] ?>;
-        /* Orange */
         --global-palette8: <?= $wp_data['footer_bg'] ?>;
-
-        /* Typography from DB */
+        
+        /* Brand Typography */
         --brand-font-size: <?= $wp_data['brand_font_css'] ?>;
+        
+        <?php if (!empty($wp_data['primary_nav_typography'])): ?>
+        /* Primary Navigation Typography (Middle Row - WordPress Menu) */
+        --primary-nav-font-size: <?= $wp_data['primary_nav_typography']['size_desktop'] ?>;
+        --primary-nav-font-weight: <?= $wp_data['primary_nav_typography']['weight'] ?>;
+        --primary-nav-font-family: <?= $wp_data['primary_nav_typography']['family'] ?>;
+        --primary-nav-line-height: <?= $wp_data['primary_nav_typography']['line_height'] ?>;
+        --primary-nav-letter-spacing: <?= $wp_data['primary_nav_typography']['letter_spacing'] ?>;
+        --primary-nav-text-transform: <?= $wp_data['primary_nav_typography']['text_transform'] ?>;
+        <?php endif; ?>
+        
+        <?php if (!empty($wp_data['secondary_nav_typography'])): ?>
+        /* Secondary Navigation Typography (Top & Bottom Rows) */
+        --secondary-nav-font-size: <?= $wp_data['secondary_nav_typography']['size_desktop'] ?>;
+        --secondary-nav-font-weight: <?= $wp_data['secondary_nav_typography']['weight'] ?>;
+        --secondary-nav-font-family: <?= $wp_data['secondary_nav_typography']['family'] ?>;
+        --secondary-nav-line-height: <?= $wp_data['secondary_nav_typography']['line_height'] ?>;
+        --secondary-nav-letter-spacing: <?= $wp_data['secondary_nav_typography']['letter_spacing'] ?>;
+        --secondary-nav-text-transform: <?= $wp_data['secondary_nav_typography']['text_transform'] ?>;
+        <?php endif; ?>
+        
+        /* Legacy fallback for backward compatibility */
         --menu-font-size: <?= $wp_data['menu_font_css'] ?>;
+    }
+    
+    /* Responsive Typography for Tablet */
+    @media (max-width: 1024px) {
+        :root {
+            <?php if (!empty($wp_data['primary_nav_typography'])): ?>
+            --primary-nav-font-size: <?= $wp_data['primary_nav_typography']['size_tablet'] ?>;
+            <?php endif; ?>
+            <?php if (!empty($wp_data['secondary_nav_typography'])): ?>
+            --secondary-nav-font-size: <?= $wp_data['secondary_nav_typography']['size_tablet'] ?>;
+            <?php endif; ?>
+        }
+    }
+    
+    /* Responsive Typography for Mobile */
+    @media (max-width: 767px) {
+        :root {
+            <?php if (!empty($wp_data['primary_nav_typography'])): ?>
+            --primary-nav-font-size: <?= $wp_data['primary_nav_typography']['size_mobile'] ?>;
+            <?php endif; ?>
+            <?php if (!empty($wp_data['secondary_nav_typography'])): ?>
+            --secondary-nav-font-size: <?= $wp_data['secondary_nav_typography']['size_mobile'] ?>;
+            <?php endif; ?>
+        }
     }
 </style>
 
