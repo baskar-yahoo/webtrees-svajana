@@ -394,8 +394,12 @@ div.card,
     font-size: 14px !important;
 }
 
-/* Tab navigation font size */
-.nav-link {
+/* Tab navigation font size - scoped to webtrees content, excludes main navigation menus */
+.wt-page-content .nav-link,
+.wt-page-options .nav-link,
+.tab-pane .nav-link,
+.nav-pills .nav-link,
+.nav-tabs .nav-link {
     font-size: 14px !important;
 }
 
@@ -429,23 +433,9 @@ div.card,
 }
 
 /* ===================================
-   TAB COLORS - Use global-palette1
+   TAB COLORS - Moved to modern-components.css
+   Centralized for both .nav-tabs and .nav-pills
    =================================== */
-
-/* Active tab should use navy blue */
-.nav-pills .nav-link.active,
-.nav-pills .show>.nav-link {
-    background-color: var(--global-palette1);
-    color: var(--global-palette9);
-}
-
-.nav-pills .nav-link {
-    color: var(--global-palette1);
-}
-
-.nav-pills .nav-link:hover {
-    color: var(--global-palette2);
-}
 
 /* ===================================
    EVENTS OF CLOSE RELATIVES STYLING
@@ -1573,27 +1563,18 @@ a,
     width: 100%;
 }
 
-/* Enhanced tab styling - ensure tabs are clickable */
+/* Enhanced tab interaction - ensure tabs/pills are clickable */
 .nav-pills .nav-link,
 .nav-tabs .nav-link {
-    transition: all 0.2s ease;
-    border-radius: 4px !important;
-    position: relative !important;
-    z-index: 10 !important;
-    pointer-events: auto !important;
-    cursor: pointer !important;
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
+    cursor: pointer;
 }
 
-.nav-pills .nav-link:not(.active):hover {
-    background-color: rgba(255, 136, 0, 0.1);
-    transform: translateY(-1px);
-}
-
-/* Ensure active tab is clearly visible and clickable */
 .nav-pills .nav-link.active,
 .nav-tabs .nav-link.active {
-    pointer-events: auto !important;
-    cursor: default !important;
+    cursor: default;
 }
 
 /* Form control enhancements */

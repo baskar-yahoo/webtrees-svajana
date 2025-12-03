@@ -131,6 +131,57 @@
     background-color: var(--global-palette1);
 }
 
+/* Navigation Tabs - Kadence Colors */
+.nav-tabs {
+    border-bottom: 1px solid var(--global-palette5);
+}
+
+.nav-tabs .nav-link {
+    color: var(--global-palette1);
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 0.25rem 0.25rem 0 0;
+    padding: 0.5rem 1rem;
+    transition: color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+.nav-tabs .nav-link:hover,
+.nav-tabs .nav-link:focus {
+    color: var(--global-palette2);
+    border-color: var(--global-palette7) var(--global-palette7) var(--global-palette5);
+    background-color: var(--global-palette7);
+}
+
+.nav-tabs .nav-link.active {
+    color: var(--global-palette1);
+    background-color: var(--global-palette9);
+    border-color: var(--global-palette5) var(--global-palette5) var(--global-palette9);
+    font-weight: 600;
+}
+
+/* Form Controls - Kadence Colors Override Bootstrap Defaults */
+.form-check-input {
+    border-color: var(--global-palette5) !important;
+}
+
+.form-check-input:focus {
+    border-color: var(--global-palette2) !important;
+    box-shadow: 0 0 0 0.25rem rgba(255, 136, 0, 0.25) !important;
+}
+
+.form-check-input:checked {
+    background-color: var(--global-palette1) !important;
+    border-color: var(--global-palette1) !important;
+}
+
+.form-check-input:checked[type="radio"] {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23ffffff'/%3e%3c/svg%3e") !important;
+}
+
+.form-check-input:checked[type="checkbox"] {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e") !important;
+}
+
 /* Buttons - Base .btn class moved to custom.css for consolidated management */
 /* Only .btn-link remains here as it's a utility variant */
 .btn-link {
