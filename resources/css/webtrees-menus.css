@@ -105,7 +105,8 @@
 
 /* Main Header Area */
 .main-header-area {
-    padding: 20px 0;
+    padding-top: 5px;
+    padding-bottom: 10px;
 }
 
 .main-header-area .site-container {
@@ -138,7 +139,7 @@
 /* Main Navigation - Align to top with spacing below */
 .header-right-stack .main-navigation {
     width: auto;
-    margin-bottom: 40px; /* Add explicit space between menus */
+    margin-bottom: 10px; /* Add explicit space between menus */
 }
 
 /* Webtrees Navigation - Align to bottom */
@@ -198,7 +199,7 @@
     
     /* Typography from Kadence database with production-ready fallbacks */
     font-size: var(--secondary-nav-font-size, 0.875rem); /* 14px - utility menu size */
-    font-weight: var(--secondary-nav-font-weight, 500);
+    font-weight: var(--secondary-nav-font-weight, 600);
     font-family: var(--secondary-nav-font-family, inherit);
     line-height: var(--secondary-nav-line-height, 1.5);
     letter-spacing: var(--secondary-nav-letter-spacing, 0.01rem); /* Subtle spacing for smaller text */
