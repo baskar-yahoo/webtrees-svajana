@@ -131,25 +131,19 @@
 .header-right-stack {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    justify-content: space-between; /* Push items to top and bottom */
-    min-height: 80px; /* Minimum height to create space */
+    align-items: flex-end; /* Keep both menus right-aligned */
     padding: 0;
 }
 
-/* Main Navigation - Align to top */
+/* Main Navigation - Align to top with spacing below */
 .header-right-stack .main-navigation {
     width: auto;
-    align-self: flex-start; /* Align to top */
-    margin-right: 0;
-    margin-left: auto; /* Keep right justified */
+    margin-bottom: 40px; /* Add explicit space between menus */
 }
 
 /* Webtrees Navigation - Align to bottom */
 .header-right-stack .webtrees-navigation {
     width: auto;
-    align-self: flex-end; /* Align to bottom */
-    margin-top: auto; /* Push to bottom */
 }
 
 /* --- Desktop Navigation --- */
