@@ -1624,3 +1624,119 @@ a,
         transform: none !important;
     }
 }
+
+/* ===================================
+   BUTTON VARIANTS - BOOTSTRAP COMPATIBLE
+   Complete semantic button system for webtrees forms and actions
+   =================================== */
+
+/* Success button - Green (for confirmations, save actions) */
+.btn-success {
+    color: var(--global-palette9) !important;
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+}
+
+.btn-success:hover {
+    color: var(--global-palette9) !important;
+    background-color: #218838 !important;
+    border-color: #1e7e34 !important;
+}
+
+/* Danger button - Red (for delete, destructive actions) */
+.btn-danger {
+    color: var(--global-palette9) !important;
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+}
+
+.btn-danger:hover {
+    color: var(--global-palette9) !important;
+    background-color: #c82333 !important;
+    border-color: #bd2130 !important;
+}
+
+/* Warning button - Orange/Yellow (for warnings, cautions) */
+.btn-warning {
+    color: var(--global-palette9) !important;
+    background-color: #ffc107 !important;
+    border-color: #ffc107 !important;
+}
+
+.btn-warning:hover {
+    color: var(--global-palette9) !important;
+    background-color: #e0a800 !important;
+    border-color: #d39e00 !important;
+}
+
+/* Info button - Light blue (for informational actions) */
+.btn-info {
+    color: var(--global-palette9) !important;
+    background-color: #17a2b8 !important;
+    border-color: #17a2b8 !important;
+}
+
+.btn-info:hover {
+    color: var(--global-palette9) !important;
+    background-color: #138496 !important;
+    border-color: #117a8b !important;
+}
+
+/* Light button - Light gray (for secondary/subtle actions) */
+.btn-light {
+    color: var(--global-palette3) !important;
+    background-color: var(--global-palette8) !important;
+    border-color: var(--global-palette7) !important;
+}
+
+.btn-light:hover {
+    color: var(--global-palette3) !important;
+    background-color: var(--global-palette7) !important;
+    border-color: var(--global-palette6) !important;
+}
+
+/* Dark button - Dark gray (for prominent alternative actions) */
+.btn-dark {
+    color: var(--global-palette9) !important;
+    background-color: #343a40 !important;
+    border-color: #343a40 !important;
+}
+
+.btn-dark:hover {
+    color: var(--global-palette9) !important;
+    background-color: #23272b !important;
+    border-color: #1d2124 !important;
+}
+
+/* Button sizes */
+.btn-sm,
+.btn-group-sm>.btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 12px !important;
+    border-radius: 0.2rem;
+}
+
+.btn-lg,
+.btn-group-lg>.btn {
+    padding: 0.5rem 1rem;
+    font-size: 16px !important;
+    border-radius: 0.3rem;
+}
+
+/* Button block (full width) */
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+/* Enhanced disabled state for all buttons */
+.btn:disabled,
+.btn.disabled,
+.wt-button:disabled,
+.wt-button.disabled,
+input[type="submit"]:disabled,
+input[type="button"]:disabled {
+    opacity: 0.65;
+    pointer-events: none;
+    cursor: not-allowed;
+}
