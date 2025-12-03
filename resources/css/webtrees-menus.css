@@ -199,7 +199,7 @@
     
     /* Typography from Kadence database with production-ready fallbacks */
     font-size: var(--secondary-nav-font-size, 0.875rem); /* 14px - utility menu size */
-    font-weight: var(--secondary-nav-font-weight, 600);
+    font-weight: var(--secondary-nav-font-weight, 700);
     font-family: var(--secondary-nav-font-family, inherit);
     line-height: var(--secondary-nav-line-height, 1.5);
     letter-spacing: var(--secondary-nav-letter-spacing, 0.01rem); /* Subtle spacing for smaller text */
