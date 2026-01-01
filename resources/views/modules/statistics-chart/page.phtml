@@ -1,7 +1,7 @@
 <?php
+/**
+ * Statistics chart page - using standard Bootstrap tabs styled with Kadence colors
+ */
 
-$view = view('::modules/statistics-chart/page', get_defined_vars());
-
-$view = preg_replace('/nav-tabs/', 'nav-pills', $view); // Change tabs to pills
-
-echo $view;
+// Render the core webtrees statistics-chart/page view (uses nav-tabs)
+echo view('::modules/statistics-chart/page', get_defined_vars());

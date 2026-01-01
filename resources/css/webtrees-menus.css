@@ -59,7 +59,27 @@
     background: transparent;
     color: var(--header-text-color);
     font-size: 0.8rem;
-    padding: 4px 0;
+    padding: 8px 0;
+}
+
+.utility-bar .site-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.utility-bar .secondary-navigation {
+    margin-left: auto;
+}
+
+.utility-bar .secondary-navigation ul.menu {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 .site-header.is-sticky .utility-bar {
@@ -83,12 +103,18 @@
     display: block !important;
 }
 
-/* Main Header Area 
+/* Main Header Area */
 .main-header-area {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 5px;
+    padding-bottom: 10px;
 }
-*/
+
+.main-header-area .site-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .site-header.is-sticky {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -102,11 +128,32 @@
     transition: color 0.3s;
 }
 
+/* Header Right Stack - Space out navigation rows */
+.header-right-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Keep both menus right-aligned */
+    padding: 0;
+}
+
+/* Main Navigation - Align to top with spacing below */
+.header-right-stack .main-navigation {
+    width: auto;
+    margin-bottom: 10px; /* Add explicit space between menus */
+}
+
+/* Webtrees Navigation - Align to bottom */
+.header-right-stack .webtrees-navigation {
+    width: auto;
+}
+
 /* --- Desktop Navigation --- */
 .main-navigation ul.menu,
 .webtrees-navigation ul.menu {
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -116,7 +163,7 @@
 /* Top Level Links (Global) */
 .main-navigation>ul>li>a {
     display: block;
-    padding: 5px 0;
+    padding: 8px 0;
     color: var(--header-text-color);
     font-weight: 700;
     font-size: var(--menu-font-size, 1rem);
@@ -137,18 +184,26 @@
 }
 
 /* Top Level Links (Utility & App) - Matched Style */
+/* Top Row & Bottom Row - Secondary Navigation (Uses Kadence secondary_navigation_typography) */
 .webtrees-navigation>ul>li>a,
 .secondary-navigation>ul>li>a {
     display: flex;
     align-items: center;
-    padding: 6px 0;
+    padding: 8px 0;
     background-color: transparent;
     color: var(--header-text-color);
-    font-weight: 500;
-    font-size: 0.85rem;
     text-decoration: none;
     transition: color 0.2s ease;
     border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    
+    /* Typography from Kadence database with production-ready fallbacks */
+    font-size: var(--secondary-nav-font-size, 0.875rem); /* 14px - utility menu size */
+    font-weight: var(--secondary-nav-font-weight, 700);
+    font-family: var(--secondary-nav-font-family, inherit);
+    line-height: var(--secondary-nav-line-height, 1.5);
+    letter-spacing: var(--secondary-nav-letter-spacing, 0.01rem); /* Subtle spacing for smaller text */
+    text-transform: var(--secondary-nav-text-transform, none);
 }
 
 .webtrees-navigation>ul>li>a:hover,

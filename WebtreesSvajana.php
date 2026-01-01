@@ -355,10 +355,32 @@ class WebtreesSvajana extends MinimalTheme implements
             }
 
             // RESOLVE TYPOGRAPHY
-            // Extract font sizes to ensure they match WP exactly
+            // Helper function to extract complete typography settings from Kadence
+            $extractTypography = function($typo_key) use ($theme_mods) {
+                $typo = $theme_mods[$typo_key] ?? [];
+                if (empty($typo)) return null;
+                
+                return [
+                    'size_desktop' => ($typo['size']['desktop'] ?? 16) . ($typo['sizeType'] ?? 'px'),
+                    'size_tablet' => ($typo['size']['tablet'] ?? 14) . ($typo['sizeType'] ?? 'px'),
+                    'size_mobile' => ($typo['size']['mobile'] ?? 12) . ($typo['sizeType'] ?? 'px'),
+                    'weight' => $typo['weight'] ?? '400',
+                    'family' => $typo['family'] ?? 'inherit',
+                    'line_height' => ($typo['lineHeight']['desktop'] ?? 1.5) . ($typo['lineType'] ?? ''),
+                    'letter_spacing' => ($typo['letterSpacing']['desktop'] ?? 0) . 'em',
+                    'text_transform' => $typo['textTransform'] ?? 'none',
+                ];
+            };
+
+            // Extract brand typography (site title)
             $brand_size = $theme_mods['brand_typography']['size']['desktop'] ?? 32;
             $brand_unit = $theme_mods['brand_typography']['sizeType'] ?? 'px';
 
+            // Extract complete navigation typography objects
+            $primary_nav_typo = $extractTypography('primary_navigation_typography');
+            $secondary_nav_typo = $extractTypography('secondary_navigation_typography');
+
+            // Legacy support - keep existing menu_font_css for backward compatibility
             $menu_size = $theme_mods['primary_navigation_typography']['size']['desktop'] ?? 16;
             $menu_unit = $theme_mods['primary_navigation_typography']['sizeType'] ?? 'px';
 
@@ -396,7 +418,7 @@ class WebtreesSvajana extends MinimalTheme implements
                 'siteurl'         => $site_url ?: '/',
                 'blogname'        => $blog_name ?: 'Webtrees',
                 'custom_logo_url' => $logo_url,
-                'sticky_logo_url' => $sticky_logo_url, // <-- Add this line
+                'sticky_logo_url' => $sticky_logo_url,
                 'theme_mods'      => $theme_mods,
                 'palette'         => $palette_data,
                 'primary_color'   => $primary_color,
@@ -407,6 +429,9 @@ class WebtreesSvajana extends MinimalTheme implements
                 'hero_image'      => $hero_image,
                 'brand_font_css'  => $brand_size . $brand_unit,
                 'menu_font_css'   => $menu_size . $menu_unit,
+                // Complete typography objects from Kadence
+                'primary_nav_typography' => $primary_nav_typo,
+                'secondary_nav_typography' => $secondary_nav_typo,
             ];
         } catch (Exception $e) {
             return [
@@ -421,9 +446,12 @@ class WebtreesSvajana extends MinimalTheme implements
                 'wp_menu_items'   => [],
                 'hero_image'      => '',
                 'custom_logo_url' => '',
-                'sticky_logo_url' => '', // <-- Add this line to the error return as well
+                'sticky_logo_url' => '',
                 'brand_font_css'  => '2rem',
                 'menu_font_css'   => '1rem',
+                // Empty typography objects for error state
+                'primary_nav_typography' => null,
+                'secondary_nav_typography' => null,
             ];
         }
     }
