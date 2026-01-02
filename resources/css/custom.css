@@ -40,7 +40,7 @@
     --global-calc-content-width: calc(1242px - var(--global-content-edge-padding) - var(--global-content-edge-padding));
     --wp--style--global--content-size: var(--global-calc-content-width);
     --global-vw: calc(100vw - (0.5 * var(--scrollbar-offset)));
-    
+
     /* Modern theme enhancements - chart and relationship styling */
     --chart-line: var(--global-palette1);
     --link-color: var(--global-palette1);
@@ -52,28 +52,36 @@
     --global-palette1-rgb: 0, 51, 102;
     --global-palette2-rgb: 255, 136, 0;
     --global-palette4-rgb: 85, 85, 85;
-        /* Semantic colors for sex icons and chart lines */
-        --sex-male: #468bb6;           /* Male (icons) */
-        --sex-female: #ce5380;         /* Female (icons) */
-        --sex-intersex: #9370db;       /* Intersex */
-        --sex-unknown: var(--global-palette4); /* Unknown/other */
+    /* Semantic colors for sex icons and chart lines */
+    --sex-male: #468bb6;
+    /* Male (icons) */
+    --sex-female: #ce5380;
+    /* Female (icons) */
+    --sex-intersex: #9370db;
+    /* Intersex */
+    --sex-unknown: var(--global-palette4);
+    /* Unknown/other */
 
-        --sex-male-chart: #1e90ff;     /* Male (chart context) */
-        --sex-female-chart: #ff69b4;   /* Female (chart context) */
+    --sex-male-chart: #1e90ff;
+    /* Male (chart context) */
+    --sex-female-chart: #ff69b4;
+    /* Female (chart context) */
 
-        --chart-line-primary: #dee2e6; /* Connector lines */
-        --chart-line-secondary: #81a9cb; /* TV tree/dashed lines */
+    --chart-line-primary: #dee2e6;
+    /* Connector lines */
+    --chart-line-secondary: #81a9cb;
+    /* TV tree/dashed lines */
 }
 
-    /* Shared dropdown base styling utility */
-    .sv-dropdown-base {
-        background: var(--global-palette3);
-        border-top: 3px solid var(--global-palette2);
-        border-radius: 0 0 4px 4px;
-        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-        padding: 0;
-        min-width: 180px;
-    }
+/* Shared dropdown base styling utility */
+.sv-dropdown-base {
+    background: var(--global-palette3);
+    border-top: 3px solid var(--global-palette2);
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    padding: 0;
+    min-width: 180px;
+}
 
 /* ======================
    Kadence Base Body and Typography Styles
@@ -97,9 +105,9 @@ body {
 .wt-main-container,
 .wt-page-content,
 #content,
-.site-container > .wt-route-individual,
-.site-container > .wt-route-family,
-.site-container > .wt-route-chart {
+.site-container>.wt-route-individual,
+.site-container>.wt-route-family,
+.site-container>.wt-route-chart {
     font-size: 14px;
     line-height: 1.5;
 }
@@ -639,13 +647,15 @@ body.content-style-unboxed .site {
         padding-top: 0.1em;
         padding-bottom: 0.1em;
         color: var(--global-palette1);
-        
+
         /* Typography from Kadence primary_navigation_typography with production-ready fallbacks */
         font-family: var(--primary-nav-font-family, var(--global-primary-nav-font-family));
         font-weight: var(--primary-nav-font-weight, 700);
-        font-size: var(--primary-nav-font-size, 20px); /* Primary menu - prominent size */
+        font-size: var(--primary-nav-font-size, 20px);
+        /* Primary menu - prominent size */
         line-height: var(--primary-nav-line-height, 1.5);
-        letter-spacing: var(--primary-nav-letter-spacing, 0.02rem); /* Slightly wider for larger text */
+        letter-spacing: var(--primary-nav-letter-spacing, 0.02rem);
+        /* Slightly wider for larger text */
         text-transform: var(--primary-nav-text-transform, capitalize);
     }
 
@@ -688,13 +698,15 @@ body.content-style-unboxed .site {
         color: var(--global-palette1);
         text-decoration: none;
         padding: 0.1em 0.6em !important;
-        
+
         /* Typography from Kadence secondary_navigation_typography with production-ready fallbacks */
         font-family: var(--secondary-nav-font-family, var(--global-primary-nav-font-family));
         font-weight: var(--secondary-nav-font-weight, 700);
-        font-size: var(--secondary-nav-font-size, 16px); /* Secondary menu - medium size */
+        font-size: var(--secondary-nav-font-size, 16px);
+        /* Secondary menu - medium size */
         line-height: var(--secondary-nav-line-height, 1.5);
-        letter-spacing: var(--secondary-nav-letter-spacing, 0.015rem); /* Balanced spacing for app nav */
+        letter-spacing: var(--secondary-nav-letter-spacing, 0.015rem);
+        /* Balanced spacing for app nav */
         text-transform: var(--secondary-nav-text-transform, capitalize);
     }
 
@@ -1115,7 +1127,7 @@ larger left spacing */
 
     /* Webtrees specific styles to ensure proper layout in Kadence context */
     .wt-main-wrapper {
-        padding-top: 1rem;
+        padding-top: 1px;
         padding-bottom: 2rem;
     }
 
