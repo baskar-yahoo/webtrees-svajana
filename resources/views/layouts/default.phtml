@@ -108,25 +108,27 @@ if ($theme) {
              <div class="wt-hero-overlay"></div>
         </div>
 
-        <main id="inner-wrap" class="wrap kt-clear" role="main" style="flex: 1;">
-            <div id="primary" class="content-area">
-                <div class="content-container site-container">
-                    <div id="main" class="site-main">
-                        <div class="content-wrap">
-                            <article class="entry content-bg">
-                                <div class="entry-content-wrap">
-                                    <div class="kb-row-layout-wrap">
-                                        <div class="wt-main-container">
-                                            <?= $content ?? '' ?>
+        <div class="wt-main-wrapper" style="flex: 1;">
+            <main id="inner-wrap" class="wrap kt-clear" role="main">
+                <div id="primary" class="content-area">
+                    <div class="content-container site-container">
+                        <div id="main" class="site-main">
+                            <div class="content-wrap">
+                                <article class="entry content-bg">
+                                    <div class="entry-content-wrap">
+                                        <div class="kb-row-layout-wrap">
+                                            <div class="wt-main-container">
+                                                <?= $content ?? '' ?>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </article>
+                                </article>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </main>
+            </main>
+        </div>
 
         <?php
         echo View::make('svajana::layouts/_footer', [
