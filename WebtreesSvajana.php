@@ -271,6 +271,81 @@ class WebtreesSvajana extends MinimalTheme implements
     }
 
     /**
+     * Filter menu items based on authentication state
+     * Shows Login only when logged out, Logout only when logged in
+     * 
+     * @param array $menu_items Menu items to filter
+     * @return array Filtered menu items
+     */
+    public static function filterMenuByAuthState(array $menu_items): array
+    {
+        $user_logged_in = Auth::check();
+        
+        return array_filter($menu_items, function($item) use ($user_logged_in) {
+            $classes = $item['classes'] ?? [];
+            
+            // Check for login/logout menu item classes
+            $is_login = in_array('menu-item-login', $classes, true) || 
+                       in_array('login-link', $classes, true);
+            $is_logout = in_array('menu-item-logout', $classes, true) || 
+                        in_array('logout-link', $classes, true);
+            
+            // Hide login if logged in
+            if ($is_login && $user_logged_in) {
+                return false;
+            }
+            
+            // Hide logout if NOT logged in
+            if ($is_logout && !$user_logged_in) {
+                return false;
+            }
+            
+            // Show all other items
+            return true;
+        });
+    }
+
+    /**
+     * Recursively filter menu tree including children
+     * Handles nested menu structures
+     * 
+     * @param array $menu_items Menu tree to filter
+     * @return array Filtered menu tree
+     */
+    public static function filterMenuTree(array $menu_items): array
+    {
+        $user_logged_in = Auth::check();
+        $filtered = [];
+        
+        foreach ($menu_items as $item) {
+            $classes = $item['classes'] ?? [];
+            
+            // Check for login/logout menu item classes
+            $is_login = in_array('menu-item-login', $classes, true) || 
+                       in_array('login-link', $classes, true);
+            $is_logout = in_array('menu-item-logout', $classes, true) || 
+                        in_array('logout-link', $classes, true);
+            
+            // Skip if should be hidden
+            if ($is_login && $user_logged_in) {
+                continue;
+            }
+            if ($is_logout && !$user_logged_in) {
+                continue;
+            }
+            
+            // Filter children recursively
+            if (!empty($item['children'])) {
+                $item['children'] = self::filterMenuTree($item['children']);
+            }
+            
+            $filtered[] = $item;
+        }
+        
+        return $filtered;
+    }
+
+    /**
      * Helper to fetch standard WP Options from the shared DB.
      * Uses Raw PDO to bypass Eloquent auto-prefixing.
      */
@@ -411,6 +486,10 @@ class WebtreesSvajana extends MinimalTheme implements
 
                 if ($tt_id) {
                     $wp_menu_items = self::fetchWpMenu($pdo, $tt_id, $site_url, $p);
+                    
+                    // Auto-filter menu based on authentication state
+                    // This ensures Login shows only when logged out, Logout only when logged in
+                    $wp_menu_items = self::filterMenuTree($wp_menu_items);
                 }
             }
 
