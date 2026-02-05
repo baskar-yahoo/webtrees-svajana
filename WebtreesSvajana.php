@@ -362,6 +362,17 @@ class WebtreesSvajana extends MinimalTheme implements
                 continue;
             }
             
+            // CRITICAL: Update logout URL to use SSO-aware logout handler
+            // This ensures WordPress + Webtrees dual-system logout
+            if ($is_logout) {
+                try {
+                    $item['url'] = route(\Webtrees\WordPressSso\Http\WordPressSsoLogout::class);
+                } catch (\Exception $e) {
+                    // Fallback to standard Webtrees logout if SSO module not available
+                    $item['url'] = route(\Fisharebest\Webtrees\Http\RequestHandlers\Logout::class);
+                }
+            }
+            
             // Filter children recursively
             if (!empty($item['children'])) {
                 $item['children'] = self::filterMenuTree($item['children']);
