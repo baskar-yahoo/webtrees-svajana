@@ -320,6 +320,39 @@ class WebtreesSvajana extends MinimalTheme implements
     }
 
     /**
+     * Override userMenu to hide only the webtrees "Sign out" menu item.
+     * Uses label matching to distinguish from WordPress "Log Out" menu item.
+     * Webtrees uses "Sign out" while WordPress uses "Log Out" or "Log out".
+     * 
+     * @param Tree|null $tree
+     * @return array<Menu>
+     */
+    public function userMenu(?Tree $tree): array
+    {
+        $menus = parent::userMenu($tree);
+        
+        // Filter out ONLY menu items with "Sign out" or "Sign Out" labels (webtrees default)
+        // Keep "Log Out" or "Log out" (WordPress menu items)
+        return array_filter($menus, function (Menu $menu): bool {
+            $label = $menu->getLabel();
+            
+            // Hide only "Sign out" or "Sign Out" (case-sensitive check)
+            if ($label === 'Sign out' || $label === 'Sign Out') {
+                return false;
+            }
+            
+            // Also check translated version
+            $translated = I18N::translate('Sign out');
+            if ($label === $translated) {
+                return false;
+            }
+            
+            // Keep all other menu items including "Log Out", "Log out", etc.
+            return true;
+        });
+    }
+
+    /**
      * Recursively filter menu tree including children
      * Handles nested menu structures
      * 
