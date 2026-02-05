@@ -108,6 +108,17 @@ if ($theme) {
              <div class="wt-hero-overlay"></div>
         </div>
 
+        <!-- FLASH MESSAGES -->
+        <?php
+        use Fisharebest\Webtrees\FlashMessages;
+        
+        foreach (FlashMessages::getMessages() as $message): ?>
+            <div class="alert alert-<?= e($message->status) ?> alert-dismissible fade show" role="alert" style="margin: 1rem auto; max-width: 1200px; border-radius: 0.25rem;">
+                <?= $message->text ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="<?= I18N::translate('close') ?>"></button>
+            </div>
+        <?php endforeach; ?>
+
         <div class="wt-main-wrapper" style="flex: 1;">
             <main id="inner-wrap" class="wrap kt-clear" role="main">
                 <div id="primary" class="content-area">
