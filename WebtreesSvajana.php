@@ -284,6 +284,20 @@ class WebtreesSvajana extends MinimalTheme implements
         return array_filter($menu_items, function($item) use ($user_logged_in) {
             $classes = $item['classes'] ?? [];
             
+            // Ensure classes is an array (WordPress may store as serialized string)
+            if (is_string($classes)) {
+                // Check if serialized array
+                if (strpos($classes, 'a:') === 0 || strpos($classes, 's:') === 0) {
+                    $classes = @unserialize($classes) ?: [];
+                } else {
+                    // Comma-separated or single value
+                    $classes = $classes ? array_map('trim', explode(',', $classes)) : [];
+                }
+            }
+            if (!is_array($classes)) {
+                $classes = [];
+            }
+            
             // Check for login/logout menu item classes
             $is_login = in_array('menu-item-login', $classes, true) || 
                        in_array('login-link', $classes, true);
@@ -319,6 +333,20 @@ class WebtreesSvajana extends MinimalTheme implements
         
         foreach ($menu_items as $item) {
             $classes = $item['classes'] ?? [];
+            
+            // Ensure classes is an array (WordPress may store as serialized string)
+            if (is_string($classes)) {
+                // Check if serialized array
+                if (strpos($classes, 'a:') === 0 || strpos($classes, 's:') === 0) {
+                    $classes = @unserialize($classes) ?: [];
+                } else {
+                    // Comma-separated or single value
+                    $classes = $classes ? array_map('trim', explode(',', $classes)) : [];
+                }
+            }
+            if (!is_array($classes)) {
+                $classes = [];
+            }
             
             // Check for login/logout menu item classes
             $is_login = in_array('menu-item-login', $classes, true) || 
